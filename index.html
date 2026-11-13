@@ -1,0 +1,3600 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Workly — O'zbekistonda ishsizlikni kamaytirish va eng yirik kasblar ensiklopediyasi platformasi.">
+<meta name="theme-color" content="#eaf1f8">
+<title>Workly — O'zbekistonda ish va karyera markazi</title>
+<style>
+:root{--teal:#0e8f9c;--ink:#0f1d2e;--mut:#5b6b7d;--glass:rgba(255,255,255,.68);--edge:rgba(255,255,255,.85);--spring:cubic-bezier(.34,1.56,.64,1)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter",system-ui,sans-serif;color:var(--ink);background:#eaf1f8;min-height:100vh;line-height:1.6;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid rgba(14,143,156,.55);outline-offset:2px}
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden}
+.bg i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.7}
+.bg i:nth-child(1){width:600px;height:600px;background:#7fd8e0;top:-150px;left:-120px}
+.bg i:nth-child(2){width:500px;height:500px;background:#b9c7ff;top:25%;right:-150px}
+.bg i:nth-child(3){width:480px;height:480px;background:#ffe3a3;bottom:-150px;left:20%}
+.glass{background:var(--glass);backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);border:1px solid var(--edge);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 0 rgba(255,255,255,.3),0 12px 36px rgba(20,50,90,.1)}
+.btn{border:0;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border-radius:999px;font-weight:600;font-size:15px;white-space:nowrap;transition:transform .4s var(--spring),box-shadow .2s,filter .2s}
+.btn:hover{filter:brightness(1.04)}
+.btn:active{transform:scale(.94)}
+.btn-p{color:#fff;background:linear-gradient(180deg,#32c0cd,#0e8f9c);box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 8px 20px rgba(14,143,156,.35)}
+.btn-g{background:var(--glass);border:1px solid var(--edge);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 4px 14px rgba(20,50,90,.08);backdrop-filter:blur(20px)}
+.btn-w{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12),0 6px 18px rgba(20,50,90,.1);width:100%;padding:14px}
+.btn-block{width:100%}
+.btn-sm{padding:8px 16px;font-size:14px}
+.nav{position:sticky;top:12px;z-index:20;margin:12px auto 0;width:min(1180px,calc(100% - 24px));display:flex;align-items:center;gap:12px;justify-content:space-between;padding:10px 16px 10px 24px;border-radius:999px}
+.logo{font-weight:800;font-size:24px;letter-spacing:-.5px;text-decoration:none;color:inherit}
+.logo b{color:#f0a500}
+.links{display:flex;gap:8px}
+.links a{text-decoration:none;color:var(--mut);font-weight:600;font-size:14px;padding:8px 16px;border-radius:999px;transition:background .2s;cursor:pointer}
+.links a:hover{background:rgba(255,255,255,.7);color:var(--ink)}
+.acts{display:flex;gap:8px;align-items:center}
+.avatar{width:36px;height:36px;border-radius:50%;object-fit:cover;background:linear-gradient(135deg,#32c0cd,#6b8bff);color:#fff;display:grid;place-items:center;font-weight:700;font-size:14px;flex-shrink:0}
+.wrap{width:min(1180px,calc(100% - 32px));margin:0 auto}
+.hero{padding:50px 0 20px;max-width:820px}
+.hero h1{font-size:clamp(2.5rem,6.5vw,4.4rem);line-height:1.05;letter-spacing:-.04em;font-weight:800}
+.hero p{margin-top:16px;font-size:1.15rem;color:var(--mut);max-width:58ch}
+.search-box{margin-top:28px;padding:10px;border-radius:32px;display:grid;grid-template-columns:1.5fr 1.1fr 1fr auto;gap:8px}
+.search-box input,.search-box select{width:100%;min-height:52px;border:0;border-radius:24px;padding:0 20px;background:rgba(255,255,255,.75);outline-offset:-2px}
+.filter-tabs{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.filter-tab{background:rgba(255,255,255,.5);border:1px solid var(--edge);padding:8px 16px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;transition:.3s}
+.filter-tab.active{background:var(--ink);color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px;color:var(--mut);font-size:14px}
+.chip{border:1px solid var(--edge);background:rgba(255,255,255,.65);padding:7px 16px;border-radius:999px;font-weight:600;font-size:14px;transition:transform .4s var(--spring)}
+.chip:active{transform:scale(.93)}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin:32px 0 10px}
+.stat{padding:18px 24px;border-radius:24px}
+.stat strong{display:block;font-size:2rem;line-height:1.1;letter-spacing:-.03em}
+.stat span{color:var(--mut);font-size:13.5px}
+section{padding:40px 0 10px}
+h2{font-size:clamp(1.7rem,3vw,2.3rem);letter-spacing:-.03em}
+.head{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-bottom:20px}
+.head .cnt{margin-right:auto;color:var(--mut)}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin-top:18px}
+.cat{text-align:left;padding:20px;border-radius:26px;display:grid;gap:4px;transition:transform .4s var(--spring);cursor:pointer}
+.cat:active{transform:scale(.95)}
+.cat small{color:var(--mut)}
+.cat.on{background:var(--ink);color:#fff}.cat.on small{color:#b8c7d9}
+.jobs{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.job{padding:22px;border-radius:28px;display:flex;flex-direction:column;gap:14px;text-align:left;transition:transform .4s var(--spring)}
+.job:hover{transform:translateY(-4px)}
+.top{display:flex;gap:14px;align-items:center}
+.logo-co{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;color:#fff;font-weight:800;flex-shrink:0;font-size:18px}
+.top h3{font-size:1.1rem;line-height:1.25}.top p{color:var(--mut);font-size:14px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{background:rgba(255,255,255,.8);padding:4px 12px;border-radius:999px;font-size:12.5px;font-weight:600;color:var(--mut)}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;gap:8px}
+.sal{font-weight:800;color:var(--teal);font-size:1.05rem}
+.save{width:40px;height:40px;border-radius:50%;border:1px solid var(--edge);background:rgba(255,255,255,.75);font-size:18px;display:grid;place-items:center;transition:transform .4s var(--spring)}
+.save:active{transform:scale(.85)}.save.on{color:#e5484d}
+.empty{padding:40px;text-align:center;color:var(--mut);border-radius:26px}
+.emp{margin:40px 0;padding:36px;border-radius:32px;display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center;background:linear-gradient(135deg,rgba(14,143,156,.92),rgba(40,70,160,.9));color:#fff;border:1px solid var(--edge)}
+.emp p{opacity:.85;margin-top:6px}
+footer{padding:30px 0 80px;color:var(--mut);font-size:14px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-top:1px solid rgba(0,0,0,.06)}
+.sheet{position:fixed;inset:0;z-index:50;display:none;align-items:flex-end;justify-content:center;background:rgba(15,29,46,.4);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.sheet.open{display:flex;animation:fade .25s}
+.panel{width:min(560px,100%);max-height:92vh;overflow:auto;padding:28px 26px calc(26px + env(safe-area-inset-bottom));border-radius:36px 36px 0 0;background:rgba(255,255,255,.95);animation:up .5s var(--spring);position:relative}
+.panel::before{content:"";display:block;width:40px;height:5px;border-radius:10px;background:rgba(15,29,46,.2);margin:-14px auto 18px}
+.x{position:absolute;top:16px;right:18px;width:34px;height:34px;border-radius:50%;border:0;background:rgba(15,29,46,.08);font-size:16px;display:grid;place-items:center;cursor:pointer}
+.panel h3{font-size:1.5rem;letter-spacing:-.02em;margin-bottom:4px}
+.panel .sub{color:var(--mut);margin-bottom:18px;font-size:15px}
+.panel label{display:block;font-size:13px;font-weight:600;color:var(--mut);margin:12px 0 5px}
+.panel input,.panel select,.panel textarea{width:100%;padding:13px 16px;border-radius:18px;border:1px solid rgba(15,29,46,.12);background:rgba(255,255,255,.95)}
+.panel textarea{min-height:90px;resize:vertical}
+.wiki-box{background:rgba(14,143,156,.06);border-left:4px solid var(--teal);padding:14px 16px;border-radius:0 16px 16px 0;margin:14px 0;font-size:14.5px;color:var(--ink)}
+.wiki-box strong{color:var(--teal);display:block;margin-bottom:4px}
+.panel ul{margin:8px 0 18px 20px;color:var(--mut)}
+.gap{display:grid;gap:10px;margin-top:18px}
+.note{font-size:12.5px;color:var(--mut);text-align:center;margin-top:12px}
+.me{display:flex;gap:12px;align-items:center;margin-bottom:6px}
+.toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,30px);opacity:0;pointer-events:none;z-index:80;padding:12px 22px;border-radius:999px;font-weight:600;transition:.4s var(--spring);background:var(--ink);color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.toast.show{transform:translate(-50%,0);opacity:1}
+.mega-dock{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:40;display:flex;gap:6px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.85);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.9);box-shadow:0 16px 36px rgba(15,29,46,0.15);max-width:calc(100vw - 20px);overflow-x:auto}
+.mega-dock button{border:0;background:transparent;padding:8px 14px;border-radius:999px;font-size:13px;font-weight:600;color:var(--mut);white-space:nowrap;cursor:pointer;transition:.3s}
+.mega-dock button:hover{background:rgba(255,255,255,0.9);color:var(--ink)}
+.mega-dock button.active{background:var(--ink);color:#fff}
+.mega-view{display:none}
+.mega-view.active{display:block}
+@keyframes up{from{transform:translateY(60px);opacity:0}}
+@keyframes fade{from{opacity:0}}
+@media(max-width:850px){.links{display:none}.search-box{grid-template-columns:1fr}.nav{padding-left:16px}.hide-m{display:none}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<header class="nav glass">
+  <a href="#top" class="logo" onclick="switchView('main')">Workly<b>.</b></a>
+  <nav class="links" aria-label="Asosiy">
+    <a onclick="switchView('main')">Vakansiyalar</a>
+    <a onclick="switchView('professions')">Kasblar Ensiklopediyasi</a>
+    <a onclick="switchView('salary')">Maoshlar Analitikasi</a>
+  </nav>
+  <div class="acts" id="acts"></div>
+</header>
+
+<!-- MAIN VIEW -->
+<div id="view-main" class="mega-view active">
+<main class="wrap" id="top">
+  <div class="hero">
+    <h1>O'zbekistonda munosib ish topish vaqti keldi.</h1>
+    <p>Ishsizlikka o'rin yo'q! Toshkentdan viloyatlargacha bo'lgan eng mashhur ish o'rinlari, batafsil maoshlar tahlili va talablar ensiklopediyasi.</p>
+    
+    <form class="search-box glass" id="sf" role="search">
+      <input id="q" type="search" placeholder="Lavozim yoki kompaniya (masalan: Developer, Buxgalter)" aria-label="Qidirish">
+      <select id="city" aria-label="Shahar"></select>
+      <select id="type" aria-label="Ish turi">
+        <option value="">Barcha turlar</option>
+        <option value="Full-time">To'liq stavka</option>
+        <option value="Part-time">Yarim stavka</option>
+        <option value="Remote">Masofaviy (Remote)</option>
+        <option value="Hybrid">Gibrid</option>
+      </select>
+      <button class="btn btn-p" type="submit">Qidirish</button>
+    </form>
+
+    <div class="filter-tabs" id="filterTabs">
+      <button class="filter-tab active" data-tab="">Barchasi</button>
+      <button class="filter-tab" data-tab="HighSalary">🔥 Yuqori maoshli ($1000+)</button>
+      <button class="filter-tab" data-tab="Remote">💻 Masofaviy ishlar</button>
+      <button class="filter-tab" data-tab="NoExperience">🟢 Tajribasizlar uchun</button>
+    </div>
+
+    <div class="chips"><span>Ko'p qidiriladi:</span>
+      <button class="chip" data-s="Developer">Developer</button>
+      <button class="chip" data-s="Buxgalter">Buxgalter</button>
+      <button class="chip" data-s="Logist">Logist</button>
+      <button class="chip" data-s="SMM">SMM menejer</button>
+      <button class="chip" data-s="O'qituvchi">O'qituvchi</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat glass"><strong id="n1"></strong><span>faol vakansiya</span></div>
+      <div class="stat glass"><strong id="n2"></strong><span>ish beruvchi kompaniya</span></div>
+      <div class="stat glass"><strong id="n3"></strong><span>qamrab olingan shahar</span></div>
+    </div>
+  </div>
+
+  <section id="categories">
+    <h2>Yo'nalishlar bo'yicha tanlash</h2>
+    <div class="cats" id="cats"></div>
+  </section>
+
+  <section id="jobs">
+    <div class="head">
+      <h2>O'zbekistondagi dolzarb vakansiyalar</h2>
+      <span class="cnt" id="cnt" aria-live="polite"></span>
+      <button class="btn btn-g btn-sm" id="reset">Filtrlarni tozalash</button>
+    </div>
+    <div class="jobs" id="grid"></div>
+    <p class="empty glass" id="none" hidden>Hech qanday vakansiya topilmadi. Qidiruv so'zini o'zgartirib ko'ring.</p>
+  </section>
+
+  <section id="employer">
+    <div class="emp">
+      <div>
+        <h2>Ish beruvchimisiz yoki hamkorlik qilmoqchimisiz?</h2>
+        <p>Sayt bo'yicha takliflar, reklama yoki hamkorlik uchun bevosita administrator bilan bog'laning.</p>
+      </div>
+      <a class="btn btn-w" style="width:auto;color:var(--ink);text-decoration:none" href="https://t.me/Husniddin_Yuldashev" target="_blank">Telegram: @Husniddin_Yuldashev</a>
+    </div>
+  </section>
+
+  <footer>
+    <span class="logo">Workly<b>.</b></span>
+    <span>© 2026 Workly. O'zbekiston mehnat bozori uchun maxsus.</span>
+    <span>Bog'lanish: <a href="https://t.me/Husniddin_Yuldashev" target="_blank" style="color:var(--teal);text-decoration:none;font-weight:600">@Husniddin_Yuldashev</a></span>
+  </footer>
+</main>
+</div>
+
+<!-- PROFESSIONS VIEW -->
+<div id="view-professions" class="mega-view">
+  <div class="wrap" style="padding:40px 0">
+    <h2>📖 Kasblar Ensiklopediyasi</h2>
+    <p style="color:var(--mut);margin-bottom:20px">O'zbekistondagi barcha mashhur kasblar bo'yicha batafsil ma'lumotlar, talablar va o'rtacha oylik maoshlar.</p>
+    <div class="search-box glass" style="margin-bottom:25px;grid-template-columns:1fr">
+      <input type="search" id="profSearch" placeholder="Kasb nomini kiriting (masalan: Dasturchi, Shifokor, Buxgalter)..." oninput="filterProfessions(this.value)">
+    </div>
+    <div class="jobs" id="profGrid"></div>
+  </div>
+</div>
+
+<!-- SALARY ANALYTICS VIEW -->
+<div id="view-salary" class="mega-view">
+  <div class="wrap" style="padding:40px 0">
+    <h2>📊 O'zbekiston Maoshlar Statistikasi</h2>
+    <p style="color:var(--mut);margin-bottom:20px">Sohalar bo'yicha eng past, o'rtacha va yuqori oylik daromadlar tahlili.</p>
+    <div class="jobs" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))" id="salaryGrid"></div>
+  </div>
+</div>
+
+<!-- INTERVIEW CENTER VIEW -->
+<div id="view-interview" class="mega-view">
+  <div class="wrap" style="padding:40px 0">
+    <h2>🎯 Interview Center (Suhbatga Tayyorgarlik)</h2>
+    <p style="color:var(--mut);margin-bottom:20px">Ishga kirish suhbatlarida beriladigan eng ko'p savollar va ularga professional javob berish sirlari.</p>
+    <div class="jobs" style="grid-template-columns:1fr">
+      <div class="job glass">
+        <h3>1. O'zingiz haqingizda gapirib bering</h3>
+        <p style="color:var(--mut)">Bu savolga qisqacha o'z tajribangiz, erishgan yutuqlaringiz va nima uchun aynan shu kompaniyaga kelganingiz haqida gapirib javob bering.</p>
+      </div>
+      <div class="job glass">
+        <h3>2. Nima uchun bizning kompaniyani tanladingiz?</h3>
+        <p style="color:var(--mut)">Kompaniyaning yutuqlari, faoliyati va qadriyatlarini o'rganib chiqib, ularning maqsadlari sizning karyerangizga qanday mos kelishini tushuntiring.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CV BUILDER VIEW -->
+<div id="view-cv" class="mega-view">
+  <div class="wrap" style="padding:40px 0">
+    <h2>📄 Professional CV (Rezyume) Generator</h2>
+    <p style="color:var(--mut);margin-bottom:20px">Ma'lumotlaringizni kiriting va ish beruvchilarga yuborish uchun chiroyli rezyume tayyorlang.</p>
+    <div class="job glass" style="max-width:600px;margin:0 auto">
+      <label>Ism va Familiya</label><input type="text" id="cvName" placeholder="Botir Alimov">
+      <label>Mutaxassislik / Lavozim</label><input type="text" id="cvTitle" placeholder="Frontend Developer">
+      <label>Telefon raqam</label><input type="text" id="cvPhone" placeholder="+998 90 123 45 67">
+      <label>Ko'nikmalar</label><input type="text" id="cvSkills" placeholder="HTML, CSS, JavaScript, React">
+      <button class="btn btn-p btn-block" style="margin-top:20px" onclick="generateCV()">Rezyumeni ko'rish</button>
+      <div id="cvResult" style="margin-top:15px;font-weight:600"></div>
+    </div>
+  </div>
+</div>
+
+<!-- FLOATING DOCK -->
+<nav class="mega-dock">
+  <button class="active" onclick="switchView('main')">💼 Vakansiyalar</button>
+  <button onclick="switchView('professions')">📖 Kasblar</button>
+  <button onclick="switchView('salary')">📊 Maoshlar</button>
+  <button onclick="switchView('interview')">🎯 Suhbat</button>
+  <button onclick="switchView('cv')">📄 Rezyume</button>
+</nav>
+
+<!-- Auth Sheet -->
+<div class="sheet" id="sAuth" role="dialog" aria-modal="true" aria-labelledby="tAuth"><div class="panel">
+  <button class="x" data-close aria-label="Yopish">✕</button>
+  <h3 id="tAuth">Workly'ga kirish</h3>
+  <p class="sub">Tezkor ariza yuborish va ishlarni saqlash uchun tizimga kiring.</p>
+  <button class="btn btn-w" id="gDemo" style="margin-bottom:12px">Demo Hisob sifatida kirish</button>
+  <p class="note">Tez orada Google va Telegram orqali avtorizatsiya qo'shiladi.</p>
+</div></div>
+
+<!-- Profile Sheet -->
+<div class="sheet" id="sProf" role="dialog" aria-modal="true" aria-labelledby="tProf"><div class="panel">
+  <button class="x" data-close aria-label="Yopish">✕</button>
+  <div class="me"><span id="pAvBox"></span><div><h3 id="tProf">Foydalanuvchi Profili</h3><div class="sub" id="pMail" style="margin:0"></div></div></div>
+  <form id="pf">
+    <label for="fn">Ism va familiya</label><input id="fn" required maxlength="80">
+    <label for="fp">Telefon raqam</label><input id="fp" type="tel" required placeholder="+998 90 123 45 67" maxlength="20">
+    <label for="fc">Shahar</label><select id="fc"></select>
+    <label for="ft">Qidirayotgan lavozim</label><input id="ft" required maxlength="80" placeholder="Masalan: Frontend Developer">
+    <label for="fk">Ko'nikmalar va Tajriba</label><input id="fk" maxlength="160" placeholder="Tajriba: 1 yil, Texnologiyalar...">
+    <label for="fa">O'zingiz haqingizda qisqacha</label><textarea id="fa" maxlength="500"></textarea>
+    <div class="gap"><button class="btn btn-p btn-block" type="submit">Ma'lumotlarni saqlash</button><button class="btn btn-g btn-block" type="button" id="out">Hisobdan chiqish</button></div>
+  </form>
+  <p class="note" id="pStat"></p>
+</div></div>
+
+<!-- Job Details Sheet -->
+<div class="sheet" id="sJob" role="dialog" aria-modal="true" aria-labelledby="jT"><div class="panel">
+  <button class="x" data-close aria-label="Yopish">✕</button>
+  <div id="jBody"></div>
+</div></div>
+
+<div class="toast glass" id="toast" role="status"></div>
+
+<script>
+const JOBS=[
+{id:1,t:"Frontend Developer (React/Vue)",c:"EPAM Uzbekistan",city:"Toshkent",cat:"IT",type:"Full-time",sal:"$1,200 – $2,500",d:"Xalqaro mijozlar uchun zamonaviy veb-ilovalar yaratish jamoasiga tajribali dasturchi qidiramiz.",r:["HTML5, CSS3, JavaScript (ES6+)","React.js yoki Vue.js da 2+ yil tajriba","Git va REST API bilan ishlash ko'nikmasi"],wiki:"O'zbekistonda IT sohasi jadal rivojlanmoqda. Toshkent shahrida xalqaro autsorsing kompaniyalarida ishlash eng yuqori maosh keltiruvchi yo'nalishlardan biridir."},
+{id:2,t:"Python / Backend Developer",c:"Uzum Technologies",city:"Toshkent",cat:"IT",type:"Full-time",sal:"$1,500 – $3,000",d:"Millionlab foydalanuvchilarga ega e-commerce platformasi backend qismini rivojlantirish.",r:["Python (Django / FastAPI)","PostgreSQL, Redis","Docker va mikroservis arxitekturasi"],wiki:"Uzum kabi yirik ekotizimlar O'zbekistonda minglab ish o'rinlarini yaratib, dasturchilarga yuqori daromad taqdim etmoqda."},
+{id:3,t:"Bosh Buxgalter",c:"Hamkorbank",city:"Andijon",cat:"Finance",type:"Full-time",sal:"8 mln – 14 mln so'm",d:"Bank filialida moliyaviy hisobotlarni yuritish va soliq solish jarayonlarini nazorat qilish.",r:["O'zbekiston soliq qonunchiligini mukammal bilish","1C Buxgalteriya 8.3","3 yildan ortiq professional tajriba"],wiki:"Moliya va bank sohasi O'zbekistonda doimiy ravishda barqaror va yuqori maoshli ish joylarini taklif qiladi."},
+{id:4,t:"Logistika Menejeri",c:"Tashkent Logistics Group",city:"Toshkent",cat:"Business",type:"Full-time",sal:"7 mln – 18 mln so'm",d:"Xalqaro yuk tashish marshrutlarini tuzish va haydovchilar bilan aloqada bo'lish.",r:["Ingliz yoki rus tilini mukammal bilish","Muloqot qilish qobiliyati","Stressga chidamlilik"],wiki:"O'zbekistonning geografik joylashuvi tufayli logistika mamlakatimiz iqtisodiyotining asosiy drayverlaridan biridir."},
+{id:5,t:"UI/UX Mahsulot Dizayneri",c:"Payme (Inspired)",city:"Toshkent",cat:"Design",type:"Hybrid",sal:"$1,000 – $1,800",d:"Mobil ilovalar va veb-saytlar uchun qulay hamda zamonaviy foydalanuvchi interfeyslarini loyihalash.",r:["Figma, Adobe XD","Design systems yaratish ko'nikmasi","Portfolio mavjudligi shart"],wiki:"Dizayn va raqamli mahsulotlar bozori oxirgi yillarda O'zbekistonda keskin o'sishga erishdi."},
+{id:6,t:"SMM va Kontent Menejer",c:"Mediapark",city:"Samarqand",cat:"Marketing",type:"Remote",sal:"5 mln – 9 mln so'm",d:"Ijtimoiy tarmoqlar uchun qiziqarli kontent rejalar tuzish, postlar va reelklar tayyorlash.",r:["Copywriting ko'nikmasi","SMM bo'yicha kamida 1 yil tajriba","Mobilografiya asoslari"],wiki:"Brendlarni onlayn targ'ib qilish kichik va o'rta biznes uchun eng muhim bosqichlardan biriga aylandi."}
+];
+
+const PROFESSIONS=[
+{name:"Software Developer (Dasturchi)",cat:"IT va Dasturlash",salary:"$800 – $3,000",desc:"Kompyuter dasturlari, veb-saytlar va ilovalar yaratish bilan shug'ullanadi."},
+{name:"Shifokor / Terapevt",cat:"Tibbiyot",salary:"5 mln – 15 mln so'm",desc:"Bemorlarni ko'rikdan o'tkazadi, tashxis qo'yadi va davolash muolajalarini belgilaydi."},
+{name:"Maktab o'qituvchisi",cat:"Ta'lim",salary:"3.5 mln – 8 mln so'm",desc:"O'quvchilarga o'z fanidan saboq beradi va bilim beradi."},
+{name:"Buxgalter",cat:"Buxgalteriya va Moliya",salary:"5 mln – 12 mln so'm",desc:"Korxona mablag'lari harakati va soliq hisobotlarini yuritadi."},
+{name:"Logist / Xalqaro tashish mutaxassisi",cat:"Logistika",salary:"6 mln – 16 mln so'm",desc:"Yuklarni tashish marshrutlarini optimallashtiradi va hujjatlashtiradi."},
+{name:"Grafik Dizayner",cat:"Dizayn",salary:"4 mln – 10 mln so'm",desc:"Vizual kontent, bannerlar, brending va reklama elementlarini yaratadi."},
+{name:"SMM Mutaxassisi",cat:"Marketing",salary:"4.5 mln – 9 mln so'm",desc:"Ijtimoiy tarmoqlarda kompaniya sahifalarini yuritadi va mijozlarni jalb qiladi."},
+{name:"Elektr montajchisi",cat:"Texnik xizmatlar",salary:"5 mln – 10 mln so'm",desc:"Binolar va inshootlarda elektr tarmoqlarini o'rnatadi va ta'mirlaydi."}
+];
+
+const CITIES=["Toshkent","Samarqand","Buxoro","Andijon","Farg'ona","Namangan"];
+const CATS={IT:"IT va Dasturlash",Design:"Dizayn",Marketing:"Marketing va SMM",Finance:"Moliya va Buxgalteriya",Business:"Biznes va Savdo",Education:"Ta'lim va Fan",Logistics:"Logistika"};
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const store={get(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v??d}catch{return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}};
+const S={q:"",city:"",cat:"",type:"",tab:"",user:store.get("wl-user",null),saved:store.get("wl-saved",[]),applied:store.get("wl-applied",[]),pending:null};
+
+const hue=s=>[...s].reduce((a,c)=>a+c.charCodeAt(0),0)%360;
+const initial=n=>esc((n||"?").trim()[0]||"?").toUpperCase();
+const avatar=u=>u.picture&&/^https:\/\//.test(u.picture)?`<img class="avatar" src="${esc(u.picture)}" alt="" referrerpolicy="no-referrer">`:`<span class="avatar">${initial(u.name)}</span>`;
+let tt;function toast(m){const e=$("#toast");e.textContent=m;e.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>e.classList.remove("show"),2500)}
+
+function openSheet(id){$(id).classList.add("open");document.body.style.overflow="hidden"}
+function closeAll(){document.querySelectorAll(".sheet.open").forEach(s=>s.classList.remove("open"));document.body.style.overflow=""}
+document.querySelectorAll(".sheet").forEach(s=>s.addEventListener("click",e=>{if(e.target===s||e.target.closest("[data-close]"))closeAll()}));
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
+
+function switchView(viewId) {
+  document.querySelectorAll('.mega-view').forEach(v => v.classList.remove('active'));
+  const target = document.getElementById('view-' + viewId);
+  if(target) target.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function list(){
+  const q=S.q.trim().toLowerCase();
+  return JOBS.filter(j=>{
+    const matchQ=!q || j.t.toLowerCase().includes(q) || j.c.toLowerCase().includes(q) || j.d.toLowerCase().includes(q);
+    const matchCity=!S.city || j.city===S.city;
+    const matchCat=!S.cat || j.cat===S.cat;
+    const matchType=!S.type || j.type===S.type;
+    let matchTab=true;
+    if(S.tab==="HighSalary") matchTab=j.sal.includes("$") || parseInt(j.sal)>=10;
+    if(S.tab==="Remote") matchTab=j.type==="Remote" || j.type==="Hybrid";
+    if(S.tab==="NoExperience") matchTab=j.type==="Part-time" || j.sal.includes("4 mln") || j.sal.includes("5 mln");
+    return matchQ && matchCity && matchCat && matchType && matchTab;
+  });
+}
+
+function renderJobs(){
+  const l=list();
+  const grid = $("#grid");
+  if(!grid) return;
+  grid.innerHTML=l.map(j=>`
+    <article class="job glass">
+      <div class="top">
+        <span class="logo-co" style="background:hsl(${hue(j.c)} 55% 48%)">${initial(j.c)}</span>
+        <div><h3>${esc(j.t)}</h3><p>${esc(j.c)}</p></div>
+      </div>
+      <div class="tags"><span class="tag">${j.city}</span><span class="tag">${CATS[j.cat]||j.cat}</span><span class="tag">${j.type}</span></div>
+      <p style="font-size:14px;color:var(--mut);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${esc(j.d)}</p>
+      <div class="row">
+        <span class="sal">${j.sal}</span>
+        <span style="display:flex;gap:8px">
+          <button class="save ${S.saved.includes(j.id)?"on":""}" data-save="${j.id}" aria-label="Saqlash">${S.saved.includes(j.id)?"♥":"♡"}</button>
+          <button class="btn btn-p btn-sm" data-job="${j.id}">Batafsil</button>
+        </span>
+      </div>
+    </article>
+  `).join("");
+  const none = $("#none");
+  if(none) none.hidden=l.length>0;
+  const cnt = $("#cnt");
+  if(cnt) cnt.textContent=l.length+" ta vakansiya topildi";
+}
+
+function renderCats(){
+  const cats = $("#cats");
+  if(!cats) return;
+  cats.innerHTML=Object.keys(CATS).map(k=>`
+    <div class="cat glass ${S.cat===k?"on":""}" data-cat="${k}">
+      <strong>${CATS[k]}</strong>
+      <small>${JOBS.filter(j=>j.cat===k).length} ta ochiq o'rin</small>
+    </div>
+  `).join("");
+}
+
+function renderProfessions(filter=""){
+  const filtered = PROFESSIONS.filter(p => p.name.toLowerCase().includes(filter.toLowerCase()) || p.cat.toLowerCase().includes(filter.toLowerCase()));
+  const profGrid = $("#profGrid");
+  if(!profGrid) return;
+  profGrid.innerHTML = filtered.map(p => `
+    <div class="job glass">
+      <h3>${esc(p.name)}</h3>
+      <span class="tag" style="width:fit-content;margin:6px 0">${esc(p.cat)}</span>
+      <p style="color:var(--mut);font-size:14px">${esc(p.desc)}</p>
+      <span class="sal" style="margin-top:auto">O'rtacha maosh: ${esc(p.salary)}</span>
+    </div>
+  `).join("");
+}
+
+function filterProfessions(val){
+  renderProfessions(val);
+}
+
+function renderSalaryAnalytics(){
+  const salaryGrid = $("#salaryGrid");
+  if(!salaryGrid) return;
+  salaryGrid.innerHTML = PROFESSIONS.map(p => `
+    <div class="job glass">
+      <h3>${esc(p.name)}</h3>
+      <p style="color:var(--mut);font-size:13px">${esc(p.cat)}</p>
+      <div style="margin-top:12px;font-weight:700;color:var(--teal)">Daromad: ${esc(p.salary)}</div>
+    </div>
+  `).join("");
+}
+
+function renderActs(){
+  const u=S.user;
+  const acts = $("#acts");
+  if(!acts) return;
+  acts.innerHTML=u?
+    `<button class="btn btn-g btn-sm" id="me">${avatar(u)}<span class="hide-m">${esc((u.name||"").split(" ")[0])}</span></button>`:
+    `<button class="btn btn-g" id="login">Kirish</button><a class="btn btn-p hide-m" href="https://t.me/Husniddin_Yuldashev" target="_blank" style="text-decoration:none">Bog'lanish</a>`;
+  $("#me")?.addEventListener("click",openProfile);
+  $("#login")?.addEventListener("click",()=>openSheet("#sAuth"));
+}
+
+const cityOpts=(sel,all)=>(all?`<option value="">Barcha shaharlar</option>`:"")+CITIES.map(c=>`<option ${c===sel?"selected":""}>${c}</option>`).join("");
+
+function login(u){
+  S.user={...(S.user||{}),...u};
+  store.set("wl-user",S.user);
+  renderActs();
+  closeAll();
+  toast("Xush kelibsiz, "+(u.name||"").split(" ")[0]+"!");
+  if(S.pending){const id=S.pending;S.pending=null;apply(id)}
+}
+
+const gDemo = $("#gDemo");
+if(gDemo) {
+  gDemo.addEventListener("click",()=>login({name:"Foydalanuvchi",email:"user@workly.uz",picture:""}));
+}
+
+function openProfile(){
+  const u=S.user;
+  if(!u)return openSheet("#sAuth");
+  $("#pAvBox").innerHTML=avatar(u);
+  $("#pMail").textContent=u.email||"";
+  $("#fn").value=u.name||"";
+  $("#fp").value=u.phone||"";
+  $("#fc").innerHTML=cityOpts(u.city);
+  $("#ft").value=u.title||"";
+  $("#fk").value=u.skills||"";
+  $("#fa").value=u.about||"";
+  $("#pStat").textContent=`Saqlangan ishlar: ${S.saved.length} · Yuborilgan arizalar: ${S.applied.length}`;
+  openSheet("#sProf");
+}
+
+const pf = $("#pf");
+if(pf) {
+  pf.addEventListener("submit",e=>{
+    e.preventDefault();
+    S.user={...S.user,name:$("#fn").value.trim(),phone:$("#fp").value.trim(),city:$("#fc").value,title:$("#ft").value.trim(),skills:$("#fk").value.trim(),about:$("#fa").value.trim()};
+    store.set("wl-user",S.user);
+    renderActs();
+    closeAll();
+    toast("Profil muvaffaqiyatli saqlandi!");
+    if(S.pending){const id=S.pending;S.pending=null;apply(id)}
+  });
+}
+
+const out = $("#out");
+if(out) {
+  out.addEventListener("click",()=>{
+    S.user=null;
+    store.set("wl-user",null);
+    renderActs();
+    closeAll();
+    toast("Hisobdan chiqdingiz");
+  });
+}
+
+function apply(id){
+  const u=S.user;
+  if(!u){S.pending=id;return openSheet("#sAuth")}
+  if(!u.phone||!u.title){S.pending=id;toast("Iltimos, avval profilingizni to'ldiring");return openProfile()}
+  if(!S.applied.includes(id)){S.applied.push(id);store.set("wl-applied",S.applied)}
+  closeAll();
+  toast("Arizangiz muvaffaqiyatli yuborildi! ✓");
+}
+
+function openJob(id){
+  const j=JOBS.find(x=>x.id===id);
+  if(!j)return;
+  const done=S.applied.includes(id);
+  $("#jBody").innerHTML=`
+    <div class="top"><span class="logo-co" style="background:hsl(${hue(j.c)} 55% 48%)">${initial(j.c)}</span><div><h3 id="jT">${esc(j.t)}</h3><p style="color:var(--mut)">${esc(j.c)} — ${j.city}</p></div></div>
+    <div class="tags" style="margin:14px 0"><span class="tag">${j.city}</span><span class="tag">${CATS[j.cat]||j.cat}</span><span class="tag">${j.type}</span></div>
+    <p class="sal" style="font-size:1.25rem">${j.sal}</p>
+    <p class="sub" style="margin-top:12px">${esc(j.d)}</p>
+    
+    <div class="wiki-box">
+      <strong>📚 Kasb haqida ma'lumot (Ensiklopediya):</strong>
+      ${esc(j.wiki)}
+    </div>
+
+    <strong>Asosiy talablar:</strong>
+    <ul>${j.r.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+    <button class="btn btn-p btn-block" id="ap" ${done?"disabled":""}>${done?"Ariza yuborilgan ✓":"Bir bosishda ariza topshirish"}</button>
+  `;
+  $("#ap").addEventListener("click",()=>apply(id));
+  openSheet("#sJob");
+}
+
+function generateCV(){
+  const name = $("#cvName").value || "Ism kiritilmadi";
+  const title = $("#cvTitle").value || "Lavozim";
+  const phone = $("#cvPhone").value || "Telefon";
+  const skills = $("#cvSkills").value || "Ko'nikmalar";
+  
+  $("#cvResult").innerHTML = `
+    <div style="background:#fff;padding:15px;border-radius:12px;border:1px solid #ddd;margin-top:10px">
+      <h4 style="color:var(--teal)">${esc(name)}</h4>
+      <p><b>Lavozim:</b> ${esc(title)}</p>
+      <p><b>Tel:</b> ${esc(phone)}</p>
+      <p><b>Ko'nikmalar:</b> ${esc(skills)}</p>
+      <p style="color:green;font-size:12px;margin-top:6px">Rezyume tayyor! Uni nusxalab yoki chop etishingiz mumkin.</p>
+    </div>
+  `;
+  toast("Rezyume muvaffaqiyatli tuzildi!");
+}
+
+const sf = $("#sf");
+if(sf) {
+  sf.addEventListener("submit",e=>{
+    e.preventDefault();
+    S.q=$("#q").value;
+    S.city=$("#city").value;
+    S.type=$("#type").value;
+    renderJobs();
+    $("#jobs")?.scrollIntoView();
+  });
+}
+
+const citySelect = $("#city");
+if(citySelect) {
+  citySelect.addEventListener("change",e=>{S.city=e.target.value;renderJobs()});
+}
+
+const typeSelect = $("#type");
+if(typeSelect) {
+  typeSelect.addEventListener("change",e=>{S.type=e.target.value;renderJobs()});
+}
+
+document.querySelectorAll(".filter-tab").forEach(tab=>{
+  tab.addEventListener("click",()=>{
+    document.querySelectorAll(".filter-tab").forEach(t=>t.classList.remove("active"));
+    tab.classList.add("active");
+    S.tab=tab.dataset.tab;
+    renderJobs();
+  });
+});
+
+document.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{
+  S.q=c.dataset.s;
+  const qInput = $("#q");
+  if(qInput) qInput.value=S.q;
+  renderJobs();
+  $("#jobs")?.scrollIntoView();
+}));
+
+const catsEl = $("#cats");
+if(catsEl) {
+  catsEl.addEventListener("click",e=>{
+    const b=e.target.closest("[data-cat]");
+    if(!b)return;
+    S.cat=S.cat===b.dataset.cat?"":b.dataset.cat;
+    renderCats();
+    renderJobs();
+    $("#jobs")?.scrollIntoView();
+  });
+}
+
+const gridEl = $("#grid");
+if(gridEl) {
+  gridEl.addEventListener("click",e=>{
+    const s=e.target.closest("[data-save]");
+    if(s){
+      const id=+s.dataset.save;
+      S.saved=S.saved.includes(id)?S.saved.filter(x=>x!==id):[...S.saved,id];
+      store.set("wl-saved",S.saved);
+      s.classList.toggle("on");
+      s.textContent=s.classList.contains("on")?"♥":"♡";
+      return;
+    }
+    const j=e.target.closest("[data-job]");
+    if(j)openJob(+j.dataset.job);
+  });
+}
+
+const resetBtn = $("#reset");
+if(resetBtn) {
+  resetBtn.addEventListener("click",()=>{
+    S.q=""; S.city=""; S.cat=""; S.type=""; S.tab="";
+    const qInput = $("#q");
+    if(qInput) qInput.value="";
+    const cityEl = $("#city");
+    if(cityEl) cityEl.innerHTML=cityOpts("",true);
+    const typeEl = $("#type");
+    if(typeEl) typeEl.value="";
+    document.querySelectorAll(".filter-tab").forEach((t,i)=>t.classList.toggle("active",i===0));
+    renderCats();
+    renderJobs();
+  });
+}
+
+if(citySelect) citySelect.innerHTML=cityOpts("",true);
+const n1 = $("#n1"); if(n1) n1.textContent=JOBS.length;
+const n2 = $("#n2"); if(n2) n2.textContent=new Set(JOBS.map(j=>j.c)).size;
+const n3 = $("#n3"); if(n3) n3.textContent=CITIES.length;
+
+renderActs();
+renderCats();
+renderJobs();
+renderProfessions();
+renderSalaryAnalytics();
+</script>
+</body>
+
+<!-- ========================================= -->
+<!-- WORKLY AURORA ENGINE - INTERACTIVE BG     -->
+<!-- index.html: </body> dan oldin joylashtir -->
+<!-- ========================================= -->
+
+<style>
+  /* Jonli fon */
+  #workly-aurora {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: .9;
+  }
+
+  /* Asosiy interfeys fon ustida qoladi */
+  #view-main,
+  #view-professions,
+  #view-salary,
+  #view-interview,
+  #view-cv {
+    position: relative;
+    z-index: 1;
+  }
+
+  .nav { z-index: 20; }
+  .mega-dock { z-index: 40; }
+  .sheet { z-index: 50; }
+  .toast { z-index: 80; }
+
+  /* Sichqoncha joylashgan kartaning yorug'ligi */
+  .job,
+  .cat,
+  .stat {
+    --workly-x: 50%;
+    --workly-y: 50%;
+    position: relative;
+    isolation: isolate;
+  }
+
+  .job::after,
+  .cat::after,
+  .stat::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity .3s ease;
+    background: radial-gradient(
+      300px circle at var(--workly-x) var(--workly-y),
+      rgba(14, 143, 156, .15),
+      transparent 70%
+    );
+  }
+
+  .job:hover::after,
+  .cat:hover::after,
+  .stat:hover::after {
+    opacity: 1;
+  }
+
+  /* Kartalar uchun premium effekt */
+  .job {
+    transition:
+      transform .35s cubic-bezier(.2,.8,.2,1),
+      box-shadow .35s ease,
+      border-color .35s ease;
+  }
+
+  .job:hover {
+    border-color: rgba(14,143,156,.35);
+    box-shadow:
+      0 20px 45px rgba(14,143,156,.12),
+      inset 0 1px 0 rgba(255,255,255,.9);
+  }
+
+  /* Tugmalarga yorug'lik */
+  .btn {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      110deg,
+      transparent 25%,
+      rgba(255,255,255,.28) 50%,
+      transparent 75%
+    );
+    transform: translateX(-120%);
+    transition: transform .65s ease;
+    pointer-events: none;
+  }
+
+  .btn:hover::after {
+    transform: translateX(120%);
+  }
+
+  @media (max-width: 768px) {
+    #workly-aurora { opacity: .55; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn::after { display: none; }
+    .job, .cat, .stat { transition: none; }
+  }
+</style>
+
+<canvas id="workly-aurora"></canvas>
+
+<script>
+(function () {
+  "use strict";
+
+  const canvas = document.getElementById("workly-aurora");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  let width = 0;
+  let height = 0;
+  let dpr = 1;
+  let particles = [];
+  let animationId = null;
+
+  const mouse = {
+    x: -1000,
+    y: -1000,
+    active: false
+  };
+
+  const settings = {
+    particleCount: 65,
+    connectionDistance: 135,
+    mouseRadius: 190,
+    speed: 0.32
+  };
+
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+
+    canvas.style.width = width + "px";
+    canvas.style.height = height + "px";
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const count = Math.min(
+      100,
+      Math.max(30, Math.floor(width * height / 18000))
+    );
+
+    settings.particleCount = count;
+
+    particles = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - .5) * settings.speed,
+      vy: (Math.random() - .5) * settings.speed,
+      radius: Math.random() * 1.8 + 1
+    }));
+
+    draw();
+  }
+
+  function drawBackground() {
+    const gradient = ctx.createLinearGradient(
+      0, 0, width, height
+    );
+
+    gradient.addColorStop(0, "rgba(127,216,224,.10)");
+    gradient.addColorStop(.5, "rgba(185,199,255,.07)");
+    gradient.addColorStop(1, "rgba(255,227,163,.10)");
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, width, height);
+  }
+
+  function drawMouseGlow() {
+    if (!mouse.active) return;
+
+    const glow = ctx.createRadialGradient(
+      mouse.x, mouse.y, 0,
+      mouse.x, mouse.y, settings.mouseRadius
+    );
+
+    glow.addColorStop(0, "rgba(50,192,205,.19)");
+    glow.addColorStop(.35, "rgba(50,192,205,.09)");
+    glow.addColorStop(1, "rgba(50,192,205,0)");
+
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, width, height);
+  }
+
+  function drawParticles() {
+    particles.forEach((p, i) => {
+      if (!reducedMotion) {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        if (mouse.active) {
+          const dx = p.x - mouse.x;
+          const dy = p.y - mouse.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 110 && distance > 0) {
+            const force = (110 - distance) / 110;
+            p.x += (dx / distance) * force * .45;
+            p.y += (dy / distance) * force * .45;
+          }
+        }
+      }
+
+      /* Nuqtalar orasidagi chiziqlar */
+      for (let j = i + 1; j < particles.length; j++) {
+        const other = particles[j];
+
+        const dx = p.x - other.x;
+        const dy = p.y - other.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < settings.connectionDistance) {
+          const alpha = (1 - distance /
+            settings.connectionDistance) * .20;
+
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(other.x, other.y);
+
+          ctx.strokeStyle = `rgba(14,143,156,${alpha})`;
+          ctx.lineWidth = .8;
+          ctx.stroke();
+        }
+      }
+
+      /* Sichqoncha bilan nuqtalar orasidagi chiziqlar */
+      if (mouse.active) {
+        const dx = p.x - mouse.x;
+        const dy = p.y - mouse.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < 155) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle =
+            `rgba(14,143,156,${(1-distance/155)*.28})`;
+          ctx.stroke();
+        }
+      }
+
+      /* Yorug' nuqtalar */
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(14,143,156,.45)";
+      ctx.fill();
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, width, height);
+    drawBackground();
+    drawMouseGlow();
+    drawParticles();
+  }
+
+  function animate() {
+    draw();
+    animationId = requestAnimationFrame(animate);
+  }
+
+  window.addEventListener("pointermove", e => {
+    if (e.pointerType === "touch") return;
+
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    mouse.active = true;
+  }, { passive: true });
+
+  document.addEventListener("pointerleave", () => {
+    mouse.active = false;
+  });
+
+  /* Kartalardagi lokal yorug'lik */
+  document.addEventListener("pointermove", e => {
+    const card = e.target.closest(".job, .cat, .stat");
+    if (!card) return;
+
+    const rect = card.getBoundingClientRect();
+
+    card.style.setProperty(
+      "--workly-x",
+      (e.clientX - rect.left) + "px"
+    );
+
+    card.style.setProperty(
+      "--workly-y",
+      (e.clientY - rect.top) + "px"
+    );
+  }, { passive: true });
+
+  window.addEventListener("resize", resize);
+
+  /* Keraksiz animatsiyalarni to'xtatish */
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    } else if (!animationId && !reducedMotion) {
+      animate();
+    }
+  });
+
+  resize();
+
+  if (!reducedMotion) {
+    animate();
+  }
+
+  console.log("Workly Aurora Engine: ACTIVE");
+})();
+</script>
+<!-- ========================================= -->
+<!-- END WORKLY AURORA ENGINE                  -->
+<!-- ========================================= -->
+
+<!-- ========================================= -->
+<!-- WORKLY SIDEBAR + MY JOBS + DARK MODE      -->
+<!-- MODULE 02                                 -->
+<!-- ========================================= -->
+
+<style>
+#wl-menu-btn {
+  position: fixed;
+  top: 25px;
+  left: 24px;
+  z-index: 120;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255,255,255,.8);
+  border-radius: 16px;
+  background: rgba(255,255,255,.78);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 25px rgba(15,29,46,.12);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+#wl-menu-btn span {
+  display: block;
+  width: 19px;
+  height: 2px;
+  margin: 2px;
+  background: #0f1d2e;
+  border-radius: 5px;
+  transition: .3s;
+}
+
+#wl-menu-btn:hover {
+  transform: scale(1.06);
+}
+
+#wl-sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 130;
+  background: rgba(10,20,35,.35);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+}
+
+#wl-sidebar-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+#wl-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 131;
+  width: 310px;
+  max-width: 88vw;
+  padding: 25px 18px;
+  background: rgba(245,250,255,.96);
+  backdrop-filter: blur(30px);
+  box-shadow: 15px 0 50px rgba(15,29,46,.15);
+  transform: translateX(-105%);
+  transition: transform .4s cubic-bezier(.2,.8,.2,1);
+  overflow-y: auto;
+}
+
+#wl-sidebar.open {
+  transform: translateX(0);
+}
+
+.wl-side-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.wl-side-logo {
+  font-size: 26px;
+  font-weight: 900;
+  color: #0f1d2e;
+}
+
+.wl-side-logo b { color: #0e8f9c; }
+
+#wl-side-close {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(15,29,46,.08);
+  cursor: pointer;
+  font-size: 19px;
+}
+
+.wl-side-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  border-radius: 20px;
+  background: rgba(14,143,156,.09);
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+
+.wl-side-user img,
+.wl-side-avatar {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg,#32c0cd,#6b8bff);
+  color: white;
+  font-weight: 800;
+}
+
+.wl-side-user strong {
+  display: block;
+  font-size: 14px;
+}
+
+.wl-side-user small {
+  color: #5b6b7d;
+  font-size: 12px;
+}
+
+.wl-side-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #8a99a9;
+  margin: 20px 10px 10px;
+}
+
+.wl-side-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 14px;
+  border: 0;
+  border-radius: 15px;
+  background: transparent;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  color: #425267;
+  cursor: pointer;
+  transition: .25s;
+  margin: 3px 0;
+}
+
+.wl-side-item:hover,
+.wl-side-item.active {
+  background: rgba(14,143,156,.12);
+  color: #0e8f9c;
+  transform: translateX(3px);
+}
+
+.wl-side-icon {
+  font-size: 19px;
+  width: 25px;
+  text-align: center;
+}
+
+.wl-side-bottom {
+  margin-top: 35px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(15,29,46,.1);
+}
+
+#wl-myjobs {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  display: none;
+  overflow-y: auto;
+  padding: 90px 20px 110px;
+  background: #eaf1f8;
+}
+
+#wl-myjobs.open { display: block; }
+
+.wl-myjobs-wrap {
+  width: min(100%,1000px);
+  margin: auto;
+}
+
+.wl-myjobs-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.wl-myjobs-head h2 {
+  font-size: 30px;
+}
+
+#wl-myjobs-close {
+  border: 0;
+  border-radius: 50px;
+  padding: 11px 20px;
+  background: #0f1d2e;
+  color: white;
+  cursor: pointer;
+}
+
+.wl-myjobs-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 22px;
+}
+
+.wl-myjobs-tabs button {
+  padding: 10px 18px;
+  border: 1px solid rgba(255,255,255,.9);
+  border-radius: 50px;
+  background: rgba(255,255,255,.7);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.wl-myjobs-tabs button.active {
+  background: #0f1d2e;
+  color: white;
+}
+
+#wl-myjobs-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(260px,1fr));
+  gap: 15px;
+}
+
+.wl-mj-card {
+  padding: 22px;
+  border-radius: 23px;
+  background: rgba(255,255,255,.8);
+  border: 1px solid white;
+  box-shadow: 0 8px 25px rgba(15,29,46,.07);
+}
+
+.wl-mj-card h3 { font-size: 17px; }
+.wl-mj-card p { color: #64748b; font-size: 13px; margin: 7px 0; }
+.wl-mj-card strong { color: #0e8f9c; }
+
+.wl-mj-empty {
+  grid-column: 1/-1;
+  padding: 50px 20px;
+  text-align: center;
+  border-radius: 25px;
+  background: rgba(255,255,255,.7);
+  color: #64748b;
+}
+
+body.wl-dark {
+  --ink: #edf5ff;
+  --mut: #a7b5c8;
+  background: #101827;
+  color: #edf5ff;
+}
+
+body.wl-dark .bg { opacity: .35; }
+body.wl-dark .glass {
+  background: rgba(24,38,57,.78);
+  border-color: rgba(255,255,255,.1);
+}
+body.wl-dark .job,
+body.wl-dark .cat,
+body.wl-dark .stat {
+  color: #edf5ff;
+}
+body.wl-dark .tag,
+body.wl-dark .chip,
+body.wl-dark .filter-tab:not(.active) {
+  background: rgba(255,255,255,.09);
+  color: #d5e1ef;
+}
+body.wl-dark .nav {
+  background: rgba(20,33,50,.9);
+}
+body.wl-dark .logo { color: #edf5ff; }
+body.wl-dark #wl-menu-btn {
+  background: rgba(24,38,57,.9);
+}
+body.wl-dark #wl-menu-btn span { background: white; }
+body.wl-dark #wl-sidebar {
+  background: rgba(16,28,45,.97);
+}
+body.wl-dark .wl-side-logo,
+body.wl-dark .wl-side-user strong {
+  color: white;
+}
+body.wl-dark .wl-side-item { color: #c3d1e2; }
+body.wl-dark #wl-myjobs { background: #101827; }
+body.wl-dark .wl-mj-card,
+body.wl-dark .wl-mj-empty {
+  background: #1b2a40;
+  border-color: #2c3c53;
+  color: white;
+}
+body.wl-dark .wl-mj-card p { color: #a7b5c8; }
+body.wl-dark .panel {
+  background: #1b2a40;
+  color: white;
+}
+body.wl-dark .panel input,
+body.wl-dark .panel select,
+body.wl-dark .panel textarea {
+  background: #263850;
+  color: white;
+  border-color: #42536a;
+}
+
+@media(max-width:600px) {
+  #wl-menu-btn {
+    top: 17px;
+    left: 12px;
+    width: 43px;
+    height: 43px;
+  }
+  .logo { margin-left: 43px; }
+  #wl-myjobs { padding: 80px 13px 100px; }
+  .wl-myjobs-head h2 { font-size: 24px; }
+}
+</style>
+
+<!-- MENU BUTTON -->
+<button id="wl-menu-btn" aria-label="Menyuni ochish">
+  <div>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</button>
+
+<!-- SIDEBAR -->
+<div id="wl-sidebar-overlay"></div>
+
+<aside id="wl-sidebar">
+  <div class="wl-side-head">
+    <div class="wl-side-logo">Workly<b>.</b></div>
+    <button id="wl-side-close">✕</button>
+  </div>
+
+  <div class="wl-side-user" id="wl-profile-open">
+    <div id="wl-side-avatar" class="wl-side-avatar">W</div>
+    <div>
+      <strong id="wl-side-name">Mehmon</strong>
+      <small id="wl-side-email">Profilni ko'rish</small>
+    </div>
+  </div>
+
+  <div class="wl-side-label">ASOSIY</div>
+
+  <button class="wl-side-item" data-wl-view="main">
+    <span class="wl-side-icon">🏠</span>
+    Bosh sahifa
+  </button>
+
+  <button class="wl-side-item" data-wl-myjobs="saved">
+    <span class="wl-side-icon">❤️</span>
+    Saqlangan ishlar
+  </button>
+
+  <button class="wl-side-item" data-wl-myjobs="applied">
+    <span class="wl-side-icon">📩</span>
+    Yuborilgan arizalar
+  </button>
+
+  <button class="wl-side-item" data-wl-view="professions">
+    <span class="wl-side-icon">📖</span>
+    Kasblar ensiklopediyasi
+  </button>
+
+  <button class="wl-side-item" data-wl-view="salary">
+    <span class="wl-side-icon">📊</span>
+    Maoshlar analitikasi
+  </button>
+
+  <div class="wl-side-label">SHAXSIY</div>
+
+  <button class="wl-side-item" id="wl-edit-profile">
+    <span class="wl-side-icon">👤</span>
+    Mening profilim
+  </button>
+
+  <button class="wl-side-item" data-wl-view="cv">
+    <span class="wl-side-icon">📄</span>
+    CV Builder
+  </button>
+
+  <button class="wl-side-item" data-wl-view="interview">
+    <span class="wl-side-icon">🎯</span>
+    Interview Center
+  </button>
+
+  <div class="wl-side-label">SOZLAMALAR</div>
+
+  <button class="wl-side-item" id="wl-theme-toggle">
+    <span class="wl-side-icon" id="wl-theme-icon">🌙</span>
+    <span id="wl-theme-text">Dark Mode</span>
+  </button>
+
+  <div class="wl-side-bottom">
+    <button class="wl-side-item" id="wl-logout">
+      <span class="wl-side-icon">🚪</span>
+      Hisobdan chiqish
+    </button>
+    <p style="text-align:center;color:#8a99a9;font-size:11px;margin-top:15px">
+      WORKLY PLATFORM · 2026
+    </p>
+  </div>
+</aside>
+
+<!-- MY JOBS PAGE -->
+<div id="wl-myjobs">
+  <div class="wl-myjobs-wrap">
+    <div class="wl-myjobs-head">
+      <div>
+        <h2>💼 Mening ishlarim</h2>
+        <p style="color:var(--mut)">Barcha vakansiyalaringiz bir joyda.</p>
+      </div>
+      <button id="wl-myjobs-close">✕ Yopish</button>
+    </div>
+
+    <div class="wl-myjobs-tabs">
+      <button class="active" data-wl-tab="saved">❤️ Saqlanganlar</button>
+      <button data-wl-tab="applied">📩 Arizalarim</button>
+    </div>
+
+    <div id="wl-myjobs-list"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const $id = id => document.getElementById(id);
+
+  const sidebar = $id("wl-sidebar");
+  const overlay = $id("wl-sidebar-overlay");
+  const myJobs = $id("wl-myjobs");
+
+  if (!sidebar || !overlay || !myJobs) return;
+
+  let currentTab = "saved";
+
+  function openMenu(){
+    sidebar.classList.add("open");
+    overlay.classList.add("open");
+  }
+
+  function closeMenu(){
+    sidebar.classList.remove("open");
+    overlay.classList.remove("open");
+  }
+
+  $id("wl-menu-btn").addEventListener("click",openMenu);
+  $id("wl-side-close").addEventListener("click",closeMenu);
+  overlay.addEventListener("click",closeMenu);
+
+  document.addEventListener("keydown",e=>{
+    if(e.key==="Escape"){
+      closeMenu();
+      closeMyJobs();
+    }
+  });
+
+  function syncUser(){
+    const u = typeof S !== "undefined" ? S.user : null;
+
+    $id("wl-side-name").textContent = u?.name || "Mehmon";
+    $id("wl-side-email").textContent =
+      u?.email || "Profilni ko'rish";
+
+    const avatar = $id("wl-side-avatar");
+
+    if(u?.picture && /^https:\/\//.test(u.picture)){
+      avatar.innerHTML =
+        `<img src="${u.picture}" style="width:43px;height:43px;border-radius:50%;object-fit:cover" alt="">`;
+    }else{
+      avatar.textContent =
+        (u?.name || "W").trim().charAt(0).toUpperCase();
+    }
+  }
+
+  function showProfile(){
+    closeMenu();
+
+    if(typeof S === "undefined" || !S.user){
+      document.getElementById("login")?.click();
+      return;
+    }
+
+    if(typeof openProfile === "function"){
+      openProfile();
+    }
+  }
+
+  $id("wl-profile-open").addEventListener("click",showProfile);
+  $id("wl-edit-profile").addEventListener("click",showProfile);
+
+  function closeMyJobs(){
+    myJobs.classList.remove("open");
+  }
+
+  $id("wl-myjobs-close").addEventListener("click",closeMyJobs);
+
+  function openMyJobs(tab){
+    closeMenu();
+
+    currentTab = tab;
+    myJobs.classList.add("open");
+
+    document.querySelectorAll("[data-wl-tab]").forEach(b=>{
+      b.classList.toggle("active",b.dataset.wlTab===tab);
+    });
+
+    renderMyJobs();
+  }
+
+  document.querySelectorAll("[data-wl-myjobs]").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      openMyJobs(btn.dataset.wlMyjobs);
+    });
+  });
+
+  document.querySelectorAll("[data-wl-tab]").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      currentTab=btn.dataset.wlTab;
+
+      document.querySelectorAll("[data-wl-tab]").forEach(b=>{
+        b.classList.toggle("active",b===btn);
+      });
+
+      renderMyJobs();
+    });
+  });
+
+  function renderMyJobs(){
+    const list = $id("wl-myjobs-list");
+
+    if(typeof S==="undefined" || typeof JOBS==="undefined"){
+      list.innerHTML='<div class="wl-mj-empty">Ma’lumotlar topilmadi.</div>';
+      return;
+    }
+
+    const ids = currentTab==="saved" ? S.saved : S.applied;
+
+    const jobs = JOBS.filter(j=>ids.includes(j.id));
+
+    if(!jobs.length){
+      list.innerHTML=`
+        <div class="wl-mj-empty">
+          <div style="font-size:40px;margin-bottom:10px">
+            ${currentTab==="saved"?"❤️":"📩"}
+          </div>
+          <h3>Hozircha bo'sh</h3>
+          <p style="margin-top:7px">
+            ${currentTab==="saved"
+              ?"Saqlagan vakansiyalaringiz shu yerda ko'rinadi."
+              :"Yuborgan arizalaringiz shu yerda ko'rinadi."}
+          </p>
+          <button id="wl-go-jobs" style="margin-top:18px;padding:11px 20px;border:0;border-radius:30px;background:#0e8f9c;color:white;cursor:pointer">
+            Vakansiyalarni ko'rish
+          </button>
+        </div>`;
+
+      $id("wl-go-jobs").addEventListener("click",()=>{
+        closeMyJobs();
+        if(typeof switchView==="function")switchView("main");
+        window.scrollTo({top:0,behavior:"smooth"});
+      });
+
+      return;
+    }
+
+    list.innerHTML=jobs.map(j=>`
+      <article class="wl-mj-card">
+        <h3>${escapeHTML(j.t)}</h3>
+        <p>${escapeHTML(j.c)} · ${escapeHTML(j.city)}</p>
+        <strong>${escapeHTML(j.sal)}</strong>
+        <div style="margin-top:15px;display:flex;gap:8px;flex-wrap:wrap">
+          <button data-wl-open="${j.id}" style="padding:9px 14px;border:0;border-radius:20px;background:#0e8f9c;color:white;cursor:pointer">
+            Batafsil
+          </button>
+          <button data-wl-remove="${j.id}" style="padding:9px 14px;border:1px solid #ddd;border-radius:20px;background:transparent;cursor:pointer">
+            O'chirish
+          </button>
+        </div>
+      </article>
+    `).join("");
+  }
+
+  function escapeHTML(s){
+    return String(s).replace(/[&<>"']/g,c=>({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
+    }[c]));
+  }
+
+  $id("wl-myjobs-list").addEventListener("click",e=>{
+    const open=e.target.closest("[data-wl-open]");
+    const remove=e.target.closest("[data-wl-remove]");
+
+    if(open){
+      const id=Number(open.dataset.wlOpen);
+      closeMyJobs();
+      if(typeof switchView==="function")switchView("main");
+      if(typeof openJob==="function")openJob(id);
+    }
+
+    if(remove){
+      const id=Number(remove.dataset.wlRemove);
+
+      if(currentTab==="saved"){
+        S.saved=S.saved.filter(x=>x!==id);
+        store.set("wl-saved",S.saved);
+      }else{
+        S.applied=S.applied.filter(x=>x!==id);
+        store.set("wl-applied",S.applied);
+      }
+
+      renderMyJobs();
+
+      if(typeof renderJobs==="function")renderJobs();
+    }
+  });
+
+  document.querySelectorAll("[data-wl-view]").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const view=btn.dataset.wlView;
+      closeMenu();
+
+      if(typeof switchView==="function"){
+        switchView(view);
+      }
+    });
+  });
+
+  function setTheme(dark){
+    document.body.classList.toggle("wl-dark",dark);
+
+    $id("wl-theme-icon").textContent=dark?"☀️":"🌙";
+    $id("wl-theme-text").textContent=dark?"Light Mode":"Dark Mode";
+
+    try{
+      localStorage.setItem("wl-theme",dark?"dark":"light");
+    }catch(e){}
+  }
+
+  let savedTheme="light";
+
+  try{
+    savedTheme=localStorage.getItem("wl-theme")||"light";
+  }catch(e){}
+
+  setTheme(savedTheme==="dark");
+
+  $id("wl-theme-toggle").addEventListener("click",()=>{
+    setTheme(!document.body.classList.contains("wl-dark"));
+  });
+
+  $id("wl-logout").addEventListener("click",()=>{
+    if(typeof S==="undefined" || !S.user){
+      closeMenu();
+      return;
+    }
+
+    if(!confirm("Hisobdan chiqishni xohlaysizmi?"))return;
+
+    S.user=null;
+    store.set("wl-user",null);
+
+    if(typeof renderActs==="function")renderActs();
+
+    syncUser();
+    closeMenu();
+
+    if(typeof toast==="function")toast("Hisobdan chiqdingiz");
+  });
+
+  syncUser();
+
+  /* Login yoki profil o'zgarganda menyuni yangilash */
+  const originalLogin=window.login;
+
+  if(typeof originalLogin==="function"){
+    window.login=function(...args){
+      const result=originalLogin.apply(this,args);
+      syncUser();
+      return result;
+    };
+  }
+
+  const originalRenderActs=window.renderActs;
+
+  if(typeof originalRenderActs==="function"){
+    window.renderActs=function(...args){
+      const result=originalRenderActs.apply(this,args);
+      syncUser();
+      return result;
+    };
+  }
+
+  console.log("WORKLY SIDEBAR MODULE ACTIVE");
+})();
+</script>
+
+<!-- END WORKLY MODULE 02 -->
+<!-- ========================================== -->
+<!-- WORKLY MEGA EXTENSION SCRIPT & STYLES     -->
+<!-- Bu qismni index.html ning ENG PASTIGA     -->
+<!-- (</body> tegidann oldinga) qo'yasiz         -->
+<!-- ========================================== -->
+</style>
+</script>
+<!-- ===== WORKLY EXTRA MODULE (hammasi bir joyda) ===== -->
+<style>
+.wk-form label{display:block;font-size:13px;font-weight:600;color:var(--mut);margin:12px 0 5px}
+.wk-form input:not([type=checkbox]):not([type=radio]),.wk-form select,.wk-form textarea{width:100%;padding:12px 16px;border-radius:16px;border:1px solid rgba(15,29,46,.12);background:rgba(255,255,255,.9)}
+.wk-form textarea{min-height:90px;resize:vertical}
+.wk-q label{display:flex;gap:10px;align-items:center;padding:8px 0;cursor:pointer}
+.wk-q legend{padding:0 8px;font-weight:700}
+.wk-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;padding:16px;border-radius:24px;margin-bottom:18px}
+.wk-bar select,.wk-bar input{width:100%;min-height:44px;border:0;border-radius:16px;padding:0 14px;background:rgba(255,255,255,.8)}
+.wk-bar label{font-size:13px;font-weight:600;color:var(--mut)}
+.wk-warn{margin:24px 0 0;padding:18px 22px;border-radius:24px;display:flex;gap:14px;align-items:flex-start}
+.mega-dock{justify-content:flex-start}
+body.wl-dark .wk-form input,body.wl-dark .wk-form select,body.wl-dark .wk-form textarea,body.wl-dark .wk-bar select,body.wl-dark .wk-bar input{background:#263850;color:#fff;border-color:#42536a}
+body.wl-dark .btn-g,body.wl-dark .mega-dock,body.wl-dark .wiki-box{background:rgba(24,38,57,.9);color:#edf5ff}
+body.wl-dark #cvResult div{background:#1b2a40!important;color:#fff;border-color:#42536a!important}
+</style>
+
+<script>
+(function(){
+"use strict";
+const $q=s=>document.querySelector(s);
+const esc2=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const W={sort:"new",min:0,exp:""};
+
+/* ---------- 1. Yangi sahifalar ---------- */
+const cityOptions=CITIES.map(c=>`<option>${c}</option>`).join("");
+const catOptions=Object.keys(CATS).map(k=>`<option value="${k}">${CATS[k]}</option>`).join("");
+const radio=(n,arr)=>arr.map((a,i)=>`<label><input type="radio" name="${n}" value="${a[0]}" ${i===0?"required":""}> ${a[1]}</label>`).join("");
+
+const views=`
+<div id="view-quiz" class="mega-view"><div class="wrap" style="padding:40px 0">
+  <h2>🧭 Kasb tanlash testi</h2>
+  <p style="color:var(--mut);margin-bottom:20px">5 ta savolga javob bering, sizga mos yo'nalishni tavsiya qilamiz.</p>
+  <form id="quizForm" class="jobs wk-q" style="grid-template-columns:1fr">
+    <fieldset class="job glass" style="border:1px solid var(--edge)"><legend>1. Nima bilan shug'ullanish yoqadi?</legend>${radio("q1",[["IT","Kompyuter va texnologiyalar"],["Design","Dizayn, ijod"],["Finance","Hisob-kitob, raqamlar"],["Business","Muloqot va savdo"],["Education","Boshqalarga o'rgatish"]])}</fieldset>
+    <fieldset class="job glass" style="border:1px solid var(--edge)"><legend>2. Qanday muhitda ishlaysiz?</legend>${radio("q2",[["IT","Uyda, masofadan"],["Business","Ofisda, jamoa bilan"],["Logistics","Doim harakatda"],["Education","Maktab yoki o'quv markazida"]])}</fieldset>
+    <fieldset class="job glass" style="border:1px solid var(--edge)"><legend>3. Eng kuchli tomoningiz?</legend>${radio("q3",[["IT","Mantiqiy fikrlash"],["Design","Tasavvur, ijodkorlik"],["Finance","Aniqlik, e'tiborlilik"],["Marketing","Ishontirish, yozish"]])}</fieldset>
+    <fieldset class="job glass" style="border:1px solid var(--edge)"><legend>4. Qaysi fanlar yoqadi?</legend>${radio("q4",[["IT","Matematika, informatika"],["Design","Tasviriy san'at"],["Finance","Iqtisodiyot"],["Education","Til va adabiyot"]])}</fieldset>
+    <fieldset class="job glass" style="border:1px solid var(--edge)"><legend>5. Sizga nima muhimroq?</legend>${radio("q5",[["IT","Yuqori maosh"],["Education","Barqarorlik va jamiyatga foyda"],["Marketing","Ijodiy erkinlik"],["Business","Tez karyera o'sishi"]])}</fieldset>
+    <button class="btn btn-p" type="submit">Natijani ko'rish</button>
+  </form>
+  <div id="quizResult" class="job glass" style="margin-top:18px" hidden></div>
+</div></div>
+
+<div id="view-courses" class="mega-view"><div class="wrap" style="padding:40px 0">
+  <h2>🎓 Bepul kurslar va o'qish</h2>
+  <p style="color:var(--mut);margin-bottom:20px">Yangi kasb o'rganish va malaka oshirish uchun yo'nalishlar.</p>
+  <div class="jobs">
+    <article class="job glass"><h3>IT Park o'quv dasturlari</h3><span class="tag" style="width:fit-content">IT</span><p style="color:var(--mut);font-size:14px">Dasturlash va raqamli ko'nikmalar bo'yicha kurslar.</p></article>
+    <article class="job glass"><h3>Davlat mehnat markazlari</h3><span class="tag" style="width:fit-content">Kasb-hunar</span><p style="color:var(--mut);font-size:14px">Ishsizlar uchun kasbga tayyorlash va qayta tayyorlash. Yashash joyingizdagi markazga murojaat qiling.</p></article>
+    <article class="job glass"><h3>Onlayn platformalar</h3><span class="tag" style="width:fit-content">Til va fan</span><p style="color:var(--mut);font-size:14px">Ingliz tili, Excel, marketing bo'yicha bepul onlayn darslar.</p></article>
+  </div>
+  <p class="note">Rasmiy havolalarni o'zingiz tekshirib, shu yerga qo'shing.</p>
+</div></div>
+
+<div id="view-employer" class="mega-view"><div class="wrap" style="padding:40px 0">
+  <h2>🏢 Ish beruvchi paneli</h2>
+  <p style="color:var(--mut);margin-bottom:20px">Vakansiya e'lon qiling.</p>
+  <form id="postJobForm" class="job glass wk-form" style="max-width:680px;margin:0 auto">
+    <label>Kompaniya nomi</label><input id="pjCompany" required maxlength="80">
+    <label>Aloqa telefoni</label><input id="pjPhone" type="tel" required placeholder="+998 90 123 45 67">
+    <label>Lavozim nomi</label><input id="pjTitle" required maxlength="100">
+    <label>Shahar</label><select id="pjCity">${cityOptions}</select>
+    <label>Yo'nalish</label><select id="pjCat">${catOptions}</select>
+    <label>Ish turi</label><select id="pjType"><option>Full-time</option><option>Part-time</option><option>Remote</option><option>Hybrid</option></select>
+    <label>Maosh (dan, so'm)</label><input id="pjMin" type="number" min="0" required>
+    <label>Maosh (gacha, so'm)</label><input id="pjMax" type="number" min="0" required>
+    <label>Tajriba (yil)</label><input id="pjExp" type="number" min="0" max="20" value="0">
+    <label>Ish tavsifi</label><textarea id="pjDesc" required maxlength="800"></textarea>
+    <label>Talablar (har birini yangi qatordan)</label><textarea id="pjReq" maxlength="600"></textarea>
+    <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="pjAgree" required style="width:auto"> Foydalanish shartlariga roziman</label>
+    <button class="btn btn-p btn-block" type="submit" style="margin-top:18px">E'lonni joylash</button>
+    <p class="note">Hozircha e'lon faqat shu qurilmada saqlanadi (server ulangandan keyin hamma ko'radi).</p>
+  </form>
+</div></div>
+
+<div id="view-about" class="mega-view"><div class="wrap" style="padding:40px 0;max-width:820px">
+  <h2>ℹ️ Workly haqida</h2>
+  <p style="color:var(--mut);margin:10px 0 24px">Workly O'zbekistonda ishsizlikni kamaytirish va yoshlarga to'g'ri kasb tanlashda yordam berish uchun yaratilgan.</p>
+  <article class="job glass" style="margin-bottom:16px"><h3>Maxfiylik siyosati</h3><p style="color:var(--mut);font-size:14px">Kiritilgan ma'lumotlar faqat ariza yuborish va profilni yuritish uchun ishlatiladi.</p></article>
+  <article class="job glass" style="margin-bottom:16px"><h3>Foydalanish shartlari</h3><p style="color:var(--mut);font-size:14px">E'lon beruvchi ma'lumotlarning to'g'riligi uchun javobgar. Soxta e'lonlar o'chiriladi.</p></article>
+  <article class="job glass"><h3>Aloqa</h3><p style="color:var(--mut);font-size:14px">Takliflar va shikoyatlar: <a href="https://t.me/Husniddin_Yuldashev" target="_blank" rel="noopener" style="color:var(--teal);font-weight:600">@Husniddin_Yuldashev</a></p></article>
+</div></div>
+
+<div class="sheet" id="sReport" role="dialog" aria-modal="true"><div class="panel wk-form">
+  <button class="x" data-close aria-label="Yopish">✕</button>
+  <h3>Vakansiya haqida shikoyat</h3><p class="sub">Shubhali yoki firibgar e'lonlarni ko'rib chiqamiz.</p>
+  <form id="reportForm"><input type="hidden" id="reportJobId">
+    <label>Sabab</label><select id="reportReason" required><option value="">Tanlang</option><option>Oldindan pul talab qilinmoqda</option><option>Soxta yoki mavjud bo'lmagan kompaniya</option><option>Ma'lumotlar noto'g'ri</option><option>Haqoratli mazmun</option><option>Boshqa</option></select>
+    <label>Izoh (ixtiyoriy)</label><textarea id="reportNote" maxlength="300"></textarea>
+    <div class="gap"><button class="btn btn-p btn-block" type="submit">Yuborish</button></div>
+  </form>
+</div></div>
+
+<div class="sheet" id="sShare" role="dialog" aria-modal="true"><div class="panel">
+  <button class="x" data-close aria-label="Yopish">✕</button>
+  <h3>Vakansiyani ulashish</h3><p class="sub">Do'stlaringizga yuboring.</p>
+  <div class="gap">
+    <a class="btn btn-g btn-block" id="shTg" target="_blank" rel="noopener">✈️ Telegram</a>
+    <a class="btn btn-g btn-block" id="shWa" target="_blank" rel="noopener">💬 WhatsApp</a>
+    <button class="btn btn-g btn-block" id="shCopy" type="button">🔗 Havolani nusxalash</button>
+  </div>
+</div></div>`;
+document.body.insertAdjacentHTML("beforeend",views);
+
+/* yangi sheetlarni yopish */
+document.querySelectorAll("#sReport,#sShare").forEach(s=>s.addEventListener("click",e=>{
+  if(e.target===s||e.target.closest("[data-close]"))closeAll();
+}));
+
+/* ---------- 2. Dock va sidebar ---------- */
+const dock=$q(".mega-dock");
+if(dock)dock.insertAdjacentHTML("beforeend",
+ `<button onclick="switchView('quiz')">🧭 Test</button><button onclick="switchView('courses')">🎓 Kurslar</button><button onclick="switchView('employer')">🏢 E'lon</button>`);
+
+const sideLabels=[...document.querySelectorAll(".wl-side-label")];
+const personal=sideLabels.find(l=>l.textContent.trim()==="SHAXSIY");
+if(personal){
+  const items=[["quiz","🧭","Kasb tanlash testi"],["courses","🎓","Bepul kurslar"],["employer","🏢","Ish beruvchi paneli"],["about","ℹ️","Workly haqida"]];
+  items.forEach(([v,i,t])=>{
+    const b=document.createElement("button");
+    b.className="wl-side-item";
+    b.innerHTML=`<span class="wl-side-icon">${i}</span>${t}`;
+    b.addEventListener("click",()=>{$q("#wl-side-close")?.click();switchView(v)});
+    personal.parentNode.insertBefore(b,personal);
+  });
+}
+
+/* ---------- 3. Ogohlantirish bloki ---------- */
+const catSec=$q("#categories");
+if(catSec)catSec.insertAdjacentHTML("beforebegin",
+`<aside class="glass wk-warn" role="note"><span style="font-size:26px">⚠️</span><div><strong>Firibgarlardan ehtiyot bo'ling!</strong><p style="color:var(--mut);font-size:14px;margin-top:4px">Oldindan pul, "trening to'lovi" so'ralsa yoki pasport nusxasi shubhali joyga so'ralsa, rad eting. Vakansiya ichidagi «Shikoyat» tugmasidan xabar bering.</p></div></aside>`);
+
+/* ---------- 4. Saralash va maosh filtri ---------- */
+const grid=$q("#grid");
+if(grid)grid.insertAdjacentHTML("beforebegin",`
+<div class="glass wk-bar">
+  <div><label for="wkSort">Saralash</label><select id="wkSort"><option value="new">Yangilari birinchi</option><option value="desc">Maosh: yuqoridan pastga</option><option value="asc">Maosh: pastdan yuqoriga</option></select></div>
+  <div><label for="wkMin">Minimal maosh (mln so'm)</label><input id="wkMin" type="number" min="0" placeholder="Masalan: 5"></div>
+  <div><label for="wkExp">Tajriba</label><select id="wkExp"><option value="">Barchasi</option><option value="0">Tajribasiz</option><option value="1">1 yilgacha</option><option value="3">1–3 yil</option><option value="5">3+ yil</option></select></div>
+</div>`);
+
+/* maoshni mln so'mga aylantirish ($1 ≈ 12 500 so'm) */
+function salVals(j){
+  const n=(j.sal.match(/\d[\d,.]*/g)||[]).map(x=>parseFloat(x.replace(/,/g,""))).filter(x=>!isNaN(x));
+  const k=j.sal.includes("$")?0.0125:1;
+  const v=n.map(x=>x*k);
+  return {min:v[0]||0,max:v[v.length-1]||0};
+}
+function expYears(j){
+  if(typeof j.exp==="number")return j.exp;
+  const m=(j.r||[]).join(" ").match(/(\d+)\+?\s*yil/);
+  return m?+m[1]:0;
+}
+const baseList=window.list;
+window.list=function(){
+  let l=baseList();
+  if(W.min)l=l.filter(j=>salVals(j).max>=W.min);
+  if(W.exp!==""){
+    const e=+W.exp;
+    l=l.filter(j=>{const y=expYears(j);return e===0?y===0:e===1?y<=1:e===3?(y>=1&&y<=3):y>=3});
+  }
+  if(W.sort==="desc")l=[...l].sort((a,b)=>salVals(b).max-salVals(a).max);
+  else if(W.sort==="asc")l=[...l].sort((a,b)=>salVals(a).min-salVals(b).min);
+  else l=[...l].sort((a,b)=>b.id-a.id);
+  return l;
+};
+$q("#wkSort")?.addEventListener("change",e=>{W.sort=e.target.value;renderJobs()});
+$q("#wkMin")?.addEventListener("input",e=>{W.min=+e.target.value||0;renderJobs()});
+$q("#wkExp")?.addEventListener("change",e=>{W.exp=e.target.value;renderJobs()});
+$q("#reset")?.addEventListener("click",()=>{
+  W.sort="new";W.min=0;W.exp="";
+  $q("#wkSort").value="new";$q("#wkMin").value="";$q("#wkExp").value="";
+  renderJobs();
+});
+
+/* ---------- 5. Test natijasi ---------- */
+$q("#quizForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const fd=new FormData(e.target),score={};
+  for(const [,v] of fd.entries())score[v]=(score[v]||0)+1;
+  const top=Object.entries(score).sort((a,b)=>b[1]-a[1]).slice(0,2);
+  const box=$q("#quizResult");
+  box.hidden=false;
+  box.innerHTML=`<h3>Sizga mos yo'nalishlar:</h3>`+top.map(([k,v])=>
+    `<p style="margin:10px 0"><strong>${esc2(CATS[k]||k)}</strong> <span style="color:var(--mut)">(${v}/5 moslik)</span><br>
+     <button class="btn btn-p btn-sm" data-qcat="${k}" style="margin-top:6px">Shu yo'nalishdagi ishlarni ko'rish</button></p>`).join("");
+  box.scrollIntoView({behavior:"smooth"});
+});
+$q("#quizResult").addEventListener("click",e=>{
+  const b=e.target.closest("[data-qcat]");if(!b)return;
+  S.cat=b.dataset.qcat;renderCats();renderJobs();switchView("main");
+  setTimeout(()=>$q("#jobs")?.scrollIntoView(),50);
+});
+
+/* ---------- 6. Ish beruvchi formasi ---------- */
+const posted=store.get("wl-posted",[]);
+posted.forEach(j=>JOBS.push(j));
+function refreshStats(){
+  $q("#n1").textContent=JOBS.length;
+  $q("#n2").textContent=new Set(JOBS.map(j=>j.c)).size;
+}
+refreshStats();renderCats();renderJobs();
+
+$q("#postJobForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const mn=+$q("#pjMin").value,mx=+$q("#pjMax").value;
+  if(mx<mn){toast("Maosh oralig'i noto'g'ri");return}
+  const job={
+    id:Date.now()%1e9,t:$q("#pjTitle").value.trim(),c:$q("#pjCompany").value.trim(),
+    city:$q("#pjCity").value,cat:$q("#pjCat").value,type:$q("#pjType").value,
+    sal:`${mn/1e6} mln – ${mx/1e6} mln so'm`,exp:+$q("#pjExp").value||0,
+    d:$q("#pjDesc").value.trim(),
+    r:$q("#pjReq").value.split("\n").map(x=>x.trim()).filter(Boolean),
+    wiki:"Bu e'lon ish beruvchi tomonidan joylangan. Aloqa: "+$q("#pjPhone").value.trim()
+  };
+  JOBS.push(job);posted.push(job);store.set("wl-posted",posted);
+  e.target.reset();refreshStats();renderCats();renderJobs();
+  toast("E'lon joylandi ✓");switchView("main");
+});
+
+/* ---------- 7. Vakansiya ichiga Shikoyat va Ulashish ---------- */
+const origOpenJob=window.openJob;
+window.openJob=function(id){
+  origOpenJob(id);
+  const body=$q("#jBody");if(!body)return;
+  body.insertAdjacentHTML("beforeend",`
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn btn-g btn-sm" style="flex:1" data-wk-share="${id}">🔗 Ulashish</button>
+      <button class="btn btn-g btn-sm" style="flex:1" data-wk-report="${id}">🚩 Shikoyat</button>
+    </div>`);
+};
+$q("#jBody").addEventListener("click",e=>{
+  const sh=e.target.closest("[data-wk-share]"),rp=e.target.closest("[data-wk-report]");
+  if(sh){
+    const id=sh.dataset.wkShare,j=JOBS.find(x=>x.id==id);if(!j)return;
+    const url=location.href.split("#")[0]+"#job-"+id;
+    const text=`${j.t} — ${j.c} (${j.sal})`;
+    $q("#shTg").href=`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+    $q("#shWa").href=`https://wa.me/?text=${encodeURIComponent(text+" "+url)}`;
+    $q("#shCopy").onclick=()=>{navigator.clipboard?.writeText(url).then(()=>toast("Havola nusxalandi ✓"),()=>toast("Nusxalab bo'lmadi"))};
+    closeAll();openSheet("#sShare");
+  }
+  if(rp){
+    $q("#reportJobId").value=rp.dataset.wkReport;
+    closeAll();openSheet("#sReport");
+  }
+});
+$q("#reportForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const list=store.get("wl-reports",[]);
+  list.push({job:$q("#reportJobId").value,reason:$q("#reportReason").value,note:$q("#reportNote").value.trim(),at:new Date().toISOString()});
+  store.set("wl-reports",list);
+  e.target.reset();closeAll();toast("Shikoyat qabul qilindi. Rahmat!");
+});
+
+/* ---------- 8. Havola orqali ochish (#job-3) ---------- */
+const m=location.hash.match(/^#job-(\d+)$/);
+if(m)setTimeout(()=>openJob(+m[1]),300);
+
+console.log("WORKLY EXTRA MODULE ACTIVE");
+})();
+</script>
+<!-- ===== WORKLY: KASBLAR + ODDIY ISHLAR + MAOSH KALKULYATORI ===== -->
+<style>
+.pf-bar{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+.pf-tab{background:rgba(255,255,255,.5);border:1px solid var(--edge);padding:8px 16px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;transition:.3s}
+.pf-tab.active{background:var(--ink);color:#fff}
+.pf-card{cursor:pointer}
+.pf-ru{color:var(--mut);font-size:13px;margin-top:-8px}
+.pf-badge{font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;width:fit-content}
+.pf-hi{background:rgba(34,160,90,.15);color:#17803f}
+.pf-mid{background:rgba(240,165,0,.18);color:#9a6700}
+.pf-lo{background:rgba(120,130,150,.18);color:var(--mut)}
+.wk-calc{padding:24px;border-radius:28px;margin-bottom:24px}
+.wk-calc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.wk-calc label{display:block;font-size:13px;font-weight:600;color:var(--mut);margin-bottom:5px}
+.wk-calc select{width:100%;min-height:46px;border:1px solid rgba(15,29,46,.12);border-radius:16px;padding:0 14px;background:rgba(255,255,255,.9)}
+.wk-res{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.wk-res div{background:rgba(255,255,255,.7);border-radius:18px;padding:14px;text-align:center}
+.wk-res strong{display:block;font-size:1.2rem;color:var(--teal)}
+.wk-res span{font-size:12.5px;color:var(--mut)}
+.wk-track{height:12px;border-radius:99px;background:rgba(15,29,46,.08);margin-top:16px;overflow:hidden}
+.wk-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#32c0cd,#0e8f9c);transition:width .5s}
+@media(max-width:600px){.wk-res{grid-template-columns:1fr}}
+body.wl-dark .pf-tab:not(.active){background:rgba(255,255,255,.09);color:#d5e1ef}
+body.wl-dark .wk-calc select{background:#263850;color:#fff;border-color:#42536a}
+body.wl-dark .wk-res div{background:rgba(255,255,255,.08)}
+</style>
+
+<script>
+(function(){
+"use strict";
+if(typeof JOBS==="undefined"||typeof PROFESSIONS==="undefined"||typeof CATS==="undefined"||typeof S==="undefined"){console.warn("Workly kasblar moduli: asosiy kod topilmadi");return;}
+
+/* ====== SOZLAMALAR (o'zingiz tuzatishingiz mumkin) ====== */
+const RATE=12500;   // 1 dollar = necha so'm
+const CITY_K={"Toshkent":1,"Samarqand":.85,"Buxoro":.8,"Andijon":.8,"Farg'ona":.78,"Namangan":.78}; // shahar koeffitsiyenti
+const EXP_K={"0":.7,"1":1,"3":1.3,"5":1.6};  // tajriba koeffitsiyenti
+const EXP_L={"0":"Tajribasiz","1":"1–3 yil","3":"3–5 yil","5":"5+ yil"};
+const PH="+998 XX XXX XX XX";
+
+/* ====== YANGI YO'NALISHLAR ====== */
+Object.assign(CATS,{Health:"Tibbiyot",Construction:"Qurilish",Service:"Xizmat ko'rsatish",Trade:"Chakana savdo",Agro:"Qishloq xo'jaligi",Industry:"Ishlab chiqarish",Driver:"Haydovchilik va yetkazish"});
+
+/* ====== KASBLAR: Nomi|Ruscha|Guruh|min|max (mln so'm)|talab 0/1/2|Qayerda o'qiladi|tajribasiz 1/0|Tavsif ====== */
+const RAW=`
+Dasturchi (Software Developer)|Программист|IT|10|35|2|Universitet, IT Park kurslari, o'z-o'zini o'rganish|0|Kompyuter dasturlari, veb-sayt va ilovalar yaratadi.
+Frontend dasturchi|Фронтенд-разработчик|IT|8|28|2|Kurslar va amaliy loyihalar|0|Saytlarning foydalanuvchi ko'radigan qismini yaratadi.
+Backend dasturchi|Бэкенд-разработчик|IT|10|35|2|Universitet, kurslar|0|Server, ma'lumotlar bazasi va API ustida ishlaydi.
+Mobil ilova dasturchisi|Мобильный разработчик|IT|10|32|2|Kurslar va amaliy loyihalar|0|Android va iOS ilovalarini yaratadi.
+QA tester|Тестировщик|IT|6|18|2|2–3 oylik kurslar|1|Dasturlardagi xatolarni topadi va sifatni tekshiradi.
+Ma'lumotlar tahlilchisi|Аналитик данных|IT|8|25|2|Universitet, Excel va SQL kurslari|0|Raqam va jadvallardan xulosa chiqaradi.
+Tizim administratori|Системный администратор|IT|5|14|1|Kollej, texnik kurslar|0|Kompyuter tarmoqlari va serverlarni sozlaydi.
+Kiberxavfsizlik mutaxassisi|Специалист по кибербезопасности|IT|10|30|1|Universitet, sertifikat kurslari|0|Tizimlarni hujumlardan himoya qiladi.
+Kompyuter ustasi|Мастер по ремонту компьютеров|IT|3|8|1|Kasb-hunar kolleji, ustoz yonida|1|Kompyuter va noutbuklarni ta'mirlaydi.
+Texnik yordam operatori|Оператор техподдержки|IT|3|6|1|Ish joyida o'rgatiladi|1|Mijozlarning texnik savollariga javob beradi.
+Grafik dizayner|Графический дизайнер|Design|4|12|1|Kurslar va portfolio|0|Banner, logotip va reklama materiallarini chizadi.
+UI/UX dizayner|UI/UX дизайнер|Design|8|22|2|Kurslar va portfolio|0|Ilova va saytlarning qulay ko'rinishini loyihalaydi.
+Videomontajchi|Видеомонтажёр|Design|4|12|1|Kurslar va amaliyot|1|Video roliklarni kesadi va tayyorlaydi.
+Interyer dizayneri|Дизайнер интерьера|Design|5|15|1|Universitet, kurslar|0|Uy va ofis ichki makonini loyihalaydi.
+Fotograf|Фотограф|Design|3|10|1|Kurslar va amaliyot|1|To'y, mahsulot va portret suratlarini oladi.
+SMM mutaxassisi|SMM-специалист|Marketing|4.5|10|2|Kurslar va amaliyot|1|Ijtimoiy tarmoqlarda sahifalarni yuritadi.
+Targetolog|Таргетолог|Marketing|5|15|2|Kurslar|0|Instagram va Telegramda reklama sozlaydi.
+Kopirayter|Копирайтер|Marketing|3|9|1|Kurslar va yozish amaliyoti|1|Reklama va sayt uchun matn yozadi.
+Marketolog|Маркетолог|Marketing|6|15|1|Universitet, kurslar|0|Bozorni o'rganib, targ'ibot rejasini tuzadi.
+Buxgalter|Бухгалтер|Finance|5|12|2|Iqtisodiyot kolleji yoki universiteti, 1C kursi|0|Korxona hisobi va soliq hisobotlarini yuritadi.
+Moliyaviy tahlilchi|Финансовый аналитик|Finance|8|20|1|Universitet|0|Kompaniya moliyaviy ko'rsatkichlarini tahlil qiladi.
+Bank operatori|Операционист банка|Finance|4|9|1|Iqtisodiy ta'lim, bank treningi|1|Bank mijozlariga xizmat ko'rsatadi.
+Auditor|Аудитор|Finance|8|20|1|Universitet, sertifikat|0|Moliyaviy hisobotlar to'g'riligini tekshiradi.
+Iqtisodchi|Экономист|Finance|5|12|1|Universitet|0|Rejalashtirish va xarajatlarni hisoblaydi.
+Savdo menejeri|Менеджер по продажам|Business|4|12|2|Treninglar, ish joyida o'rgatiladi|1|Mijozlar topib, kelishuvlar tuzadi.
+HR menejer|HR-менеджер|Business|5|12|1|Universitet, kurslar|0|Xodimlarni tanlaydi va jamoani boshqaradi.
+Loyiha menejeri|Проектный менеджер|Business|10|25|1|Tajriba va kurslar|0|Loyiha muddati, byudjeti va jamoasini boshqaradi.
+Administrator|Администратор|Business|3|5.5|2|Maxsus ta'lim shart emas|1|Mijozlarni kutib oladi, ish tartibini yuritadi.
+Call-markaz operatori|Оператор колл-центра|Business|3|5.5|2|Ish joyida o'rgatiladi|1|Telefon orqali mijozlar bilan gaplashadi.
+Ofis-menejer (kotib)|Офис-менеджер|Business|3|6|1|Kollej, kompyuter bilimi|1|Hujjatlar va ofis ishlarini tashkil qiladi.
+Logist|Логист|Logistics|6|16|2|Universitet, kurslar|0|Yuk tashish marshrutlarini rejalashtiradi.
+Ekspeditor|Экспедитор|Logistics|5|12|1|Tajriba va kurslar|0|Yuk yetkazish hujjatlari va jarayonini nazorat qiladi.
+Omborchi|Кладовщик|Logistics|3.5|7|2|Ish joyida o'rgatiladi|1|Ombordagi tovarlarni qabul qiladi, hisobini yuritadi.
+Bojxona brokeri|Таможенный брокер|Logistics|6|15|1|Universitet, sertifikat|0|Yuklarni bojxonadan o'tkazish hujjatlarini rasmiylashtiradi.
+Yuk ortuvchi (gruzchik)|Грузчик|Logistics|3|5.5|2|Ta'lim shart emas|1|Yuklarni ortadi va tushiradi.
+Maktab o'qituvchisi|Школьный учитель|Education|3.5|8|2|Pedagogika universiteti|0|O'quvchilarga fan bo'yicha dars beradi.
+Tarbiyachi|Воспитатель|Education|2.5|4.5|2|Pedagogika kolleji|0|Maktabgacha yoshdagi bolalarni tarbiyalaydi.
+Repetitor|Репетитор|Education|3|12|2|Fan bo'yicha chuqur bilim|1|Individual dars beradi.
+Ingliz tili o'qituvchisi|Преподаватель английского|Education|4|12|2|Til darajasi (IELTS/CEFR), kurslar|0|Ingliz tilini o'rgatadi.
+Kasb-hunar ustozi|Мастер производственного обучения|Education|3|6|1|Kollej va tajriba|0|Yoshlarga amaliy kasbni o'rgatadi.
+Psixolog|Психолог|Education|4|10|1|Universitet|0|Maslahat beradi va ruhiy holatni o'rganadi.
+Shifokor (terapevt)|Врач-терапевт|Health|5|15|2|Tibbiyot universiteti, ordinatura|0|Bemorni ko'rib, tashxis qo'yadi va davolaydi.
+Hamshira|Медсестра|Health|3|6|2|Tibbiyot kolleji|0|Shifokorga yordam beradi, muolajalar qiladi.
+Farmatsevt|Фармацевт|Health|3.5|8|2|Farmatsevtika kolleji yoki universiteti|0|Dorixonada dori beradi va maslahat qiladi.
+Stomatolog|Стоматолог|Health|6|20|2|Tibbiyot universiteti|0|Tish kasalliklarini davolaydi.
+Laborant|Лаборант|Health|3|6|1|Tibbiyot kolleji|0|Tahlillarni olib, laboratoriyada tekshiradi.
+Massajchi|Массажист|Health|3|8|1|Kurslar va sertifikat|1|Davolovchi va dam oldiruvchi massaj qiladi.
+G'isht teruvchi|Каменщик|Construction|5|10|2|Ustoz yonida, kasb-hunar kolleji|1|Devor va inshootlarni g'ishtdan quradi.
+Payvandchi|Сварщик|Construction|5|12|2|Kasb-hunar kolleji, kurs|1|Metallarni payvandlab biriktiradi.
+Elektrik (montajchi)|Электромонтажник|Construction|5|10|2|Kollej, kurs|1|Elektr tarmoqlarini o'rnatadi va ta'mirlaydi.
+Santexnik|Сантехник|Construction|4|9|2|Ustoz yonida, kurs|1|Suv va isitish quvurlarini o'rnatadi.
+Suvoqchi-bo'yoqchi|Штукатур-маляр|Construction|4|9|2|Ustoz yonida|1|Devorlarni suvaydi va bo'yaydi.
+Plitka teruvchi|Плиточник|Construction|5|12|2|Ustoz yonida|1|Pol va devorlarga plitka yotqizadi.
+Duradgor|Плотник|Construction|4|10|1|Kollej, ustoz yonida|1|Yog'ochdan eshik, deraza va mebel yasaydi.
+Qurilish prorabi|Прораб|Construction|8|18|1|Qurilish kolleji yoki universiteti, tajriba|0|Qurilish ishlari va ishchilarni boshqaradi.
+Qurilish ishchisi|Разнорабочий на стройке|Construction|3.5|6|2|Ta'lim shart emas|1|Qurilish maydonida yordamchi ishlarni bajaradi.
+Konditsioner ustasi|Мастер по кондиционерам|Construction|4|10|2|Kurs, ustoz yonida|1|Konditsionerlarni o'rnatadi va ta'mirlaydi.
+Sartarosh|Парикмахер|Service|3|10|2|Kurs, ustoz yonida|1|Soch oladi va turmak qiladi.
+Oshpaz|Повар|Service|4|10|2|Kulinariya kolleji, ustoz yonida|1|Restoran va oshxonada taom tayyorlaydi.
+Ofitsiant|Официант|Service|2.5|5|2|Ish joyida o'rgatiladi|1|Mehmonlarga xizmat ko'rsatadi.
+Barista|Бариста|Service|2.5|5|1|Qisqa kurs|1|Kofe tayyorlaydi.
+Tozalovchi|Уборщик|Service|2.5|4|2|Ta'lim shart emas|1|Bino va xonalar tozaligini ta'minlaydi.
+Manikyur ustasi|Мастер маникюра|Service|3|9|2|Kurs|1|Tirnoq parvarishi va dizaynini qiladi.
+Kosmetolog|Косметолог|Service|4|12|1|Tibbiyot kolleji, kurs|0|Yuz va teri parvarishi xizmatlarini ko'rsatadi.
+Qo'riqchi|Охранник|Service|2.5|4.5|2|Qisqa tayyorgarlik|1|Obyekt xavfsizligini ta'minlaydi.
+Avtomexanik|Автомеханик|Service|4|12|2|Kollej, ustoz yonida|1|Mashinalarni tekshiradi va ta'mirlaydi.
+Turizm gidi|Гид|Service|3|10|1|Kurs va chet tili|0|Sayyohlarga tarixiy joylarni ko'rsatadi.
+Sotuvchi-maslahatchi|Продавец-консультант|Trade|2.5|5|2|Ish joyida o'rgatiladi|1|Do'konda mijozlarga tovar tanlashda yordam beradi.
+Kassir|Кассир|Trade|2.5|4.5|2|Ish joyida o'rgatiladi|1|Hisob-kitob qiladi va to'lovlarni qabul qiladi.
+Merchandayzer|Мерчандайзер|Trade|3|5|1|Ish joyida o'rgatiladi|1|Tovarlarni javonlarga joylashtiradi.
+Do'kon direktori|Директор магазина|Trade|5|12|1|Savdo tajribasi|0|Do'kon ishi va xodimlarni boshqaradi.
+Onlayn sotuvchi (marketplace)|Продавец на маркетплейсе|Trade|3|15|2|Kurslar, o'z-o'zini o'rganish|1|Uzum kabi platformalarda tovar sotadi.
+Fermer|Фермер|Agro|4|15|2|Qishloq xo'jaligi kolleji, tajriba|0|Yer va ekinlarni o'z hisobidan yuritadi.
+Agronom|Агроном|Agro|4|10|2|Agrar universitet yoki kollej|0|Ekin parvarishi va hosildorlikka mas'ul.
+Bog'bon|Садовод|Agro|3|6|1|Ustoz yonida|1|Mevali daraxt va bog'larni parvarish qiladi.
+Chorvador|Животновод|Agro|3.5|8|2|Tajriba, kurs|1|Qoramol, qo'y-echkilarni boqadi.
+Issiqxona ishchisi|Работник теплицы|Agro|3|5.5|2|Ish joyida o'rgatiladi|1|Issiqxonada sabzavot yetishtiradi.
+Mexanizator (traktorchi)|Механизатор|Agro|3.5|7|2|Kollej, haydovchilik guvohnomasi|1|Qishloq xo'jaligi texnikasini boshqaradi.
+Asalarichi|Пчеловод|Agro|3|10|1|Tajriba, ustoz yonida|1|Asalari boqadi va asal oladi.
+Veterinar|Ветеринар|Agro|4|10|2|Veterinariya universiteti yoki kolleji|0|Hayvonlarni davolaydi.
+Tikuvchi|Швея|Industry|3|7|2|Kurs, ustoz yonida|1|Kiyimlarni tikadi.
+Tokar (stanokchi)|Токарь|Industry|4.5|10|2|Kollej, tajriba|0|Metallni stanokda ishlov beradi.
+To'qimachilik ishchisi|Текстильщик|Industry|3|6|2|Ish joyida o'rgatiladi|1|Mato to'qish va ishlov berish jarayonida ishlaydi.
+Novvoy|Пекарь|Industry|3.5|8|2|Ustoz yonida|1|Non va patir yopadi.
+Konditer|Кондитер|Industry|3.5|9|2|Kurs, ustoz yonida|1|Tort va shirinliklar tayyorlaydi.
+Mebel ustasi|Мебельщик|Industry|4|10|2|Ustoz yonida|1|Mebel yasaydi va yig'adi.
+Zavod ishchisi|Рабочий завода|Industry|3|5.5|2|Ish joyida o'rgatiladi|1|Ishlab chiqarish liniyasida ishlaydi.
+Texnolog|Технолог|Industry|5|12|1|Universitet yoki kollej|0|Ishlab chiqarish jarayonini sozlaydi.
+Qadoqlovchi|Упаковщик|Industry|2.5|4|2|Ta'lim shart emas|1|Mahsulotlarni qadoqlaydi.
+Taksi haydovchisi|Водитель такси|Driver|3|8|2|Haydovchilik guvohnomasi|1|Yo'lovchilarni manzilga yetkazadi.
+Yuk mashinasi haydovchisi|Водитель грузовика|Driver|6|16|2|C/E toifa guvohnomasi|0|Shahar va xalqaro yuklarni tashiydi.
+Kuryer|Курьер|Driver|3|8|2|Ta'lim shart emas|1|Buyurtma va hujjatlarni yetkazadi.
+Avtobus haydovchisi|Водитель автобуса|Driver|4|8|1|D toifa guvohnomasi|0|Yo'lovchilarni marshrut bo'ylab tashiydi.
+Forklift operatori|Водитель погрузчика|Driver|3.5|6.5|1|Kurs va guvohnoma|1|Omborda yuklarni forklift bilan ko'taradi.
+`;
+
+const fmt=n=>String(Math.round(n*10)/10);
+const usd=n=>"$"+Math.round(n*1e6/RATE).toLocaleString("en-US");
+const range=p=>fmt(p.min)+" – "+fmt(p.max)+" mln so'm";
+const norm=s=>String(s).toLowerCase().replace(/[’ʻ`´]/g,"'");
+const DEM=["Past talab","O'rtacha talab","Yuqori talab"];
+const DEMC=["pf-lo","pf-mid","pf-hi"];
+
+PROFESSIONS.length=0;
+RAW.trim().split("\n").forEach(line=>{
+  const a=line.split("|").map(x=>x.trim());
+  if(a.length<9)return;
+  const mn=parseFloat(a[3]),mx=parseFloat(a[4]);
+  if(isNaN(mn)||isNaN(mx))return;
+  PROFESSIONS.push({name:a[0],ru:a[1],g:a[2],cat:CATS[a[2]]||a[2],min:mn,max:mx,dem:+a[5]||0,edu:a[6],noexp:a[7]==="1",desc:a[8],salary:fmt(mn)+" – "+fmt(mx)+" mln so'm"});
+});
+
+/* ====== ODDIY KASB VAKANSIYALARI (namuna) ====== */
+const mk=(id,t,c,city,cat,type,sal,d,r,fl)=>({id,t,c:c+" (namuna)",city,cat,type,sal,exp:0,d,r:r.split(";"),wiki:"Bu namunaviy e'lon. Aloqa: "+PH+" (haqiqiy ma'lumot bilan almashtiring).",...fl});
+const NEW=[
+mk(201,"Taksi haydovchisi","Taxi Park","Toshkent","Driver","Full-time","4 mln – 8 mln so'm","Shahar bo'ylab yo'lovchilarni tashish. Mashina kompaniyadan.","Haydovchilik guvohnomasi (B);Shahar yo'llarini bilish;Muloqot madaniyati",{}),
+mk(202,"Kuryer","Tezkor Yetkazish","Toshkent","Driver","Part-time","3 mln – 7 mln so'm","Buyurtmalarni mijozlarga yetkazish. Qulay grafik.","Yaxshi jismoniy holat;Shahar manzillarini bilish",{daily:1,train:1}),
+mk(203,"Oshpaz yordamchisi","Restoran","Samarqand","Service","Full-time","3 mln – 5 mln so'm","Oshxonada mahsulot tayyorlash va oshpazga yordam.","Tozalik;Ishga mas'uliyat bilan yondashish",{train:1,house:1}),
+mk(204,"Ofitsiant","Kafe","Buxoro","Service","Full-time","2.5 mln – 4.5 mln so'm","Mehmonlarni kutib olish va xizmat ko'rsatish.","Xushmuomalalik;Tajriba shart emas",{train:1,house:1}),
+mk(205,"Sotuvchi-maslahatchi","Kiyim do'koni","Andijon","Trade","Full-time","2.5 mln – 4.5 mln so'm","Mijozlarga tovar tanlashda yordam berish.","Muloqot qobiliyati;Rus yoki o'zbek tilini bilish",{train:1}),
+mk(206,"Payvandchi","Qurilish firmasi","Toshkent","Construction","Full-time","6 mln – 12 mln so'm","Metall konstruksiyalarni payvandlash.","Kamida 1 yil tajriba;Payvand turlarini bilish",{house:1}),
+mk(207,"G'isht teruvchi (kunlik)","Qurilish brigadasi","Farg'ona","Construction","Part-time","5 mln – 9 mln so'm","Kunlik haq to'lanadigan qurilish ishi.","G'isht terish tajribasi;Jismoniy chidamlilik",{daily:1}),
+mk(208,"Qurilish ishchisi (kunlik)","Qurilish maydoni","Namangan","Construction","Part-time","3.5 mln – 6 mln so'm","Yordamchi qurilish ishlari. Ish o'rgatiladi.","Ta'lim shart emas;Sog'lom bo'lish",{daily:1,train:1,house:1}),
+mk(209,"Tikuvchi (uydan ishlash)","Tikuv ateleси","Namangan","Industry","Remote","3 mln – 6 mln so'm","Uyda tikuv ishlari. Material olib kelinadi.","Tikuv mashinasi;Aniq ishlash",{home:1,train:1}),
+mk(210,"Qadoqlovchi (uyda)","Mahsulot ishlab chiqarish","Farg'ona","Industry","Remote","2.5 mln – 4 mln so'm","Kichik mahsulotlarni uyda qadoqlash.","Ta'lim shart emas;E'tiborlilik",{home:1,daily:1}),
+mk(211,"Issiqxona ishchisi","Agrofirma","Samarqand","Agro","Full-time","3 mln – 5 mln so'm","Issiqxonada sabzavot parvarishi va terish.","Tajriba shart emas;Mehnatsevarlik",{house:1,train:1}),
+mk(212,"Onlayn operator (uydan)","Savdo kompaniyasi","Andijon","Business","Remote","3 mln – 5 mln so'm","Telefon va chatda mijozlar buyurtmasini qabul qilish.","Telefon yoki kompyuter;Aniq nutq",{home:1,train:1}),
+mk(213,"Zavod ishchisi","Ishlab chiqarish zavodi","Andijon","Industry","Full-time","3.5 mln – 6 mln so'm","Ishlab chiqarish liniyasida ishlash.","Ta'lim shart emas;Smenada ishlashga tayyorlik",{house:1,train:1}),
+mk(214,"Hamshira","Xususiy klinika","Toshkent","Health","Full-time","3 mln – 6 mln so'm","Bemorlarga muolaja va parvarish.","Tibbiyot kolleji diplomi;Mas'uliyat",{}),
+mk(215,"Ingliz tili o'qituvchisi","O'quv markazi","Buxoro","Education","Part-time","4 mln – 9 mln so'm","Guruhlarga ingliz tilidan dars berish.","Til darajasi B2 va yuqori;Dars berish qobiliyati",{}),
+mk(216,"Omborchi","Savdo ombori","Toshkent","Logistics","Full-time","3.5 mln – 7 mln so'm","Tovarlarni qabul qilish, saqlash va hisobi.","Kompyuterda ishlash;Aniqlik",{train:1}),
+mk(217,"Tozalovchi","Tozalash xizmati","Toshkent","Service","Part-time","2.5 mln – 4 mln so'm","Uy va ofislarni tozalash. Kunlik to'lov mumkin.","Ta'lim shart emas;Halollik",{daily:1}),
+mk(218,"Barista","Kofexona","Samarqand","Service","Full-time","2.5 mln – 4.5 mln so'm","Kofe tayyorlash va mijozlarga xizmat.","Xushmuomalalik;Ish o'rgatiladi",{train:1})
+];
+if(!JOBS.some(j=>j.id===201))NEW.forEach(j=>JOBS.push(j));
+
+/* pjCat (ish beruvchi formasi) bo'lsa, yangilash */
+const pjc=document.getElementById("pjCat");
+if(pjc)pjc.innerHTML=Object.keys(CATS).map(k=>`<option value="${k}">${esc(CATS[k])}</option>`).join("");
+
+/* ====== YANGI FILTR TUGMALARI ====== */
+const TAB_FLAG={Daily:"daily",Home:"home",Train:"train",House:"house"};
+const ft=document.getElementById("filterTabs");
+if(ft&&!ft.querySelector('[data-tab="Daily"]')){
+  ft.insertAdjacentHTML("beforeend",
+   `<button class="filter-tab" data-tab="Daily">📅 Kunlik ish</button><button class="filter-tab" data-tab="Home">🏠 Uydan ishlash</button><button class="filter-tab" data-tab="Train">🎓 Ish o'rgatiladi</button><button class="filter-tab" data-tab="House">🛏️ Yotoqxona/ovqat</button>`);
+  ft.querySelectorAll(".filter-tab").forEach(b=>{
+    if(!TAB_FLAG[b.dataset.tab])return;
+    b.addEventListener("click",()=>{
+      document.querySelectorAll(".filter-tab").forEach(t=>t.classList.remove("active"));
+      b.classList.add("active");
+      S.tab=b.dataset.tab;
+      renderJobs();
+    });
+  });
+}
+const prevList=window.list;
+window.list=function(){
+  const l=prevList();
+  const f=TAB_FLAG[S.tab];
+  return f?l.filter(j=>j[f]):l;
+};
+
+/* ====== YORDAMCHI: vakansiyalarga o'tish ====== */
+function showVacancies(g){
+  closeAll();
+  S.cat=g;S.q="";
+  const qi=document.getElementById("q");if(qi)qi.value="";
+  renderCats();renderJobs();switchView("main");
+  setTimeout(()=>document.getElementById("jobs")?.scrollIntoView({behavior:"smooth"}),180);
+}
+
+/* ====== KASBLAR ENSIKLOPEDIYASI ====== */
+let PQ="",PG="";
+const pg=document.getElementById("profGrid");
+if(pg&&!document.getElementById("profTabs")){
+  pg.insertAdjacentHTML("beforebegin",`<div class="pf-bar" id="profTabs"></div><p class="note" id="profCount" style="text-align:left;margin:0 0 16px"></p>`);
+}
+function renderProfTabs(){
+  const el=document.getElementById("profTabs");if(!el)return;
+  el.innerHTML=`<button class="pf-tab ${!PG?"active":""}" data-g="">Barchasi (${PROFESSIONS.length})</button>`+
+    Object.keys(CATS).map(k=>{
+      const n=PROFESSIONS.filter(p=>p.g===k).length;
+      return n?`<button class="pf-tab ${PG===k?"active":""}" data-g="${k}">${esc(CATS[k])} (${n})</button>`:"";
+    }).join("");
+}
+function renderProf(filter){
+  if(typeof filter==="string")PQ=filter;
+  if(!pg)return;
+  const q=norm(PQ.trim());
+  const l=PROFESSIONS.map((p,i)=>({p,i})).filter(({p})=>(!PG||p.g===PG)&&(!q||norm(p.name+" "+p.ru+" "+p.cat).includes(q)));
+  pg.innerHTML=l.length?l.map(({p,i})=>`
+    <article class="job glass pf-card" tabindex="0" role="button" data-p="${i}">
+      <h3>${esc(p.name)}</h3>
+      <div class="pf-ru">${esc(p.ru)}</div>
+      <div class="tags"><span class="tag">${esc(p.cat)}</span><span class="pf-badge ${DEMC[p.dem]||"pf-lo"}">${DEM[p.dem]||DEM[0]}</span>${p.noexp?'<span class="tag">🟢 Tajribasiz mumkin</span>':""}</div>
+      <p style="color:var(--mut);font-size:14px">${esc(p.desc)}</p>
+      <div class="row"><span class="sal">${range(p)}</span><span style="color:var(--mut);font-size:12px">≈ ${usd(p.min)} – ${usd(p.max)}</span></div>
+    </article>`).join(""):`<p class="empty glass">Kasb topilmadi. Boshqa so'z bilan qidirib ko'ring.</p>`;
+  const c=document.getElementById("profCount");
+  if(c)c.textContent=l.length+" ta kasb · Maoshlar taxminiy (oyiga, so'mda) va shahar, tajriba, ish beruvchiga qarab o'zgaradi.";
+}
+window.renderProfessions=renderProf;
+window.filterProfessions=v=>renderProf(v);
+
+document.getElementById("profTabs")?.addEventListener("click",e=>{
+  const b=e.target.closest("[data-g]");if(!b)return;
+  PG=b.dataset.g;renderProfTabs();renderProf();
+});
+function openProf(i){
+  const p=PROFESSIONS[i];if(!p)return;
+  const nVac=JOBS.filter(j=>j.cat===p.g).length;
+  document.getElementById("jBody").innerHTML=`
+    <h3 id="jT">${esc(p.name)}</h3>
+    <p style="color:var(--mut)">${esc(p.ru)} · ${esc(p.cat)}</p>
+    <div class="tags" style="margin:12px 0"><span class="pf-badge ${DEMC[p.dem]||"pf-lo"}">${DEM[p.dem]||DEM[0]}</span>${p.noexp?'<span class="tag">🟢 Tajribasiz boshlash mumkin</span>':'<span class="tag">Tajriba kerak</span>'}</div>
+    <p class="sal" style="font-size:1.25rem">${range(p)}</p>
+    <p style="color:var(--mut);font-size:13px">≈ ${usd(p.min)} – ${usd(p.max)} / oyiga</p>
+    <p class="sub" style="margin-top:12px">${esc(p.desc)}</p>
+    <div class="wiki-box"><strong>🎓 Qayerda o'qiladi / qanday o'rganiladi:</strong>${esc(p.edu)}</div>
+    <p class="note" style="text-align:left">Maosh taxminiy. Aniq summa shahar, tajriba va ish beruvchiga bog'liq.</p>
+    <div class="gap">
+      <button class="btn btn-p btn-block" id="pfVac">💼 Shu yo'nalishdagi vakansiyalar (${nVac})</button>
+      <button class="btn btn-g btn-block" id="pfCalc">🧮 Maoshimni hisoblash</button>
+    </div>`;
+  document.getElementById("pfVac").addEventListener("click",()=>showVacancies(p.g));
+  document.getElementById("pfCalc").addEventListener("click",()=>{
+    closeAll();switchView("salary");
+    const sel=document.getElementById("kcProf");
+    if(sel){sel.value=String(i);calc();}
+    setTimeout(()=>document.getElementById("wkCalc")?.scrollIntoView({behavior:"smooth"}),180);
+  });
+  openSheet("#sJob");
+}
+pg?.addEventListener("click",e=>{const c=e.target.closest("[data-p]");if(c)openProf(+c.dataset.p)});
+pg?.addEventListener("keydown",e=>{if(e.key==="Enter"){const c=e.target.closest("[data-p]");if(c)openProf(+c.dataset.p)}});
+
+/* ====== MAOSH KALKULYATORI + ANALITIKA ====== */
+function calcHTML(){
+  const groups=Object.keys(CATS).map(k=>{
+    const o=PROFESSIONS.map((p,i)=>p.g===k?`<option value="${i}">${esc(p.name)}</option>`:"").join("");
+    return o?`<optgroup label="${esc(CATS[k])}">${o}</optgroup>`:"";
+  }).join("");
+  return `<div class="glass wk-calc" id="wkCalc">
+    <h3 style="margin-bottom:4px">🧮 Maosh kalkulyatori</h3>
+    <p style="color:var(--mut);font-size:14px;margin-bottom:16px">Kasb, shahar va tajribani tanlang, taxminiy oylik maoshni ko'rasiz.</p>
+    <div class="wk-calc-grid">
+      <div><label for="kcProf">Kasb</label><select id="kcProf">${groups}</select></div>
+      <div><label for="kcCity">Shahar</label><select id="kcCity">${CITIES.map(c=>`<option>${esc(c)}</option>`).join("")}</select></div>
+      <div><label for="kcExp">Tajriba</label><select id="kcExp">${Object.keys(EXP_K).map(k=>`<option value="${k}" ${k==="1"?"selected":""}>${EXP_L[k]}</option>`).join("")}</select></div>
+    </div>
+    <div class="wk-res"><div><span>Past</span><strong id="kcLo"></strong></div><div><span>O'rtacha</span><strong id="kcMid"></strong></div><div><span>Yuqori</span><strong id="kcHi"></strong></div></div>
+    <div class="wk-track"><div class="wk-fill" id="kcBar" style="width:0"></div></div>
+    <p class="note" id="kcNote"></p>
+    <button class="btn btn-g btn-sm" id="kcVac" style="margin-top:12px">💼 Shu yo'nalishdagi vakansiyalar</button>
+  </div>
+  <h3 style="margin:8px 0 14px">Yo'nalishlar bo'yicha o'rtacha maosh</h3>`;
+}
+const MAXALL=Math.max(...PROFESSIONS.map(p=>p.max))*EXP_K["5"];
+function calc(){
+  const sel=document.getElementById("kcProf");if(!sel)return;
+  const p=PROFESSIONS[+sel.value];if(!p)return;
+  const city=document.getElementById("kcCity").value,ex=document.getElementById("kcExp").value;
+  const k=(CITY_K[city]||.8)*(EXP_K[ex]||1);
+  const lo=p.min*k,hi=p.max*k,mid=(lo+hi)/2;
+  document.getElementById("kcLo").textContent=fmt(lo)+" mln";
+  document.getElementById("kcMid").textContent=fmt(mid)+" mln";
+  document.getElementById("kcHi").textContent=fmt(hi)+" mln";
+  document.getElementById("kcBar").style.width=Math.max(4,Math.min(100,Math.round(mid/MAXALL*100)))+"%";
+  let note=`${p.name} · ${city} · ${EXP_L[ex]} · ≈ ${usd(lo)} – ${usd(hi)} / oyiga. Bu taxminiy hisob, aniq maosh ish beruvchiga bog'liq.`;
+  if(ex==="0"&&!p.noexp)note+=" Bu kasbda tajribasiz boshlash qiyin, avval o'qish yoki amaliyot kerak.";
+  document.getElementById("kcNote").textContent=note;
+}
+function renderSalary(){
+  const grid=document.getElementById("salaryGrid");if(!grid)return;
+  if(!document.getElementById("wkCalc")){
+    grid.insertAdjacentHTML("beforebegin",calcHTML());
+    ["kcProf","kcCity","kcExp"].forEach(id=>document.getElementById(id).addEventListener("change",calc));
+    document.getElementById("kcVac").addEventListener("click",()=>{
+      const p=PROFESSIONS[+document.getElementById("kcProf").value];
+      if(p)showVacancies(p.g);
+    });
+  }
+  const gs=Object.keys(CATS).map(k=>{
+    const a=PROFESSIONS.filter(p=>p.g===k);
+    if(!a.length)return null;
+    const avg=f=>a.reduce((s,p)=>s+p[f],0)/a.length;
+    return{k,n:a.length,min:avg("min"),max:avg("max")};
+  }).filter(Boolean);
+  const top=Math.max(...gs.map(g=>g.max));
+  grid.innerHTML=gs.map(g=>`
+    <div class="job glass">
+      <h3>${esc(CATS[g.k])}</h3>
+      <p style="color:var(--mut);font-size:13px">${g.n} ta kasb bo'yicha o'rtacha</p>
+      <div class="wk-track" style="margin-top:4px"><div class="wk-fill" style="width:${Math.round(g.max/top*100)}%"></div></div>
+      <div style="margin-top:8px;font-weight:700;color:var(--teal)">${fmt(g.min)} – ${fmt(g.max)} mln so'm</div>
+      <p style="color:var(--mut);font-size:12.5px">≈ ${usd(g.min)} – ${usd(g.max)}</p>
+    </div>`).join("");
+  calc();
+}
+window.renderSalaryAnalytics=renderSalary;
+
+/* ====== ISHGA TUSHIRISH ====== */
+renderProfTabs();
+renderProf("");
+renderSalary();
+renderCats();
+renderJobs();
+const n1=document.getElementById("n1");if(n1)n1.textContent=JOBS.length;
+const n2=document.getElementById("n2");if(n2)n2.textContent=new Set(JOBS.map(j=>j.c)).size;
+console.log("WORKLY KASBLAR MODULE ACTIVE: "+PROFESSIONS.length+" kasb, "+JOBS.length+" vakansiya");
+})();
+</script>
+<!-- =========================================================
+ WORKLY MAX ECOSYSTEM ADD-ON
+ Qo'shish usuli: ushbu butun blokni mavjud faylning ENG OXIRIGA
+ qo'ying. Eski kodni o'chirmang yoki almashtirmang.
+ Frontend demo: ma'lumotlar shu brauzerning localStorage'ida saqlanadi.
+========================================================= -->
+<script>
+(function () {
+  "use strict";
+
+  /* =========================================================
+     0. HIMOYA: modul ikki marta ishga tushmasin
+  ========================================================= */
+  if (window.WorklyMax && window.WorklyMax.initialized) {
+    console.warn("Workly Max allaqachon ishga tushgan.");
+    return;
+  }
+
+  const APP = "workly-max-v1";
+  const $ = (selector, root) => (root || document).querySelector(selector);
+  const $$ = (selector, root) => Array.from((root || document).querySelectorAll(selector));
+
+  const safe = {
+    read(key, fallback) {
+      try {
+        const value = localStorage.getItem(APP + ":" + key);
+        return value === null ? fallback : JSON.parse(value);
+      } catch (error) {
+        console.warn("Workly Max storage read:", error);
+        return fallback;
+      }
+    },
+    write(key, value) {
+      try {
+        localStorage.setItem(APP + ":" + key, JSON.stringify(value));
+        return true;
+      } catch (error) {
+        console.warn("Workly Max storage write:", error);
+        notify("Brauzer xotirasiga saqlab bo'lmadi.");
+        return false;
+      }
+    }
+  };
+
+  const esc = value => String(value == null ? "" : value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[char]));
+
+  const money = value => Number(value || 0).toLocaleString("uz-UZ");
+  const dateText = value => {
+    const date = new Date(value);
+    return isNaN(date.getTime()) ? "—" : date.toLocaleString("uz-UZ");
+  };
+  const uid = prefix => prefix + "-" + Date.now().toString(36).toUpperCase() +
+    "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
+
+  function notify(message) {
+    let node = $("#wmx-toast");
+    if (!node) {
+      node = document.createElement("div");
+      node.id = "wmx-toast";
+      document.body.appendChild(node);
+    }
+    node.textContent = message;
+    node.classList.add("show");
+    clearTimeout(notify.timer);
+    notify.timer = setTimeout(() => node.classList.remove("show"), 2600);
+  }
+
+  /* =========================================================
+     1. DEMO MA'LUMOTLAR VA SAQLASH
+     Mavjud JOBS / PROFESSIONS massivlariga tegilmaydi.
+  ========================================================= */
+  const existingJobs = (typeof JOBS !== "undefined" && Array.isArray(JOBS)) ? JOBS : [];
+  const existingProfessions = (typeof PROFESSIONS !== "undefined" && Array.isArray(PROFESSIONS)) ? PROFESSIONS : [];
+
+  const seedUsers = [
+    {id:"USR-1001",name:"Azizbek Karimov",email:"azizbek@example.test",city:"Toshkent",role:"candidate",status:"active",joined:"2026-10-12",skills:["HTML","CSS","JavaScript"],title:"Frontend Developer"},
+    {id:"USR-1002",name:"Madina Xasanova",email:"madina@example.test",city:"Samarqand",role:"candidate",status:"active",joined:"2026-10-18",skills:["Marketing","SMM"],title:"SMM mutaxassisi"},
+    {id:"USR-1003",name:"TechVision",email:"hr@techvision.example",city:"Toshkent",role:"employer",status:"pending",joined:"2026-10-21",skills:[],title:"IT kompaniya"},
+    {id:"USR-1004",name:"Javohir Islomov",email:"javohir@example.test",city:"Andijon",role:"candidate",status:"restricted",joined:"2026-10-25",skills:["Excel"],title:"Buxgalter yordamchisi"},
+    {id:"USR-1005",name:"Orient Logistics",email:"jobs@orient.example",city:"Toshkent",role:"employer",status:"verified",joined:"2026-10-28",skills:[],title:"Logistika kompaniyasi"},
+    {id:"USR-1006",name:"Dilshod Rahimov",email:"dilshod@example.test",city:"Buxoro",role:"candidate",status:"active",joined:"2026-11-01",skills:["Python","SQL"],title:"Junior Python Developer"}
+  ];
+
+  const seedReports = [
+    {id:"CASE-1001",target:"Vakansiya #201",reason:"Kompaniya ma'lumoti to'liq emas",priority:"medium",status:"open",owner:"Moderator",created:"2026-11-02T09:20:00"},
+    {id:"CASE-1002",target:"Orient Logistics",reason:"Ish shartlari bo'yicha savol",priority:"low",status:"review",owner:"Support",created:"2026-11-03T12:40:00"},
+    {id:"CASE-1003",target:"Vakansiya #208",reason:"Shubhali oldindan to'lov talabi",priority:"high",status:"open",owner:"Moderator",created:"2026-11-04T15:10:00"}
+  ];
+
+  const seedCompanies = [
+    {id:"COM-1001",name:"TechVision",city:"Toshkent",industry:"IT",status:"pending",contact:"hr@techvision.example",jobs:2,score:72},
+    {id:"COM-1002",name:"Orient Logistics",city:"Toshkent",industry:"Logistika",status:"verified",contact:"jobs@orient.example",jobs:3,score:91},
+    {id:"COM-1003",name:"Future Skills",city:"Samarqand",industry:"Ta'lim",status:"review",contact:"info@future.example",jobs:1,score:65}
+  ];
+
+  const seedJobs = existingJobs.slice(0, 30).map((job, index) => ({
+    id: String(job.id || index + 1),
+    title: job.t || job.title || "Vakansiya",
+    company: job.c || job.company || "Demo kompaniya",
+    city: job.city || "Toshkent",
+    category: job.cat || "Other",
+    salary: job.sal || "Kelishiladi",
+    status: "published",
+    quality: 70 + (index % 25),
+    created: new Date(Date.now() - index * 86400000).toISOString(),
+    reports: 0
+  }));
+
+  const seedCareerSkills = [
+    {id:"SK-01",name:"HTML",group:"Frontend",level:"Boshlang'ich"},
+    {id:"SK-02",name:"CSS",group:"Frontend",level:"Boshlang'ich"},
+    {id:"SK-03",name:"JavaScript",group:"Frontend",level:"O'rta"},
+    {id:"SK-04",name:"React",group:"Frontend",level:"Boshlang'ich"},
+    {id:"SK-05",name:"Git",group:"Tools",level:"Boshlang'ich"},
+    {id:"SK-06",name:"SQL",group:"Data",level:"Boshlang'ich"}
+  ];
+
+  const state = {
+    users: safe.read("users", seedUsers),
+    companies: safe.read("companies", seedCompanies),
+    jobs: safe.read("jobs", seedJobs),
+    reports: safe.read("reports", seedReports),
+    audit: safe.read("audit", []),
+    roles: safe.read("roles", [
+      {name:"Super Admin",description:"Demo muhitida barcha bo'limlarni ko'rish va boshqarish."},
+      {name:"Admin",description:"Platforma boshqaruvi."},
+      {name:"Moderator",description:"Vakansiyalar va shikoyatlar."},
+      {name:"Verification Officer",description:"Kompaniyalarni tekshirish."},
+      {name:"Support Agent",description:"Foydalanuvchi murojaatlari."},
+      {name:"Analyst",description:"Statistika va hisobotlar."}
+    ]),
+    settings: safe.read("settings", {
+      platformName:"Workly",defaultLanguage:"uz",maintenance:false,
+      allowDemoPosting:true,moderationRequired:true,defaultJobDays:30
+    }),
+    applications: safe.read("applications", [
+      {id:"APP-1001",candidate:"Azizbek Karimov",job:"Frontend Developer",company:"TechVision",stage:"Yangi",date:"2026-11-01"},
+      {id:"APP-1002",candidate:"Madina Xasanova",job:"SMM mutaxassisi",company:"Future Skills",stage:"Ko'rib chiqilmoqda",date:"2026-11-02"},
+      {id:"APP-1003",candidate:"Dilshod Rahimov",job:"Python Developer",company:"TechVision",stage:"Suhbat",date:"2026-11-03"}
+    ]),
+    crm: safe.read("crm", [
+      {id:"CRM-1001",name:"Azizbek Karimov",position:"Frontend Developer",company:"TechVision",note:"Portfolio so'ralgan.",next:"Portfolio ko'rib chiqish"},
+      {id:"CRM-1002",name:"Madina Xasanova",position:"SMM mutaxassisi",company:"Future Skills",note:"Suhbatga taklif qilish.",next:"Suhbat vaqtini kelishish"}
+    ]),
+    goals: safe.read("goals", [
+      {id:"GOAL-01",title:"JavaScript asoslarini mustahkamlash",category:"Frontend",done:false},
+      {id:"GOAL-02",title:"Git va GitHub bilan loyiha joylash",category:"Tools",done:false},
+      {id:"GOAL-03",title:"Portfolio uchun bitta loyiha tayyorlash",category:"Portfolio",done:false}
+    ]),
+    messages: safe.read("messages", []),
+    notes: safe.read("notes", []),
+    activePage:"overview",
+    search:"",
+    filter:""
+  };
+
+  function persist(key) {
+    safe.write(key, state[key]);
+  }
+
+  function audit(action, detail) {
+    state.audit.unshift({
+      id:uid("AUD"),action,detail,
+      actor:"Demo Admin",time:new Date().toISOString()
+    });
+    state.audit = state.audit.slice(0, 500);
+    persist("audit");
+  }
+
+  /* =========================================================
+     2. DIZAYN TIZIMI — mavjud Workly CSS'iga tegmaydi
+  ========================================================= */
+  const style = document.createElement("style");
+  style.id = "workly-max-styles";
+  style.textContent = `
+  #wmx-launch{position:fixed;right:22px;top:92px;z-index:99990;border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:12px 17px;background:#111c2c;color:#fff;font:700 13px system-ui;box-shadow:0 12px 35px #07111f55;cursor:pointer}
+  #wmx-launch:hover{background:#1c3049;transform:translateY(-2px)}
+  #wmx-root{--wmx-bg:#0b1220;--wmx-panel:#111c2d;--wmx-panel2:#172438;--wmx-line:#26364d;--wmx-text:#edf4ff;--wmx-muted:#9aabc1;--wmx-accent:#45c4c9;--wmx-gold:#d7ad60;position:fixed;inset:0;z-index:99991;background:var(--wmx-bg);color:var(--wmx-text);font:14px/1.5 Inter,system-ui,-apple-system,sans-serif;display:none;overflow:hidden}
+  #wmx-root.open{display:flex}
+  #wmx-root *{box-sizing:border-box}
+  #wmx-root button,#wmx-root input,#wmx-root select,#wmx-root textarea{font:inherit}
+  #wmx-root button{cursor:pointer}
+  #wmx-root .wmx-sidebar{width:265px;flex:0 0 265px;background:#0e1929;border-right:1px solid var(--wmx-line);display:flex;flex-direction:column;min-height:0}
+  #wmx-root .wmx-brand{padding:22px 20px 17px;border-bottom:1px solid var(--wmx-line)}
+  #wmx-root .wmx-brand strong{font-size:24px;letter-spacing:-1px}
+  #wmx-root .wmx-brand strong span{color:var(--wmx-gold)}
+  #wmx-root .wmx-brand small{display:block;color:var(--wmx-muted);font-size:10px;letter-spacing:1.5px;margin-top:3px}
+  #wmx-root .wmx-nav{padding:12px 10px;overflow:auto;flex:1}
+  #wmx-root .wmx-group{margin:12px 9px 7px;color:#6f829d;font-size:10px;font-weight:800;letter-spacing:1.5px}
+  #wmx-root .wmx-nav button{display:flex;align-items:center;gap:11px;width:100%;border:0;background:transparent;color:#aebdd0;padding:10px 12px;border-radius:10px;text-align:left;margin:2px 0;font-size:12.5px;transition:.18s}
+  #wmx-root .wmx-nav button:hover{background:#1a2a40;color:#fff}
+  #wmx-root .wmx-nav button.active{background:linear-gradient(100deg,#1a4350,#1b3447);color:#fff;box-shadow:inset 3px 0 var(--wmx-accent)}
+  #wmx-root .wmx-nav .ico{width:19px;text-align:center;font-size:15px}
+  #wmx-root .wmx-sidebar-foot{padding:14px;border-top:1px solid var(--wmx-line);color:var(--wmx-muted);font-size:11px}
+  #wmx-root .wmx-demo{display:inline-flex;padding:4px 8px;border:1px solid #806a3e;border-radius:20px;color:#e9c77f;font-size:10px;font-weight:800;letter-spacing:.7px;margin-bottom:8px}
+  #wmx-root .wmx-main{min-width:0;flex:1;display:flex;flex-direction:column;overflow:hidden}
+  #wmx-root .wmx-top{height:66px;flex:0 0 66px;border-bottom:1px solid var(--wmx-line);display:flex;align-items:center;gap:14px;padding:0 25px;background:#0d1726}
+  #wmx-root .wmx-breadcrumb{font-weight:700;font-size:14px;margin-right:auto}
+  #wmx-root .wmx-search{width:min(330px,35vw);background:#152338;border:1px solid var(--wmx-line);color:#fff;border-radius:10px;padding:9px 12px;outline:none}
+  #wmx-root .wmx-search:focus{border-color:var(--wmx-accent)}
+  #wmx-root .wmx-iconbtn{width:36px;height:36px;border:1px solid var(--wmx-line);border-radius:10px;background:#152338;color:#dce8f6}
+  #wmx-root .wmx-close{width:36px;height:36px;border:1px solid #69464a;border-radius:10px;background:#2b1c27;color:#ffc9c9}
+  #wmx-root .wmx-content{padding:25px;overflow:auto;min-height:0;flex:1}
+  #wmx-root h1{font-size:25px;letter-spacing:-.6px;margin:0 0 5px}
+  #wmx-root h2{font-size:17px;margin:0 0 14px}
+  #wmx-root h3{font-size:14px;margin:0 0 8px}
+  #wmx-root p{margin:0}
+  #wmx-root .wmx-sub{color:var(--wmx-muted);font-size:12px;margin-bottom:22px}
+  #wmx-root .wmx-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:18px 0}
+  #wmx-root .wmx-card{background:var(--wmx-panel);border:1px solid var(--wmx-line);border-radius:14px;padding:17px;min-width:0}
+  #wmx-root .wmx-kpi{display:flex;justify-content:space-between;gap:8px;color:var(--wmx-muted);font-size:11px}
+  #wmx-root .wmx-kpi strong{display:block;color:#fff;font-size:26px;line-height:1.2;margin-top:9px}
+  #wmx-root .wmx-kpi em{font-style:normal;color:var(--wmx-accent);font-size:11px}
+  #wmx-root .wmx-two{display:grid;grid-template-columns:1.4fr 1fr;gap:14px}
+  #wmx-root .wmx-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+  #wmx-root .wmx-panel{background:var(--wmx-panel);border:1px solid var(--wmx-line);border-radius:14px;padding:18px;margin-bottom:14px;min-width:0}
+  #wmx-root .wmx-panelhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+  #wmx-root .wmx-panelhead h2{margin:0}
+  #wmx-root .wmx-btn{border:1px solid var(--wmx-line);background:#1a2a40;color:#eaf3ff;border-radius:9px;padding:8px 12px;font-size:11px;font-weight:700}
+  #wmx-root .wmx-btn:hover{border-color:#4a8994;background:#20394e}
+  #wmx-root .wmx-btn.primary{background:#17636a;border-color:#287e85;color:#fff}
+  #wmx-root .wmx-btn.danger{background:#512b35;border-color:#75404a;color:#ffdce0}
+  #wmx-root .wmx-btn.gold{background:#4a3a24;border-color:#806a3e;color:#f4d89b}
+  #wmx-root .wmx-btn:disabled{opacity:.45;cursor:not-allowed}
+  #wmx-root .wmx-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  #wmx-root .wmx-tablewrap{overflow:auto;border:1px solid var(--wmx-line);border-radius:11px}
+  #wmx-root table{border-collapse:collapse;width:100%;min-width:620px;font-size:11.5px}
+  #wmx-root th{background:#17263a;color:#aabbd0;text-align:left;font-size:10px;letter-spacing:.5px;text-transform:uppercase}
+  #wmx-root th,#wmx-root td{padding:11px 12px;border-bottom:1px solid var(--wmx-line);vertical-align:middle}
+  #wmx-root tr:last-child td{border-bottom:0}
+  #wmx-root tbody tr:hover{background:#15243a}
+  #wmx-root .wmx-status{display:inline-flex;align-items:center;padding:4px 8px;border-radius:20px;font-size:10px;font-weight:800;background:#26374b;color:#c7d7e8;white-space:nowrap}
+  #wmx-root .wmx-status.active,#wmx-root .wmx-status.verified,#wmx-root .wmx-status.published,#wmx-root .wmx-status.done{background:#173d35;color:#92e0bd}
+  #wmx-root .wmx-status.pending,#wmx-root .wmx-status.review,#wmx-root .wmx-status.open{background:#493b22;color:#f0d18c}
+  #wmx-root .wmx-status.restricted,#wmx-root .wmx-status.blocked,#wmx-root .wmx-status.rejected,#wmx-root .wmx-status.high{background:#4b2933;color:#ffb6c0}
+  #wmx-root .wmx-muted{color:var(--wmx-muted)}
+  #wmx-root .wmx-empty{padding:28px;text-align:center;color:var(--wmx-muted);font-size:12px}
+  #wmx-root .wmx-field{display:grid;gap:5px;margin:10px 0}
+  #wmx-root .wmx-field label{font-size:11px;color:var(--wmx-muted);font-weight:700}
+  #wmx-root .wmx-field input,#wmx-root .wmx-field select,#wmx-root .wmx-field textarea{width:100%;background:#0d1929;color:#fff;border:1px solid var(--wmx-line);border-radius:9px;padding:10px;outline:none}
+  #wmx-root .wmx-field textarea{min-height:90px;resize:vertical}
+  #wmx-root .wmx-progress{height:7px;border-radius:20px;background:#26364a;overflow:hidden;margin-top:8px}
+  #wmx-root .wmx-progress span{display:block;height:100%;background:linear-gradient(90deg,#2c8d94,#6dd0c7);border-radius:20px}
+  #wmx-root .wmx-barline{display:grid;grid-template-columns:110px 1fr 42px;gap:9px;align-items:center;margin:12px 0;font-size:11px}
+  #wmx-root .wmx-timeline{border-left:1px solid #38536c;margin-left:7px;padding-left:18px}
+  #wmx-root .wmx-event{position:relative;padding:0 0 17px}
+  #wmx-root .wmx-event:before{content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:var(--wmx-accent);left:-23px;top:5px}
+  #wmx-root .wmx-event small{display:block;color:var(--wmx-muted);font-size:10px;margin-top:3px}
+  #wmx-root .wmx-tag{display:inline-block;padding:4px 8px;border-radius:6px;background:#20364b;color:#b9d7e5;font-size:10px;margin:2px}
+  #wmx-root .wmx-notice{border:1px solid #705d37;background:#30291e;color:#e9d6a9;border-radius:11px;padding:12px 14px;font-size:11px;margin:12px 0}
+  #wmx-root .wmx-modal{position:absolute;inset:0;background:#050b14b8;display:none;align-items:center;justify-content:center;padding:20px}
+  #wmx-root .wmx-modal.open{display:flex}
+  #wmx-root .wmx-modalbox{width:min(560px,100%);max-height:85vh;overflow:auto;background:#111e30;border:1px solid #35465d;border-radius:16px;padding:20px;box-shadow:0 25px 80px #0009}
+  #wmx-root .wmx-mobilemenu{display:none}
+  #wmx-toast{position:fixed;z-index:100000;bottom:25px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#102338;color:#fff;border:1px solid #3d6877;padding:11px 18px;border-radius:10px;box-shadow:0 12px 35px #0006;font:600 12px system-ui;transition:.2s}
+  #wmx-toast.show{opacity:1;transform:translate(-50%,0)}
+  @media(max-width:1050px){#wmx-root .wmx-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#wmx-root .wmx-two{grid-template-columns:1fr}}
+  @media(max-width:760px){#wmx-root .wmx-sidebar{position:absolute;z-index:5;left:-280px;top:0;bottom:0;transition:left .2s}#wmx-root.menu-open .wmx-sidebar{left:0}#wmx-root .wmx-mobilemenu{display:inline-block}#wmx-root .wmx-content{padding:16px}#wmx-root .wmx-top{padding:0 13px}#wmx-root .wmx-search{width:36vw}#wmx-root .wmx-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#wmx-root .wmx-three{grid-template-columns:1fr}#wmx-launch{top:auto;bottom:82px;right:12px}}
+  @media(max-width:440px){#wmx-root .wmx-grid{grid-template-columns:1fr}#wmx-root .wmx-search{width:34vw}#wmx-root h1{font-size:21px}}
+  `;
+  document.head.appendChild(style);
+
+  /* =========================================================
+     3. INTERFEYS SKELETI
+  ========================================================= */
+  const root = document.createElement("div");
+  root.id = "wmx-root";
+  root.innerHTML = `
+    <aside class="wmx-sidebar">
+      <div class="wmx-brand">
+        <strong>WORKLY<span>.</span></strong>
+        <small>CONTROL & ECOSYSTEM</small>
+      </div>
+      <nav class="wmx-nav" id="wmx-nav"></nav>
+      <div class="wmx-sidebar-foot">
+        <span class="wmx-demo">DEMO ENVIRONMENT</span><br>
+        Frontend prototip · Mahalliy ma'lumotlar<br>
+        <span id="wmx-storage-state">Brauzer xotirasi</span>
+      </div>
+    </aside>
+    <main class="wmx-main">
+      <header class="wmx-top">
+        <button class="wmx-iconbtn wmx-mobilemenu" data-action="mobile-menu" aria-label="Menyu">☰</button>
+        <div class="wmx-breadcrumb" id="wmx-breadcrumb">Command Center</div>
+        <input class="wmx-search" id="wmx-global-search" placeholder="Workly ichidan qidirish..." aria-label="Global qidiruv">
+        <button class="wmx-iconbtn" data-action="global-search" title="Qidirish">⌕</button>
+        <button class="wmx-close" data-action="close" title="Adminni yopish">✕</button>
+      </header>
+      <section class="wmx-content" id="wmx-content"></section>
+    </main>
+    <div class="wmx-modal" id="wmx-modal">
+      <div class="wmx-modalbox">
+        <div class="wmx-panelhead"><h2 id="wmx-modal-title">Ma'lumot</h2><button class="wmx-btn" data-action="modal-close">Yopish</button></div>
+        <div id="wmx-modal-body"></div>
+      </div>
+    </div>`;
+  document.body.appendChild(root);
+
+  const launcher = document.createElement("button");
+  launcher.id = "wmx-launch";
+  launcher.type = "button";
+  launcher.textContent = "▦  WORKLY CONTROL";
+  launcher.addEventListener("click", () => open());
+  document.body.appendChild(launcher);
+
+  /* =========================================================
+     4. NAVIGATSIYA
+  ========================================================= */
+  const navGroups = [
+    {title:"COMMAND CENTER",items:[
+      ["overview","◈","Live Overview"],["operations","▣","Operations Center"],
+      ["risk","⌁","Risk Radar"],["decisions","⚖","Decision Center"],
+      ["health","⌘","Platform Health"],["executive","▥","Executive Reports"]
+    ]},
+    {title:"MARKETPLACE CONTROL",items:[
+      ["users","♙","User Management"],["jobs","▤","Job Moderation"],
+      ["companies","▦","Employer Verification"],["reports","⚑","Reports & Cases"],
+      ["audit","◷","Audit Timeline"],["roles","♜","Roles & Permissions"],
+      ["configuration","⚙","Platform Configuration"]
+    ]},
+    {title:"WORKLY BUSINESS",items:[
+      ["ats","▥","Workly ATS"],["crm","▣","Recruiter CRM"],
+      ["interviews","◷","Interview Management"],["business","▧","Workly Business"]
+    ]},
+    {title:"CAREER UNIVERSE",items:[
+      ["career-map","⌘","Career Map"],["skills","◇","Skill Graph"],
+      ["roadmap","☷","Learning Roadmap"],["portfolio","▣","Portfolio Identity"]
+    ]},
+    {title:"INTELLIGENCE & SERVICES",items:[
+      ["intelligence","▥","Workly Intelligence"],["communication","✉","Communication Hub"],
+      ["privacy","◉","Privacy Center"],["help","?","Help & Feedback"]
+    ]}
+  ];
+
+  const nav = $("#wmx-nav", root);
+  nav.innerHTML = navGroups.map(group =>
+    `<div class="wmx-group">${esc(group.title)}</div>` +
+    group.items.map(item =>
+      `<button type="button" data-page="${esc(item[0])}" class="${item[0] === "overview" ? "active" : ""}">
+        <span class="ico">${item[1]}</span><span>${esc(item[2])}</span>
+      </button>`
+    ).join("")
+  ).join("");
+
+  const pageNames = {};
+  navGroups.forEach(group => group.items.forEach(item => pageNames[item[0]] = item[2]));
+
+  function open() {
+    root.classList.add("open");
+    render(state.activePage || "overview");
+  }
+  function close() {
+    root.classList.remove("open");
+    root.classList.remove("menu-open");
+  }
+
+  function go(page) {
+    state.activePage = page;
+    $$("#wmx-nav [data-page]", root).forEach(button =>
+      button.classList.toggle("active", button.dataset.page === page)
+    );
+    $("#wmx-breadcrumb", root).textContent = pageNames[page] || "Workly";
+    root.classList.remove("menu-open");
+    render(page);
+  }
+
+  /* =========================================================
+     5. UMUMIY UI KOMPONENTLARI
+  ========================================================= */
+  const status = value => `<span class="wmx-status ${esc(String(value).toLowerCase())}">${esc(value)}</span>`;
+  const panel = (title, body, action) => `
+    <section class="wmx-panel">
+      <div class="wmx-panelhead"><h2>${title}</h2>${action || ""}</div>
+      ${body}
+    </section>`;
+  const kpi = (label, value, hint, icon) => `
+    <div class="wmx-card">
+      <div class="wmx-kpi"><span>${icon || "◈"} ${label}</span><em>${hint || ""}</em></div>
+      <strong style="display:block;font-size:26px;margin-top:9px">${value}</strong>
+    </div>`;
+  const table = (headers, rows) => `
+    <div class="wmx-tablewrap"><table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join("")}</tr></thead>
+    <tbody>${rows || `<tr><td colspan="${headers.length}" class="wmx-empty">Ma'lumot topilmadi</td></tr>`}</tbody></table></div>`;
+  const actionButton = (label, action, id, cls) =>
+    `<button class="wmx-btn ${cls || ""}" data-action="${esc(action)}" data-id="${esc(id || "")}">${label}</button>`;
+
+  function pageHeader(title, subtitle) {
+    return `<h1>${title}</h1><p class="wmx-sub">${subtitle}</p>`;
+  }
+
+  function chartBars(items) {
+    const max = Math.max(1, ...items.map(item => item.value));
+    return items.map(item => `
+      <div class="wmx-barline">
+        <span>${esc(item.label)}</span>
+        <div class="wmx-progress"><span style="width:${Math.max(2, item.value / max * 100)}%"></span></div>
+        <b>${money(item.value)}</b>
+      </div>`).join("");
+  }
+
+  /* =========================================================
+     6. SAHIFALAR — CONTROL CENTER
+  ========================================================= */
+  function overviewPage() {
+    const pendingJobs = state.jobs.filter(j => j.status === "pending").length;
+    const pendingCompanies = state.companies.filter(c => c.status === "pending" || c.status === "review").length;
+    const openCases = state.reports.filter(r => r.status !== "closed").length;
+    const recent = state.audit.slice(0, 6);
+    return pageHeader("Command Center", "Workly ekotizimining umumiy holati va muhim operatsiyalar.") +
+      `<div class="wmx-notice">DEMO MUHIT: ko'rsatilgan raqamlar namunaviy yoki ushbu brauzerda saqlangan ma'lumotlardan hisoblanadi. Real server monitoringi emas.</div>` +
+      `<div class="wmx-grid">
+        ${kpi("Foydalanuvchilar",money(state.users.length),"Mahalliy demo","♙")}
+        ${kpi("Vakansiyalar",money(state.jobs.length),"Demo ro'yxat","▤")}
+        ${kpi("Kompaniyalar",money(state.companies.length),"Demo ro'yxat","▦")}
+        ${kpi("Ochiq shikoyatlar",money(openCases),openCases ? "Ko'rib chiqish kerak" : "Navbat bo'sh","⚑")}
+        ${kpi("Moderatsiya navbati",money(pendingJobs),"Vakansiyalar","▣")}
+        ${kpi("Tekshiruv navbati",money(pendingCompanies),"Kompaniyalar","◉")}
+        ${kpi("Arizalar",money(state.applications.length),"ATS demo","▥")}
+        ${kpi("Audit yozuvlari",money(state.audit.length),"Mahalliy jurnal","◷")}
+      </div>
+      <div class="wmx-two">
+        ${panel("Operations Center",`
+          <div class="wmx-row">
+            ${actionButton("Vakansiyalarni tekshirish","page","jobs","primary")}
+            ${actionButton("Kompaniyalarni ko'rish","page","companies")}
+            ${actionButton("Shikoyatlarni ochish","page","reports")}
+          </div>
+          <div style="margin-top:18px">${chartBars([
+            {label:"Faol foydalanuvchilar",value:state.users.filter(u=>u.status==="active").length},
+            {label:"Tekshiruvdagi kompaniyalar",value:pendingCompanies},
+            {label:"Ochiq shikoyatlar",value:openCases},
+            {label:"Arizalar",value:state.applications.length}
+          ])}</div>`)}
+        ${panel("Oxirgi admin harakatlari",recent.length ? `<div class="wmx-timeline">${recent.map(item=>`
+          <div class="wmx-event"><b>${esc(item.action)}</b><p class="wmx-muted">${esc(item.detail)}</p><small>${dateText(item.time)}</small></div>`).join("")}</div>` :
+          `<div class="wmx-empty">Hali audit yozuvi yo'q. Birinchi amal bajarilganda bu yerda ko'rinadi.</div>`)}
+      </div>
+      ${panel("Tezkor amallar",`<div class="wmx-row">
+        ${actionButton("Yangi demo vakansiya","new-job","","primary")}
+        ${actionButton("Demo kompaniya qo'shish","new-company")}
+        ${actionButton("CSV hisobot eksporti","export")}
+        ${actionButton("Barcha modullar","page","operations")}
+      </div>`)}
+      `;
+  }
+
+  function operationsPage() {
+    const tasks = [
+      ...state.jobs.filter(j=>j.status==="pending").map(j=>({type:"Vakansiya",name:j.title,detail:j.company,id:j.id,page:"jobs"})),
+      ...state.companies.filter(c=>c.status==="pending"||c.status==="review").map(c=>({type:"Kompaniya",name:c.name,detail:c.city,id:c.id,page:"companies"})),
+      ...state.reports.filter(r=>r.status!=="closed").map(r=>({type:"Shikoyat",name:r.id,detail:r.reason,id:r.id,page:"reports"}))
+    ];
+    return pageHeader("Operations Center","Bajarilishi yoki tekshirilishi kerak bo'lgan barcha ishlar.") +
+      panel("Operatsion navbat",tasks.length ? table(["Tur","Obyekt","Tafsilot","Holat","Amal"],tasks.map(t=>`
+        <tr><td>${t.type}</td><td><b>${esc(t.name)}</b></td><td>${esc(t.detail)}</td><td>${status("open")}</td>
+        <td>${actionButton("Ochish","page",t.page)}</td></tr>`).join("")) : `<div class="wmx-empty">Hozircha navbat bo'sh.</div>`);
+  }
+
+  function riskPage() {
+    const flagged = state.jobs.filter(j=>j.quality < 60 || j.reports > 0);
+    const riskyCases = state.reports.filter(r=>r.priority==="high" && r.status!=="closed");
+    return pageHeader("Risk Radar","Shubhali yoki qo'shimcha tekshiruv talab qiladigan obyektlar. Avtomatik xulosa emas — moderator ko'rib chiqishi kerak.") +
+      `<div class="wmx-grid">
+        ${kpi("Yuqori ustuvor holatlar",riskyCases.length,"Shikoyatlar","⚑")}
+        ${kpi("Sifat tekshiruvi",flagged.length,"Vakansiyalar","⌁")}
+        ${kpi("Cheklangan foydalanuvchilar",state.users.filter(u=>u.status==="restricted"||u.status==="blocked").length,"Demo holat","♙")}
+        ${kpi("Tekshiruvdagi kompaniyalar",state.companies.filter(c=>c.status!=="verified").length,"Demo holat","▦")}
+      </div>` +
+      panel("Tekshiruvga yuborilgan vakansiyalar",flagged.length ? table(["Vakansiya","Kompaniya","Sifat balli","Holat"],flagged.map(j=>`
+        <tr><td>${esc(j.title)}</td><td>${esc(j.company)}</td><td>${j.quality}/100</td><td>${status("review")}</td></tr>`).join("")) : `<div class="wmx-empty">Hozircha belgilangan vakansiya yo'q.</div>`) +
+      panel("Muhim shikoyatlar",riskyCases.length ? table(["Case ID","Obyekt","Sabab","Ustuvorlik"],riskyCases.map(r=>`
+        <tr><td>${esc(r.id)}</td><td>${esc(r.target)}</td><td>${esc(r.reason)}</td><td>${status(r.priority)}</td></tr>`).join("")) : `<div class="wmx-empty">Yuqori ustuvor ochiq shikoyat yo'q.</div>`);
+  }
+
+  function decisionsPage() {
+    return pageHeader("Decision Center","Moderatsiya va platforma qarorlarini izchil qabul qilish uchun markaz.") +
+      panel("Qaror qabul qilish tamoyillari",`
+        <div class="wmx-three">
+          <div class="wmx-card"><h3>Dalilga asoslanish</h3><p class="wmx-muted">Har bir rad etish yoki cheklash uchun tushunarli sabab qayd etiladi.</p></div>
+          <div class="wmx-card"><h3>Inson nazorati</h3><p class="wmx-muted">Risk belgisi yakuniy hukm emas. Moderator dalillarni tekshiradi.</p></div>
+          <div class="wmx-card"><h3>Qayta ko'rib chiqish</h3><p class="wmx-muted">Xato qarorlar uchun apellyatsiya va qayta tekshiruv yo'li bo'ladi.</p></div>
+        </div>`) +
+      panel("Kutilayotgan qarorlar",`
+        <div class="wmx-row">
+          ${actionButton("Vakansiyalar","page","jobs","primary")}
+          ${actionButton("Kompaniyalar","page","companies")}
+          ${actionButton("Shikoyatlar","page","reports")}
+        </div>`);
+  }
+
+  function healthPage() {
+    const storageOk = (() => { try { localStorage.setItem(APP+":health","1"); localStorage.removeItem(APP+":health"); return true; } catch(e) { return false; } })();
+    return pageHeader("Platform Health","Faqat ushbu brauzer frontend prototipining holati. Server/API mavjudligini tekshirmaydi.") +
+      `<div class="wmx-grid">
+        ${kpi("Frontend", "Ishlayapti","Brauzer","●")}
+        ${kpi("LocalStorage",storageOk ? "Mavjud" : "Xato",storageOk ? "Yozish mumkin" : "Tekshirish kerak","▣")}
+        ${kpi("Demo ma'lumotlar",state.jobs.length,"Vakansiya","▤")}
+        ${kpi("JavaScript", "Yuklangan","Workly Max","⌘")}
+      </div>` +
+      panel("Texnik cheklovlar",`
+        <div class="wmx-notice">Bu modul server, API, ma'lumotlar bazasi, real autentifikatsiya, tarmoq uptime yoki xavfsizlik hujumlarini o'lchamaydi. Ular backend ishga tushgandan keyin alohida monitoring bilan ulanadi.</div>
+        <ul class="wmx-muted" style="padding-left:18px;line-height:2">
+          <li>Frontend: joriy brauzer sessiyasi.</li>
+          <li>Ma'lumotlar: localStorage.</li>
+          <li>Real-time sinxronizatsiya: mavjud emas.</li>
+          <li>Server monitoringi: ulanmagan.</li>
+          <li>Admin autentifikatsiyasi: demo darajasida.</li>
+        </ul>`);
+  }
+
+  function executivePage() {
+    const activeUsers = state.users.filter(u=>u.status==="active").length;
+    const verified = state.companies.filter(c=>c.status==="verified").length;
+    const published = state.jobs.filter(j=>j.status==="published").length;
+    return pageHeader("Executive Reports","Rahbariyat uchun strategik ko'rsatkichlar va qarorlarni ko'rib chiqish.") +
+      `<div class="wmx-grid">
+        ${kpi("Faol nomzodlar",activeUsers,"Demo hisob","♙")}
+        ${kpi("Tasdiqlangan kompaniyalar",verified,"Demo hisob","▦")}
+        ${kpi("E'lon qilingan vakansiyalar",published,"Demo hisob","▤")}
+        ${kpi("Arizalar",state.applications.length,"ATS demo","▥")}
+      </div>` +
+      `<div class="wmx-two">
+        ${panel("Marketplace muvozanati",chartBars([
+          {label:"Nomzodlar",value:state.users.filter(u=>u.role==="candidate").length},
+          {label:"Ish beruvchilar",value:state.users.filter(u=>u.role==="employer").length},
+          {label:"Vakansiyalar",value:published},
+          {label:"Arizalar",value:state.applications.length}
+        ]))}
+        ${panel("Strategik kuzatuv",`
+          <div class="wmx-event"><b>Supply — vakansiyalar</b><p class="wmx-muted">Sifatli va tekshirilgan ish o'rinlari sonini oshirish.</p></div>
+          <div class="wmx-event"><b>Demand — nomzodlar</b><p class="wmx-muted">Faol nomzodlar va arizalar nisbatini kuzatish.</p></div>
+          <div class="wmx-event"><b>Trust — ishonch</b><p class="wmx-muted">Tekshiruv va shikoyatlarni hal qilish vaqtini kamaytirish.</p></div>`)}
+      </div>` +
+      panel("Hisobotni eksport qilish",`<p class="wmx-muted" style="margin-bottom:12px">Joriy demo ko'rsatkichlarini CSV ko'rinishida yuklab olish mumkin.</p>${actionButton("CSV eksport qilish","export","","primary")}`);
+  }
+
+  /* =========================================================
+     7. MARKETPLACE BOSHQARUVI
+  ========================================================= */
+  function usersPage() {
+    const q = state.search.toLowerCase();
+    const list = state.users.filter(u => !q || (u.name+" "+u.email+" "+u.city+" "+u.role).toLowerCase().includes(q));
+    return pageHeader("User Management","Nomzodlar va ish beruvchilar profillarini boshqarish.") +
+      panel("Foydalanuvchilar",`
+        <div class="wmx-row" style="margin-bottom:12px">
+          ${actionButton("Demo foydalanuvchi qo'shish","new-user","","primary")}
+          <span class="wmx-muted">Jami: ${state.users.length}</span>
+        </div>
+        ${table(["ID","Foydalanuvchi","Shahar","Turi","Holat","Amallar"],list.map(u=>`
+          <tr><td>${esc(u.id)}</td><td><b>${esc(u.name)}</b><br><span class="wmx-muted">${esc(u.email)}</span></td>
+          <td>${esc(u.city)}</td><td>${esc(u.role)}</td><td>${status(u.status)}</td>
+          <td class="wmx-row">${actionButton("Ko'rish","user-detail",u.id)}${actionButton(u.status==="blocked"?"Ochish":"Cheklash","toggle-user",u.id,u.status==="blocked"?"primary":"danger")}</td></tr>`).join(""))}`);
+  }
+
+  function jobsPage() {
+    const q = state.search.toLowerCase();
+    const list = state.jobs.filter(j=>!q||(j.title+" "+j.company+" "+j.city).toLowerCase().includes(q));
+    return pageHeader("Job Moderation","Vakansiyalarni tekshirish, tasdiqlash, rad etish va holatini boshqarish.") +
+      panel("Vakansiyalar navbati",`
+        <div class="wmx-row" style="margin-bottom:12px">
+          ${actionButton("Demo vakansiya yaratish","new-job","","primary")}
+          <span class="wmx-muted">Jami: ${state.jobs.length}</span>
+        </div>
+        ${table(["ID","Lavozim / kompaniya","Hudud","Sifat","Holat","Amallar"],list.map(j=>`
+          <tr><td>${esc(j.id)}</td><td><b>${esc(j.title)}</b><br><span class="wmx-muted">${esc(j.company)}</span></td>
+          <td>${esc(j.city)}</td><td>${j.quality}/100</td><td>${status(j.status)}</td>
+          <td class="wmx-row">${actionButton("Tasdiqlash","approve-job",j.id,"primary")}${actionButton("Rad etish","reject-job",j.id,"danger")}</td></tr>`).join(""))}`);
+  }
+
+  function companiesPage() {
+    const q = state.search.toLowerCase();
+    const list = state.companies.filter(c=>!q||(c.name+" "+c.city+" "+c.industry).toLowerCase().includes(q));
+    return pageHeader("Employer Verification","Kompaniyalarni tekshirish va tasdiqlangan ish beruvchi maqomini boshqarish.") +
+      panel("Kompaniyalar",`
+        <div class="wmx-row" style="margin-bottom:12px">
+          ${actionButton("Demo kompaniya qo'shish","new-company","","primary")}
+          <span class="wmx-muted">Verified belgisi faqat demo holat.</span>
+        </div>
+        ${table(["ID","Kompaniya","Hudud / soha","Trust score*","Holat","Amallar"],list.map(c=>`
+          <tr><td>${esc(c.id)}</td><td><b>${esc(c.name)}</b><br><span class="wmx-muted">${esc(c.contact)}</span></td>
+          <td>${esc(c.city)} · ${esc(c.industry)}</td><td>${c.score}/100</td><td>${status(c.status)}</td>
+          <td class="wmx-row">${actionButton("Tasdiqlash","verify-company",c.id,"primary")}${actionButton("Ko'rish","company-detail",c.id)}</td></tr>`).join(""))}
+        <p class="wmx-muted" style="font-size:10px;margin-top:10px">*Trust score — hozircha namunaviy ko'rsatkich, haqiqiy tekshiruv yoki kafolat emas.</p>`);
+  }
+
+  function reportsPage() {
+    return pageHeader("Reports & Cases","Shikoyatlar, murojaatlar va tekshiruv ishlarini yuritish.") +
+      panel("Case Management",state.reports.length ? table(["Case ID","Obyekt","Sabab","Ustuvorlik","Mas'ul","Holat","Amal"],state.reports.map(r=>`
+        <tr><td><b>${esc(r.id)}</b></td><td>${esc(r.target)}</td><td>${esc(r.reason)}</td><td>${status(r.priority)}</td>
+        <td>${esc(r.owner)}</td><td>${status(r.status)}</td><td class="wmx-row">${actionButton("Ko'rish","case-detail",r.id)}${actionButton("Yopish","close-case",r.id,"primary")}</td></tr>`).join("")) : `<div class="wmx-empty">Shikoyatlar yo'q.</div>`) +
+      `<div class="wmx-row">${actionButton("Demo shikoyat qo'shish","new-case")}</div>`;
+  }
+
+  function auditPage() {
+    return pageHeader("Audit Timeline","Workly Max demo moduli ichidagi muhim o'zgarishlar tarixi.") +
+      panel("Audit jurnali",state.audit.length ? table(["Vaqt","Amal","Tafsilot","Bajaruvchi"],state.audit.map(a=>`
+        <tr><td>${dateText(a.time)}</td><td><b>${esc(a.action)}</b></td><td>${esc(a.detail)}</td><td>${esc(a.actor)}</td></tr>`).join("")) : `<div class="wmx-empty">Hali harakat qayd etilmagan.</div>`) +
+      panel("Audit haqida",`<p class="wmx-muted">Bu jurnal faqat ushbu frontend prototipidagi amallarni qayd etadi. U o'zgartirib bo'lmaydigan server audit log'i emas.</p>`);
+  }
+
+  function rolesPage() {
+    return pageHeader("Roles & Permissions","Kelajakdagi server-side ruxsatlar tizimi uchun rol modeli.") +
+      panel("Demo rollar",table(["Rol","Tavsif","Holat"],state.roles.map(r=>`
+        <tr><td><b>${esc(r.name)}</b></td><td>${esc(r.description)}</td><td>${status("demo")}</td></tr>`).join(""))) +
+      panel("Ruxsatlar modeli",`
+        <div class="wmx-three">
+          <div class="wmx-card"><h3>View</h3><p class="wmx-muted">Ma'lumotlarni ko'rish.</p></div>
+          <div class="wmx-card"><h3>Manage</h3><p class="wmx-muted">Obyektlarni boshqarish.</p></div>
+          <div class="wmx-card"><h3>Administer</h3><p class="wmx-muted">Rollar va sozlamalarni boshqarish.</p></div>
+        </div>
+        <div class="wmx-notice">Frontend'dagi rol tanlovi xavfsizlik chegarasi emas. Haqiqiy ruxsatlar backend'da tekshirilishi shart.</div>`);
+  }
+
+  function configurationPage() {
+    return pageHeader("Platform Configuration","Workly platformasining umumiy demo sozlamalari.") +
+      panel("Asosiy sozlamalar",`
+        <form id="wmx-settings-form">
+          <div class="wmx-field"><label>Platforma nomi</label><input name="platformName" value="${esc(state.settings.platformName)}" maxlength="50"></div>
+          <div class="wmx-field"><label>Standart til</label><select name="defaultLanguage">
+            <option value="uz" ${state.settings.defaultLanguage==="uz"?"selected":""}>O'zbek</option>
+            <option value="ru" ${state.settings.defaultLanguage==="ru"?"selected":""}>Русский</option>
+            <option value="en" ${state.settings.defaultLanguage==="en"?"selected":""}>English</option>
+          </select></div>
+          <div class="wmx-field"><label>Vakansiya muddati (kun)</label><input name="defaultJobDays" type="number" min="1" max="365" value="${Number(state.settings.defaultJobDays)||30}"></div>
+          <div class="wmx-field"><label><input type="checkbox" name="maintenance" ${state.settings.maintenance?"checked":""}> Demo maintenance rejimi</label></div>
+          <div class="wmx-field"><label><input type="checkbox" name="moderationRequired" ${state.settings.moderationRequired?"checked":""}> Vakansiya moderatsiyasi talab qilinsin</label></div>
+          <button class="wmx-btn primary" type="submit">Sozlamalarni saqlash</button>
+        </form>`);
+  }
+
+  /* =========================================================
+     8. WORKLY BUSINESS — ATS, CRM, INTERVIEWS, BUSINESS
+  ========================================================= */
+  function atsPage() {
+    const stages = ["Yangi","Ko'rib chiqilmoqda","Suhbat","Taklif","Qabul qilindi","Rad etildi"];
+    return pageHeader("Workly ATS","Ish beruvchilar uchun nomzodlar va ishga qabul qilish jarayoni.") +
+      `<div class="wmx-grid">
+        ${stages.slice(0,4).map(stage=>kpi(stage,state.applications.filter(a=>a.stage===stage).length,"ATS demo","▥")).join("")}
+      </div>` +
+      panel("Nomzodlar pipeline",table(["ID","Nomzod","Vakansiya","Kompaniya","Bosqich","Sana","Keyingi bosqich"],state.applications.map(a=>`
+        <tr><td>${esc(a.id)}</td><td><b>${esc(a.candidate)}</b></td><td>${esc(a.job)}</td><td>${esc(a.company)}</td><td>${status(a.stage)}</td><td>${esc(a.date)}</td>
+        <td><select data-application-stage="${esc(a.id)}">${stages.map(s=>`<option ${s===a.stage?"selected":""}>${s}</option>`).join("")}</select></td></tr>`).join(""))) +
+      `<div class="wmx-row">${actionButton("Demo ariza qo'shish","new-application","","primary")}</div>`;
+  }
+
+  function crmPage() {
+    return pageHeader("Recruiter CRM","Nomzodlar bazasi, eslatmalar va ish beruvchi jamoasining aloqa tarixi.") +
+      panel("Nomzodlar bilan ishlash",table(["ID","Nomzod","Lavozim","Kompaniya","Izoh","Keyingi qadam"],state.crm.map(c=>`
+        <tr><td>${esc(c.id)}</td><td><b>${esc(c.name)}</b></td><td>${esc(c.position)}</td><td>${esc(c.company)}</td><td>${esc(c.note)}</td><td>${esc(c.next)}</td></tr>`).join(""))) +
+      `<div class="wmx-row">${actionButton("Nomzod qo'shish","new-crm","","primary")}</div>`;
+  }
+
+  function interviewsPage() {
+    return pageHeader("Interview Management","Suhbatlarni rejalashtirish uchun frontend demo kalendar.") +
+      panel("Suhbat jarayoni",`
+        <div class="wmx-three">
+          <div class="wmx-card"><h3>Rejalashtirish</h3><p class="wmx-muted">Nomzod va ish beruvchi uchun vaqt tanlash.</p></div>
+          <div class="wmx-card"><h3>Taklif yuborish</h3><p class="wmx-muted">Demo bildirishnoma va eslatmalar.</p></div>
+          <div class="wmx-card"><h3>Natija</h3><p class="wmx-muted">Suhbatdan keyingi qaror va izoh.</p></div>
+        </div>
+        <div class="wmx-notice">Haqiqiy kalendar integratsiyasi va xabar yuborish backend yoki tashqi xizmat talab qiladi.</div>`) +
+      panel("ATS'dagi suhbat bosqichidagi nomzodlar",table(["Nomzod","Vakansiya","Kompaniya","Holat"],state.applications.filter(a=>a.stage==="Suhbat").map(a=>`
+        <tr><td>${esc(a.candidate)}</td><td>${esc(a.job)}</td><td>${esc(a.company)}</td><td>${status(a.stage)}</td></tr>`).join("")));
+  }
+
+  function businessPage() {
+    return pageHeader("Workly Business","Ish beruvchilar uchun kompaniya vositalari va kelajakdagi biznes modeli.") +
+      `<div class="wmx-three">
+        <div class="wmx-card"><h2>Free</h2><p class="wmx-muted">Boshlang'ich e'lonlar va asosiy arizalar boshqaruvi.</p><h3 style="margin-top:15px">Demo tarif</h3></div>
+        <div class="wmx-card" style="border-color:#477f85"><h2>Business</h2><p class="wmx-muted">ATS, nomzodlar filtri va kompaniya statistikasi.</p><h3 style="margin-top:15px">Rejalashtirilgan</h3></div>
+        <div class="wmx-card"><h2>Enterprise</h2><p class="wmx-muted">Katta HR jamoalari, rollar va integratsiyalar.</p><h3 style="margin-top:15px">Rejalashtirilgan</h3></div>
+      </div>` +
+      panel("Kelajakdagi imkoniyatlar",`
+        <ul class="wmx-muted" style="padding-left:18px;line-height:2">
+          <li>Tariflar va vakansiya limitlari.</li><li>Obuna holati va hisob-fakturalar.</li>
+          <li>HR jamoasi uchun birgalikda ishlash.</li><li>To'lov provayderlari bilan integratsiya.</li>
+          <li>Korxona uchun kengaytirilgan analitika.</li>
+        </ul>
+        <div class="wmx-notice">To'lovlar va obunalar hozircha ishlamaydi. Narx yoki real tranzaksiya mavjud emas.</div>`);
+  }
+
+  /* =========================================================
+     9. CAREER UNIVERSE
+  ========================================================= */
+  function careerMapPage() {
+    return pageHeader("Career Map","Kasbiy yo'nalishlar va bir kasbdan boshqasiga o'tish yo'llari.") +
+      panel("Frontend Developer yo'li",`
+        <div class="wmx-timeline">
+          ${["HTML va CSS asoslari","JavaScript va DOM","Git va GitHub","React yoki Vue","Portfolio loyihalari","Junior vakansiyalariga tayyorgarlik"].map((x,i)=>`
+            <div class="wmx-event"><b>${i+1}. ${x}</b><p class="wmx-muted">Kasbiy yo'lning namunaviy bosqichi.</p></div>`).join("")}
+        </div>`) +
+      panel("Boshqa kasbiy yo'nalishlar",`
+        <div class="wmx-three">
+          <div class="wmx-card"><h3>Data Analyst</h3><p class="wmx-muted">Excel → SQL → Python → BI.</p></div>
+          <div class="wmx-card"><h3>UI/UX Designer</h3><p class="wmx-muted">Design basics → Figma → Research → Portfolio.</p></div>
+          <div class="wmx-card"><h3>Digital Marketer</h3><p class="wmx-muted">Marketing → Content → Analytics → Campaigns.</p></div>
+        </div>`);
+  }
+
+  function skillsPage() {
+    const skills = seedCareerSkills;
+    return pageHeader("Skill Graph","Kasblar va ko'nikmalar o'rtasidagi bog'lanishning boshlang'ich ko'rinishi.") +
+      panel("Ko'nikmalar xaritasi",`
+        <div class="wmx-three">
+          <div class="wmx-card"><h3>Frontend</h3><span class="wmx-tag">HTML</span><span class="wmx-tag">CSS</span><span class="wmx-tag">JavaScript</span><span class="wmx-tag">React</span></div>
+          <div class="wmx-card"><h3>Data</h3><span class="wmx-tag">Excel</span><span class="wmx-tag">SQL</span><span class="wmx-tag">Python</span><span class="wmx-tag">BI</span></div>
+          <div class="wmx-card"><h3>Business</h3><span class="wmx-tag">Communication</span><span class="wmx-tag">Planning</span><span class="wmx-tag">Analytics</span></div>
+        </div>`) +
+      panel("Namuna ko'nikmalar",table(["Ko'nikma","Guruh","Daraja"],skills.map(s=>`
+        <tr><td>${esc(s.name)}</td><td>${esc(s.group)}</td><td>${esc(s.level)}</td></tr>`).join("")));
+  }
+
+  function roadmapPage() {
+    const done = state.goals.filter(g=>g.done).length;
+    const pct = state.goals.length ? Math.round(done/state.goals.length*100) : 0;
+    return pageHeader("Learning Roadmap","Shaxsiy o'rganish maqsadlari va bajarilgan vazifalar.") +
+      panel("Rivojlanish holati",`
+        <div class="wmx-row" style="justify-content:space-between"><b>${done}/${state.goals.length} vazifa bajarildi</b><b>${pct}%</b></div>
+        <div class="wmx-progress"><span style="width:${pct}%"></span></div>`) +
+      panel("Mening maqsadlarim",`
+        ${state.goals.map(g=>`
+          <div class="wmx-row" style="justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--wmx-line)">
+            <label style="display:flex;gap:10px;align-items:center"><input type="checkbox" data-goal="${esc(g.id)}" ${g.done?"checked":""}><span>${esc(g.title)}</span></label>
+            <span class="wmx-tag">${esc(g.category)}</span>
+          </div>`).join("")}
+        <div class="wmx-row" style="margin-top:13px">${actionButton("Yangi maqsad qo'shish","new-goal","","primary")}</div>`);
+  }
+
+  function portfolioPage() {
+    return pageHeader("Portfolio Identity","Nomzodning professional tajribasi, loyihalari va ko'nikmalari.") +
+      panel("Portfolio profili",`
+        <div class="wmx-three">
+          <div class="wmx-card"><h3>Professional ma'lumot</h3><p class="wmx-muted">Lavozim, tajriba va qisqacha tanishtiruv.</p></div>
+          <div class="wmx-card"><h3>Loyihalar</h3><p class="wmx-muted">Ish namunalari va loyiha havolalari.</p></div>
+          <div class="wmx-card"><h3>Sertifikatlar</h3><p class="wmx-muted">Ta'lim va malaka tasdiqlari.</p></div>
+        </div>
+        <div class="wmx-notice">Portfolio ma'lumotlarini ish beruvchilarga ko'rsatishdan oldin foydalanuvchi roziligi talab qilinadi.</div>`) +
+      panel("Mavjud kasblar katalogi",`<p class="wmx-muted">${existingProfessions.length || 0} ta kasb yozuvi asosiy Workly prototipidan topildi. Bu modul ularning ma'lumotlarini o'zgartirmaydi.</p>`);
+  }
+
+  /* =========================================================
+     10. INTELLIGENCE, COMMUNICATION, PRIVACY, HELP
+  ========================================================= */
+  function intelligencePage() {
+    const categories = {};
+    state.jobs.forEach(j=>{categories[j.category||"Boshqa"]=(categories[j.category||"Boshqa"]||0)+1;});
+    const bars = Object.keys(categories).slice(0,8).map(key=>({label:key,value:categories[key]}));
+    return pageHeader("Workly Intelligence","Mehnat bozori bo'yicha tahlil uchun ma'lumotlar markazi.") +
+      `<div class="wmx-notice">Bu sahifadagi ko'rsatkichlar Workly demo ma'lumotlaridan hisoblangan. Ular O'zbekiston mehnat bozorining rasmiy statistikasi emas.</div>` +
+      `<div class="wmx-grid">
+        ${kpi("Vakansiyalar",state.jobs.length,"Demo ma'lumot","▤")}
+        ${kpi("Kasblar katalogi",existingProfessions.length,"Asosiy prototip","◇")}
+        ${kpi("Hududlar",new Set(state.jobs.map(j=>j.city)).size,"Demo ma'lumot","⌖")}
+        ${kpi("Arizalar",state.applications.length,"ATS demo","▥")}
+      </div>` +
+      panel("Vakansiyalar kategoriyalar bo'yicha",chartBars(bars)) +
+      panel("Intelligence yo'l xaritasi",`
+        <div class="wmx-three">
+          <div class="wmx-card"><h3>Salary Benchmark</h3><p class="wmx-muted">Kasb, tajriba va hudud bo'yicha maosh taqqoslash.</p></div>
+          <div class="wmx-card"><h3>Job Demand</h3><p class="wmx-muted">Vakansiyalar va kasblarga talab dinamikasi.</p></div>
+          <div class="wmx-card"><h3>Regional Intelligence</h3><p class="wmx-muted">Hududlar kesimida mehnat bozori xaritasi.</p></div>
+        </div>`);
+  }
+
+  function communicationPage() {
+    return pageHeader("Communication Hub","Demo xabarlar va bildirishnomalar markazi.") +
+      panel("Yangi xabar",`
+        <form id="wmx-message-form">
+          <div class="wmx-field"><label>Qabul qiluvchi</label><input name="to" required placeholder="Masalan: Azizbek Karimov"></div>
+          <div class="wmx-field"><label>Mavzu</label><input name="subject" required maxlength="100"></div>
+          <div class="wmx-field"><label>Xabar</label><textarea name="body" required maxlength="1000"></textarea></div>
+          <button class="wmx-btn primary" type="submit">Demo xabarni saqlash</button>
+        </form>`) +
+      panel("Xabarlar tarixi",state.messages.length ? table(["Vaqt","Kimga","Mavzu","Matn"],state.messages.map(m=>`
+        <tr><td>${dateText(m.time)}</td><td>${esc(m.to)}</td><td>${esc(m.subject)}</td><td>${esc(m.body)}</td></tr>`).join("")) : `<div class="wmx-empty">Hali demo xabar yo'q.</div>`) +
+      `<div class="wmx-notice">Xabarlar haqiqiy foydalanuvchilarga yuborilmaydi. Hozircha faqat shu brauzerda saqlanadi.</div>`;
+  }
+
+  function privacyPage() {
+    return pageHeader("Privacy Center","Shaxsiy ma'lumotlar, rozilik va ma'lumotlarni boshqarish tamoyillari.") +
+      panel("Privacy by design",`
+        <div class="wmx-three">
+          <div class="wmx-card"><h3>Minimal ma'lumot</h3><p class="wmx-muted">Faqat xizmat uchun zarur ma'lumotlarni yig'ish.</p></div>
+          <div class="wmx-card"><h3>Rozilik</h3><p class="wmx-muted">Profil va portfolio ko'rinishini foydalanuvchi boshqaradi.</p></div>
+          <div class="wmx-card"><h3>Saqlash muddati</h3><p class="wmx-muted">Ma'lumotlar uchun aniq saqlash va o'chirish siyosati.</p></div>
+        </div>`) +
+      panel("Demo ma'lumotlarni boshqarish",`
+        <p class="wmx-muted" style="margin-bottom:12px">Quyidagi amal faqat Workly Max qo'shimcha modulining mahalliy demo ma'lumotlarini o'chiradi. Asosiy Workly ma'lumotlariga tegmaydi.</p>
+        ${actionButton("Workly Max demo ma'lumotlarini tozalash","clear-data","","danger")}`);
+  }
+
+  function helpPage() {
+    return pageHeader("Help & Feedback","Workly bo'yicha yordam, takliflar va muammolarni qayd etish.") +
+      panel("Taklif yoki muammo yuborish",`
+        <form id="wmx-feedback-form">
+          <div class="wmx-field"><label>Mavzu</label><select name="kind"><option>Taklif</option><option>Xatolik</option><option>Dizayn</option><option>Funksiya</option></select></div>
+          <div class="wmx-field"><label>Tavsif</label><textarea name="text" required maxlength="1200" placeholder="Taklifingizni yozing..."></textarea></div>
+          <button class="wmx-btn primary" type="submit">Mahalliy qayd etish</button>
+        </form>`) +
+      panel("Ishlash bo'yicha eslatma",`
+        <ul class="wmx-muted" style="padding-left:18px;line-height:2">
+          <li>Admin panelini yuqoridagi WORKLY CONTROL tugmasidan oching.</li>
+          <li>Chap menyudan kerakli modulni tanlang.</li>
+          <li>Demo amallar brauzer xotirasida saqlanadi.</li>
+          <li>Ma'lumotlarni boshqa qurilmaga avtomatik o'tkazib bo'lmaydi.</li>
+        </ul>`);
+  }
+
+  /* =========================================================
+     11. RENDER ROUTER
+  ========================================================= */
+  const pages = {
+    overview:overviewPage,operations:operationsPage,risk:riskPage,decisions:decisionsPage,
+    health:healthPage,executive:executivePage,users:usersPage,jobs:jobsPage,
+    companies:companiesPage,reports:reportsPage,audit:auditPage,roles:rolesPage,
+    configuration:configurationPage,ats:atsPage,crm:crmPage,interviews:interviewsPage,
+    business:businessPage,"career-map":careerMapPage,skills:skillsPage,roadmap:roadmapPage,
+    portfolio:portfolioPage,intelligence:intelligencePage,communication:communicationPage,
+    privacy:privacyPage,help:helpPage
+  };
+
+  function render(page) {
+    const target = $("#wmx-content", root);
+    const renderer = pages[page] || overviewPage;
+    target.innerHTML = renderer();
+    $("#wmx-breadcrumb", root).textContent = pageNames[page] || "Workly";
+    $$("#wmx-nav [data-page]", root).forEach(button =>
+      button.classList.toggle("active",button.dataset.page===page)
+    );
+  }
+
+  /* =========================================================
+     12. MODAL FORMS
+  ========================================================= */
+  function modal(title, html) {
+    $("#wmx-modal-title",root).textContent = title;
+    $("#wmx-modal-body",root).innerHTML = html;
+    $("#wmx-modal",root).classList.add("open");
+  }
+  function closeModal() { $("#wmx-modal",root).classList.remove("open"); }
+
+  function newJobForm() {
+    modal("Demo vakansiya yaratish",`
+      <form id="wmx-new-job">
+        <div class="wmx-field"><label>Lavozim</label><input name="title" required maxlength="100"></div>
+        <div class="wmx-field"><label>Kompaniya</label><input name="company" required maxlength="100"></div>
+        <div class="wmx-field"><label>Shahar</label><input name="city" value="Toshkent" required maxlength="60"></div>
+        <div class="wmx-field"><label>Kategoriya</label><input name="category" value="IT" maxlength="60"></div>
+        <div class="wmx-field"><label>Maosh</label><input name="salary" placeholder="Kelishiladi" maxlength="60"></div>
+        <button class="wmx-btn primary" type="submit">Demo vakansiyani saqlash</button>
+      </form>`);
+  }
+
+  function newCompanyForm() {
+    modal("Demo kompaniya qo'shish",`
+      <form id="wmx-new-company">
+        <div class="wmx-field"><label>Kompaniya nomi</label><input name="name" required maxlength="100"></div>
+        <div class="wmx-field"><label>Shahar</label><input name="city" value="Toshkent" required></div>
+        <div class="wmx-field"><label>Soha</label><input name="industry" value="IT"></div>
+        <div class="wmx-field"><label>Aloqa emaili</label><input name="contact" type="email" required></div>
+        <button class="wmx-btn primary" type="submit">Saqlash</button>
+      </form>`);
+  }
+
+  function newUserForm() {
+    modal("Demo foydalanuvchi qo'shish",`
+      <form id="wmx-new-user">
+        <div class="wmx-field"><label>Ism yoki kompaniya</label><input name="name" required></div>
+        <div class="wmx-field"><label>Email</label><input name="email" type="email" required></div>
+        <div class="wmx-field"><label>Shahar</label><input name="city" value="Toshkent"></div>
+        <div class="wmx-field"><label>Profil turi</label><select name="role"><option value="candidate">Nomzod</option><option value="employer">Ish beruvchi</option></select></div>
+        <button class="wmx-btn primary" type="submit">Foydalanuvchi qo'shish</button>
+      </form>`);
+  }
+
+  function newCaseForm() {
+    modal("Demo shikoyat yaratish",`
+      <form id="wmx-new-case">
+        <div class="wmx-field"><label>Obyekt</label><input name="target" required placeholder="Vakansiya yoki kompaniya"></div>
+        <div class="wmx-field"><label>Sabab</label><input name="reason" required></div>
+        <div class="wmx-field"><label>Ustuvorlik</label><select name="priority"><option>low</option><option selected>medium</option><option>high</option></select></div>
+        <button class="wmx-btn primary" type="submit">Case yaratish</button>
+      </form>`);
+  }
+
+  function newGoalForm() {
+    modal("Yangi kasbiy maqsad",`
+      <form id="wmx-new-goal">
+        <div class="wmx-field"><label>Maqsad</label><input name="title" required maxlength="140"></div>
+        <div class="wmx-field"><label>Kategoriya</label><input name="category" value="General"></div>
+        <button class="wmx-btn primary" type="submit">Maqsadni saqlash</button>
+      </form>`);
+  }
+
+  function newApplicationForm() {
+    modal("Demo ariza qo'shish",`
+      <form id="wmx-new-application">
+        <div class="wmx-field"><label>Nomzod</label><input name="candidate" required></div>
+        <div class="wmx-field"><label>Vakansiya</label><input name="job" required></div>
+        <div class="wmx-field"><label>Kompaniya</label><input name="company" required></div>
+        <button class="wmx-btn primary" type="submit">Arizani saqlash</button>
+      </form>`);
+  }
+
+  function newCrmForm() {
+    modal("CRM nomzod qo'shish",`
+      <form id="wmx-new-crm">
+        <div class="wmx-field"><label>Nomzod</label><input name="name" required></div>
+        <div class="wmx-field"><label>Lavozim</label><input name="position" required></div>
+        <div class="wmx-field"><label>Kompaniya</label><input name="company" required></div>
+        <div class="wmx-field"><label>Izoh</label><textarea name="note"></textarea></div>
+        <div class="wmx-field"><label>Keyingi qadam</label><input name="next"></div>
+        <button class="wmx-btn primary" type="submit">Nomzodni saqlash</button>
+      </form>`);
+  }
+
+  /* =========================================================
+     13. EVENT DELEGATION — BARCHA TUGMALAR
+  ========================================================= */
+  root.addEventListener("click", event => {
+    const pageButton = event.target.closest("[data-page]");
+    if (pageButton) { go(pageButton.dataset.page); return; }
+
+    const actionButtonEl = event.target.closest("[data-action]");
+    if (!actionButtonEl) {
+      if (event.target.id === "wmx-modal") closeModal();
+      return;
+    }
+
+    const action = actionButtonEl.dataset.action;
+    const id = actionButtonEl.dataset.id;
+
+    if (action === "close") { close(); return; }
+    if (action === "modal-close") { closeModal(); return; }
+    if (action === "mobile-menu") { root.classList.toggle("menu-open"); return; }
+    if (action === "page") { go(id); return; }
+    if (action === "new-job") { newJobForm(); return; }
+    if (action === "new-company") { newCompanyForm(); return; }
+    if (action === "new-user") { newUserForm(); return; }
+    if (action === "new-case") { newCaseForm(); return; }
+    if (action === "new-goal") { newGoalForm(); return; }
+    if (action === "new-application") { newApplicationForm(); return; }
+    if (action === "new-crm") { newCrmForm(); return; }
+
+    if (action === "approve-job" || action === "reject-job") {
+      const job = state.jobs.find(item=>String(item.id)===String(id));
+      if (!job) return;
+      job.status = action === "approve-job" ? "published" : "rejected";
+      audit(action === "approve-job" ? "Vakansiya tasdiqlandi" : "Vakansiya rad etildi",job.title+" · "+job.company);
+      persist("jobs"); render("jobs"); notify("Vakansiya holati yangilandi."); return;
+    }
+
+    if (action === "verify-company") {
+      const company = state.companies.find(item=>item.id===id);
+      if (!company) return;
+      company.status = "verified";
+      company.score = Math.max(company.score || 0, 85);
+      audit("Kompaniya demo tasdiqlandi",company.name);
+      persist("companies"); render("companies"); notify("Demo kompaniya tasdiqlandi."); return;
+    }
+
+    if (action === "toggle-user") {
+      const user = state.users.find(item=>item.id===id);
+      if (!user) return;
+      user.status = user.status === "blocked" ? "active" : "blocked";
+      audit("Foydalanuvchi demo holati o'zgardi",user.name+" → "+user.status);
+      persist("users"); render("users"); notify("Demo foydalanuvchi holati yangilandi."); return;
+    }
+
+    if (action === "close-case") {
+      const item = state.reports.find(report=>report.id===id);
+      if (!item) return;
+      item.status = "closed";
+      audit("Case yopildi",item.id+" · "+item.target);
+      persist("reports"); render("reports"); notify("Case demo holatda yopildi."); return;
+    }
+
+    if (action === "user-detail") {
+      const user = state.users.find(item=>item.id===id);
+      if (!user) return;
+      modal("Foydalanuvchi profili",`
+        <h3>${esc(user.name)}</h3><p class="wmx-muted">${esc(user.email)}</p>
+        <p style="margin-top:10px">ID: ${esc(user.id)}</p><p>Shahar: ${esc(user.city)}</p>
+        <p>Rol: ${esc(user.role)}</p><p>Holat: ${esc(user.status)}</p>
+        <p>Lavozim: ${esc(user.title || "—")}</p>
+        <p>Ko'nikmalar: ${esc((user.skills||[]).join(", ") || "—")}</p>`);
+      return;
+    }
+
+    if (action === "company-detail") {
+      const company = state.companies.find(item=>item.id===id);
+      if (!company) return;
+      modal("Kompaniya profili",`
+        <h3>${esc(company.name)}</h3><p class="wmx-muted">${esc(company.industry)} · ${esc(company.city)}</p>
+        <p style="margin-top:10px">Aloqa: ${esc(company.contact)}</p><p>Vakansiyalar: ${company.jobs}</p>
+        <p>Demo Trust score: ${company.score}/100</p><p>Holat: ${esc(company.status)}</p>`);
+      return;
+    }
+
+    if (action === "case-detail") {
+      const item = state.reports.find(report=>report.id===id);
+      if (!item) return;
+      modal("Case tafsilotlari",`
+        <h3>${esc(item.id)}</h3><p>Obyekt: ${esc(item.target)}</p><p>Sabab: ${esc(item.reason)}</p>
+        <p>Ustuvorlik: ${esc(item.priority)}</p><p>Mas'ul: ${esc(item.owner)}</p>
+        <p>Holat: ${esc(item.status)}</p><p>Yaratilgan: ${dateText(item.created)}</p>`);
+      return;
+    }
+
+    if (action === "export") { exportCSV(); return; }
+
+    if (action === "global-search") {
+      const input = $("#wmx-global-search",root);
+      state.search = (input.value || "").trim();
+      go("users");
+      notify("Qidiruv foydalanuvchilar ro'yxatida qo'llandi.");
+      return;
+    }
+
+    if (action === "clear-data") {
+      if (!confirm("Workly Max qo'shimcha modulining demo ma'lumotlari tozalansinmi? Asosiy Workly ma'lumotlari o'zgarmaydi.")) return;
+      ["users","companies","jobs","reports","audit","applications","crm","goals","messages","notes","settings"].forEach(key=>localStorage.removeItem(APP+":"+key));
+      notify("Demo ma'lumotlar tozalandi. Sahifani yangilang.");
+      return;
+    }
+  });
+
+  /* =========================================================
+     14. FORMALAR VA INPUTLAR
+  ========================================================= */
+  root.addEventListener("submit", event => {
+    const form = event.target;
+    event.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    if (form.id === "wmx-new-job") {
+      const item = {id:uid("JOB"),title:data.title.trim(),company:data.company.trim(),city:data.city.trim(),
+        category:data.category.trim(),salary:data.salary.trim()||"Kelishiladi",status:"pending",
+        quality:70,reports:0,created:new Date().toISOString()};
+      state.jobs.unshift(item); persist("jobs"); audit("Demo vakansiya yaratildi",item.title);
+      closeModal(); render("jobs"); notify("Demo vakansiya moderatsiya navbatiga qo'shildi."); return;
+    }
+
+    if (form.id === "wmx-new-company") {
+      const item = {id:uid("COM"),name:data.name.trim(),city:data.city.trim(),industry:data.industry.trim(),
+        contact:data.contact.trim(),status:"pending",jobs:0,score:50};
+      state.companies.unshift(item); persist("companies"); audit("Demo kompaniya qo'shildi",item.name);
+      closeModal(); render("companies"); notify("Kompaniya tekshiruv navbatiga qo'shildi."); return;
+    }
+
+    if (form.id === "wmx-new-user") {
+      const item = {id:uid("USR"),name:data.name.trim(),email:data.email.trim(),city:data.city.trim(),
+        role:data.role,status:"active",joined:new Date().toISOString().slice(0,10),skills:[],title:""};
+      state.users.unshift(item); persist("users"); audit("Demo foydalanuvchi yaratildi",item.name);
+      closeModal(); render("users"); notify("Demo foydalanuvchi qo'shildi."); return;
+    }
+
+    if (form.id === "wmx-new-case") {
+      const item = {id:uid("CASE"),target:data.target.trim(),reason:data.reason.trim(),
+        priority:data.priority,status:"open",owner:"Moderator",created:new Date().toISOString()};
+      state.reports.unshift(item); persist("reports"); audit("Demo case yaratildi",item.id);
+      closeModal(); render("reports"); notify("Demo case yaratildi."); return;
+    }
+
+    if (form.id === "wmx-new-goal") {
+      state.goals.push({id:uid("GOAL"),title:data.title.trim(),category:data.category.trim(),done:false});
+      persist("goals"); audit("Career maqsadi qo'shildi",data.title);
+      closeModal(); render("roadmap"); notify("Maqsad qo'shildi."); return;
+    }
+
+    if (form.id === "wmx-new-application") {
+      state.applications.unshift({id:uid("APP"),candidate:data.candidate.trim(),job:data.job.trim(),
+        company:data.company.trim(),stage:"Yangi",date:new Date().toISOString().slice(0,10)});
+      persist("applications"); audit("Demo ariza qo'shildi",data.candidate+" · "+data.job);
+      closeModal(); render("ats"); notify("Demo ariza qo'shildi."); return;
+    }
+
+    if (form.id === "wmx-new-crm") {
+      state.crm.unshift({id:uid("CRM"),name:data.name.trim(),position:data.position.trim(),
+        company:data.company.trim(),note:data.note.trim(),next:data.next.trim()});
+      persist("crm"); audit("CRM nomzodi qo'shildi",data.name);
+      closeModal(); render("crm"); notify("CRM yozuvi saqlandi."); return;
+    }
+
+    if (form.id === "wmx-settings-form") {
+      state.settings.platformName = data.platformName.trim();
+      state.settings.defaultLanguage = data.defaultLanguage;
+      state.settings.defaultJobDays = Math.max(1,Math.min(365,Number(data.defaultJobDays)||30));
+      state.settings.maintenance = form.elements.maintenance.checked;
+      state.settings.moderationRequired = form.elements.moderationRequired.checked;
+      persist("settings"); audit("Platforma demo sozlamalari yangilandi","Configuration");
+      render("configuration"); notify("Sozlamalar saqlandi."); return;
+    }
+
+    if (form.id === "wmx-message-form") {
+      state.messages.unshift({id:uid("MSG"),to:data.to.trim(),subject:data.subject.trim(),
+        body:data.body.trim(),time:new Date().toISOString()});
+      persist("messages"); audit("Demo xabar yaratildi",data.to+" · "+data.subject);
+      render("communication"); notify("Xabar faqat demo tarixiga saqlandi."); return;
+    }
+
+    if (form.id === "wmx-feedback-form") {
+      state.notes.unshift({id:uid("FB"),kind:data.kind,text:data.text.trim(),time:new Date().toISOString()});
+      persist("notes"); audit("Feedback qayd etildi",data.kind);
+      render("help"); notify("Taklif demo sifatida saqlandi."); return;
+    }
+  });
+
+  root.addEventListener("change", event => {
+    const target = event.target;
+    if (target.matches("[data-application-stage]")) {
+      const app = state.applications.find(item=>item.id===target.dataset.applicationStage);
+      if (app) {
+        app.stage = target.value; persist("applications");
+        audit("ATS bosqichi o'zgardi",app.candidate+" → "+app.stage);
+        notify("Ariza bosqichi yangilandi.");
+      }
+    }
+    if (target.matches("[data-goal]")) {
+      const goal = state.goals.find(item=>item.id===target.dataset.goal);
+      if (goal) {
+        goal.done = target.checked; persist("goals"); audit("Career maqsadi yangilandi",goal.title);
+        render("roadmap");
+      }
+    }
+  });
+
+  $("#wmx-global-search",root).addEventListener("keydown",event=>{
+    if(event.key==="Enter") {
+      state.search = event.target.value.trim();
+      go("users");
+    }
+  });
+
+  /* =========================================================
+     15. CSV EXPORT
+  ========================================================= */
+  function exportCSV() {
+    const rows = [
+      ["Type","ID","Name","Status","City"],
+      ...state.users.map(u=>["User",u.id,u.name,u.status,u.city]),
+      ...state.companies.map(c=>["Company",c.id,c.name,c.status,c.city]),
+      ...state.jobs.map(j=>["Job",j.id,j.title,j.status,j.city])
+    ];
+    const csv = rows.map(row=>row.map(value=>'"'+String(value==null?"":value).replace(/"/g,'""')+'"').join(",")).join("\r\n");
+    const blob = new Blob(["\uFEFF"+csv],{type:"text/csv;charset=utf-8"});
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url; link.download = "workly-demo-report.csv";
+    document.body.appendChild(link); link.click(); link.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    audit("CSV eksport qilindi","Demo marketplace ro'yxatlari");
+    notify("CSV fayl tayyor.");
+  }
+
+  /* =========================================================
+     16. GLOBAL API VA ISHGA TUSHIRISH
+  ========================================================= */
+  window.WorklyMax = {
+    initialized:true,
+    open,close,go,
+    getDemoSummary:() => ({
+      users:state.users.length,companies:state.companies.length,
+      jobs:state.jobs.length,reports:state.reports.length,
+      applications:state.applications.length
+    })
+  };
+
+  // Asosiy Workly funksiyalariga aralashmasdan ishga tushadi.
+  audit("Workly Max ishga tushdi","Control Center va Ecosystem demo modullari");
+  console.log("WORKLY MAX ECOSYSTEM: ACTIVE",window.WorklyMax.getDemoSummary());
+})();
+</script>
+<!-- ================= END WORKLY MAX ADD-ON ================= -->
+ <!-- WORKLY ADMIN HIDDEN ACCESS PATCH
+     Buni mavjud Workly kodining ENG OXIRIGA qo'shing.
+     Oldingi kodlarni o'chirmang.
+-->
+<script>
+(function () {
+  "use strict";
+
+  const ADMIN_PASSWORD = "WLY-ADMIN-4829";
+  const SHORTCUT = (event) =>
+    event.ctrlKey && event.shiftKey && event.altKey &&
+    event.code === "KeyW";
+
+  function hideAdmin() {
+    const launcher = document.getElementById("wmx-launch");
+    const root = document.getElementById("wmx-root");
+
+    if (launcher) launcher.style.setProperty("display", "none", "important");
+    if (root) {
+      root.classList.remove("open");
+      root.classList.remove("menu-open");
+      root.style.setProperty("display", "none", "important");
+    }
+  }
+
+  function showAdmin() {
+    const root = document.getElementById("wmx-root");
+    if (!root || !window.WorklyMax || !window.WorklyMax.initialized) {
+      alert("Workly Admin moduli topilmadi. Sahifani yangilang.");
+      return;
+    }
+
+    const entered = prompt("Workly Admin parolini kiriting:");
+    if (entered === null) return;
+
+    if (entered !== ADMIN_PASSWORD) {
+      alert("Parol noto'g'ri. Admin panel ochilmadi.");
+      hideAdmin();
+      return;
+    }
+
+    root.style.removeProperty("display");
+    window.WorklyMax.open();
+  }
+
+  // Admin tugmasini yashirish va panelni yopiq holatda saqlash.
+  hideAdmin();
+
+  // Eski API orqali parolsiz ochilishni to'sish.
+  if (window.WorklyMax && typeof window.WorklyMax.open === "function") {
+    const originalOpen = window.WorklyMax.open;
+    window.WorklyMax.open = function () {
+      // Faqat maxsus klaviatura shortcutidan keyin berilgan ruxsat bilan ochiladi.
+      if (!window.__WORKLY_ADMIN_UNLOCKED__) return;
+      return originalOpen.apply(this, arguments);
+    };
+  }
+
+  // Maxsus tugmalar: Ctrl + Shift + Alt + W
+  document.addEventListener("keydown", function (event) {
+    if (!SHORTCUT(event)) return;
+    event.preventDefault();
+
+    const entered = prompt("Workly Admin parolini kiriting:");
+    if (entered === null) return;
+
+    if (entered !== ADMIN_PASSWORD) {
+      alert("Parol noto'g'ri.");
+      hideAdmin();
+      return;
+    }
+
+    const root = document.getElementById("wmx-root");
+    if (!root || !window.WorklyMax) {
+      alert("Admin moduli topilmadi. Sahifani yangilang.");
+      return;
+    }
+
+    window.__WORKLY_ADMIN_UNLOCKED__ = true;
+    root.style.removeProperty("display");
+    window.WorklyMax.open();
+    window.__WORKLY_ADMIN_UNLOCKED__ = false;
+  }, true);
+
+  console.log("Workly Admin: hidden access patch active.");
+})();
+</script>
+<!-- END WORKLY ADMIN HIDDEN ACCESS PATCH -->
+
+</html>
